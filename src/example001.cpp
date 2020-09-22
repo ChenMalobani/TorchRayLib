@@ -16,13 +16,13 @@ int main(int argc, char *argv[]) {
     torch::Device device(torch::kCUDA);
 //    torch::Device device(torch::kCPU);
     // Input PNG-image
-    png::image<png::rgb_pixel> imageI("siv3d-kun.png");
+    png::image<png::rgb_pixel> imageI("windmill.png");
     // Convert png::image into torch::Tensor
     torch::Tensor tensor = VU.pngToTorch(imageI, device); //Note: we are allocating on the GPU
     std::cout << "C:" << tensor.size(0) << " H:" << tensor.size(1) << " W:" << tensor.size(2) << std::endl;
     // Convert torch::Tensor into png::image
     png::image<png::rgb_pixel> imageO = VU.torchToPng(tensor);
     // Input PNG-image
-    imageO.write("siv3d-kun-out.png");
+    imageO.write("windmill-out.png");
     return 0;
 }

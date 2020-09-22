@@ -42,16 +42,10 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f63543ba-b158-4fa2-bdd2-dfcb1c6b84cf" name="Default Changelist" comment="First">
-      <change afterPath="$PROJECT_DIR$/resources/windmill.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/example001.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/example002.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/PngTorch.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/PngTorch.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="f63543ba-b158-4fa2-bdd2-dfcb1c6b84cf" name="Default Changelist" comment="Trying to fix inference with PyTorch on loaded model">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/utils/vision_utils.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/include/utils/vision_utils.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/neural.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/example001.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/example001.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,13 +74,13 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="CMakeSettings" />
   </component>
-  <component name="RunManager" selected="CMake Application.Simple">
+  <component name="RunManager" selected="CMake Application.PngTorch">
     <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="CLION.EXTERNAL.BUILD" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Simple" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Simple" TARGET_NAME="Simple" CONFIG_NAME="Release-Visual Studio" RUN_TARGET_PROJECT_NAME="Simple" RUN_TARGET_NAME="Simple">
+    <configuration name="PngTorch" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PngTorch" TARGET_NAME="PngTorch" CONFIG_NAME="Release-Visual Studio" RUN_TARGET_PROJECT_NAME="PngTorch" RUN_TARGET_NAME="PngTorch">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -96,58 +90,58 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="genfiles" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Simple" TARGET_NAME="genfiles" CONFIG_NAME="Release-Visual Studio">
+    <configuration name="genfiles" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PngTorch" TARGET_NAME="genfiles" CONFIG_NAME="Release-Visual Studio">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="png-fix-itxt" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Simple" TARGET_NAME="png-fix-itxt" CONFIG_NAME="Release-Visual Studio" RUN_TARGET_PROJECT_NAME="Simple" RUN_TARGET_NAME="png-fix-itxt">
+    <configuration name="png-fix-itxt" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PngTorch" TARGET_NAME="png-fix-itxt" CONFIG_NAME="Release-Visual Studio" RUN_TARGET_PROJECT_NAME="PngTorch" RUN_TARGET_NAME="png-fix-itxt">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="png" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Simple" TARGET_NAME="png" CONFIG_NAME="Release-Visual Studio">
+    <configuration name="png" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PngTorch" TARGET_NAME="png" CONFIG_NAME="Release-Visual Studio">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="png_static" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Simple" TARGET_NAME="png_static" CONFIG_NAME="Release-Visual Studio">
+    <configuration name="png_static" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PngTorch" TARGET_NAME="png_static" CONFIG_NAME="Release-Visual Studio">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="pngfix" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Simple" TARGET_NAME="pngfix" CONFIG_NAME="Release-Visual Studio" RUN_TARGET_PROJECT_NAME="Simple" RUN_TARGET_NAME="pngfix">
+    <configuration name="pngfix" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PngTorch" TARGET_NAME="pngfix" CONFIG_NAME="Release-Visual Studio" RUN_TARGET_PROJECT_NAME="PngTorch" RUN_TARGET_NAME="pngfix">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="pngimage" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Simple" TARGET_NAME="pngimage" CONFIG_NAME="Release-Visual Studio" RUN_TARGET_PROJECT_NAME="Simple" RUN_TARGET_NAME="pngimage">
+    <configuration name="pngimage" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PngTorch" TARGET_NAME="pngimage" CONFIG_NAME="Release-Visual Studio" RUN_TARGET_PROJECT_NAME="PngTorch" RUN_TARGET_NAME="pngimage">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="pngstest" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Simple" TARGET_NAME="pngstest" CONFIG_NAME="Release-Visual Studio" RUN_TARGET_PROJECT_NAME="Simple" RUN_TARGET_NAME="pngstest">
+    <configuration name="pngstest" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PngTorch" TARGET_NAME="pngstest" CONFIG_NAME="Release-Visual Studio" RUN_TARGET_PROJECT_NAME="PngTorch" RUN_TARGET_NAME="pngstest">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="pngtest" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Simple" TARGET_NAME="pngtest" CONFIG_NAME="Release-Visual Studio" RUN_TARGET_PROJECT_NAME="Simple" RUN_TARGET_NAME="pngtest">
+    <configuration name="pngtest" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PngTorch" TARGET_NAME="pngtest" CONFIG_NAME="Release-Visual Studio" RUN_TARGET_PROJECT_NAME="PngTorch" RUN_TARGET_NAME="pngtest">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="pngunknown" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Simple" TARGET_NAME="pngunknown" CONFIG_NAME="Release-Visual Studio" RUN_TARGET_PROJECT_NAME="Simple" RUN_TARGET_NAME="pngunknown">
+    <configuration name="pngunknown" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PngTorch" TARGET_NAME="pngunknown" CONFIG_NAME="Release-Visual Studio" RUN_TARGET_PROJECT_NAME="PngTorch" RUN_TARGET_NAME="pngunknown">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="pngvalid" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Simple" TARGET_NAME="pngvalid" CONFIG_NAME="Release-Visual Studio" RUN_TARGET_PROJECT_NAME="Simple" RUN_TARGET_NAME="pngvalid">
+    <configuration name="pngvalid" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PngTorch" TARGET_NAME="pngvalid" CONFIG_NAME="Release-Visual Studio" RUN_TARGET_PROJECT_NAME="PngTorch" RUN_TARGET_NAME="pngvalid">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <list>
-      <item itemvalue="CMake Application.Simple" />
+      <item itemvalue="CMake Application.PngTorch" />
       <item itemvalue="CMake Application.genfiles" />
       <item itemvalue="CMake Application.png-fix-itxt" />
       <item itemvalue="CMake Application.png" />
@@ -173,7 +167,7 @@
       <workItem from="1600707483991" duration="35000" />
       <workItem from="1600717435015" duration="692000" />
       <workItem from="1600753354788" duration="16000" />
-      <workItem from="1600763261491" duration="667000" />
+      <workItem from="1600763261491" duration="1496000" />
     </task>
     <task id="LOCAL-00001" summary="First">
       <created>1600686572330</created>
@@ -259,7 +253,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600717960656</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Trying to fix inference with PyTorch on loaded model">
+      <created>1600763984726</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1600763984726</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -279,36 +280,37 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First" />
-    <option name="LAST_COMMIT_MESSAGE" value="First" />
+    <MESSAGE value="Trying to fix inference with PyTorch on loaded model" />
+    <option name="LAST_COMMIT_MESSAGE" value="Trying to fix inference with PyTorch on loaded model" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1072" y="470" key="FileChooserDialogImpl" timestamp="1600753368638">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1072" y="470" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1600753368638" />
-    <state width="2077" height="364" key="GridCell.Tab.0.bottom" timestamp="1600763393845">
+    <state width="2077" height="364" key="GridCell.Tab.0.bottom" timestamp="1600764694605">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2077" height="364" key="GridCell.Tab.0.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1600763393845" />
-    <state width="2077" height="364" key="GridCell.Tab.0.center" timestamp="1600763393845">
+    <state width="2077" height="364" key="GridCell.Tab.0.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1600764694605" />
+    <state width="2077" height="364" key="GridCell.Tab.0.center" timestamp="1600764694605">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2077" height="364" key="GridCell.Tab.0.center/0.0.2560.1400@0.0.2560.1400" timestamp="1600763393845" />
-    <state width="2077" height="364" key="GridCell.Tab.0.left" timestamp="1600763393845">
+    <state width="2077" height="364" key="GridCell.Tab.0.center/0.0.2560.1400@0.0.2560.1400" timestamp="1600764694605" />
+    <state width="2077" height="364" key="GridCell.Tab.0.left" timestamp="1600764694605">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2077" height="364" key="GridCell.Tab.0.left/0.0.2560.1400@0.0.2560.1400" timestamp="1600763393845" />
-    <state width="2077" height="364" key="GridCell.Tab.0.right" timestamp="1600763393845">
+    <state width="2077" height="364" key="GridCell.Tab.0.left/0.0.2560.1400@0.0.2560.1400" timestamp="1600764694605" />
+    <state width="2077" height="364" key="GridCell.Tab.0.right" timestamp="1600764694605">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2077" height="364" key="GridCell.Tab.0.right/0.0.2560.1400@0.0.2560.1400" timestamp="1600763393845" />
+    <state width="2077" height="364" key="GridCell.Tab.0.right/0.0.2560.1400@0.0.2560.1400" timestamp="1600764694605" />
     <state x="838" y="354" key="SettingsEditor" timestamp="1600717638494">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="838" y="354" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1600717638494" />
-    <state x="927" y="444" key="Vcs.Push.Dialog.v2" timestamp="1600717964426">
+    <state x="927" y="444" key="Vcs.Push.Dialog.v2" timestamp="1600763988574">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="927" y="444" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1600717964426" />
+    <state x="927" y="444" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1600763988574" />
   </component>
 </project>
