@@ -42,7 +42,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f63543ba-b158-4fa2-bdd2-dfcb1c6b84cf" name="Default Changelist" comment="NeuralStyle: finally working" />
+    <list default="true" id="f63543ba-b158-4fa2-bdd2-dfcb1c6b84cf" name="Default Changelist" comment="NeuralStyle: finally working">
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -170,7 +172,7 @@
       <workItem from="1600753354788" duration="16000" />
       <workItem from="1600763261491" duration="1587000" />
       <workItem from="1600772740669" duration="2713000" />
-      <workItem from="1600777970351" duration="3383000" />
+      <workItem from="1600777970351" duration="3474000" />
     </task>
     <task id="LOCAL-00001" summary="First">
       <created>1600686572330</created>
@@ -298,7 +300,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600781783660</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="NeuralStyle: finally working">
+      <created>1600781887710</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1600781887710</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -347,10 +356,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="838" y="354" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1600772941816" />
-    <state x="927" y="444" key="Vcs.Push.Dialog.v2" timestamp="1600781810153">
+    <state x="927" y="444" key="Vcs.Push.Dialog.v2" timestamp="1600781890245">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="927" y="444" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1600781810153" />
+    <state x="927" y="444" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1600781890245" />
     <state x="814" y="104" width="1277" height="919" key="find.popup" timestamp="1600781007323">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

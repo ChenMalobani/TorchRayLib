@@ -103,7 +103,7 @@ int main(int argc, char *argv[]) {
 
  
 * Load a trained PyTorch model in C++ (**see pth folder**), load an Image in C++, run a trained pytorch model on it and save the output.
- ![PngTorch++ Code](https://github.com/QuantScientist/PngTorch/blob/master/assets/amber.png_mosaic_cpp.pt-out.png?raw=true)
+ ![PngTorch++ Code](https://github.com/QuantScientist/PngTorch/blob/master/asstes/amber.png_mosaic_cpp.pt-out.png?raw=true)
 
 
 ## Requirements:
