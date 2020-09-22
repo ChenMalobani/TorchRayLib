@@ -70,6 +70,11 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../ppc/siv001" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\Dropbox\Tech\production\ppc_old\PngTorch\asstes" />
+    </key>
+  </component>
   <component name="RunManager" selected="CMake Application.PngTorch">
     <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
@@ -165,7 +170,7 @@
       <workItem from="1600753354788" duration="16000" />
       <workItem from="1600763261491" duration="1587000" />
       <workItem from="1600772740669" duration="2713000" />
-      <workItem from="1600777970351" duration="3284000" />
+      <workItem from="1600777970351" duration="3383000" />
     </task>
     <task id="LOCAL-00001" summary="First">
       <created>1600686572330</created>
@@ -286,7 +291,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600781746613</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="NeuralStyle: finally working">
+      <created>1600781783660</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1600781783660</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -335,10 +347,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="838" y="354" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1600772941816" />
-    <state x="927" y="444" key="Vcs.Push.Dialog.v2" timestamp="1600781771032">
+    <state x="927" y="444" key="Vcs.Push.Dialog.v2" timestamp="1600781810153">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="927" y="444" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1600781771032" />
+    <state x="927" y="444" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1600781810153" />
     <state x="814" y="104" width="1277" height="919" key="find.popup" timestamp="1600781007323">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
