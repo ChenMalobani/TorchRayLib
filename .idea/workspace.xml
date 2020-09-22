@@ -42,12 +42,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f63543ba-b158-4fa2-bdd2-dfcb1c6b84cf" name="Default Changelist" comment="Trying to fix inference with PyTorch on loaded model">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/utils/vision_utils.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/include/utils/vision_utils.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/style_model_cpp.pt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/example002.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/example002.cpp" afterDir="false" />
-    </list>
+    <list default="true" id="f63543ba-b158-4fa2-bdd2-dfcb1c6b84cf" name="Default Changelist" comment="NeuralStyle: finally working" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -170,7 +165,7 @@
       <workItem from="1600753354788" duration="16000" />
       <workItem from="1600763261491" duration="1587000" />
       <workItem from="1600772740669" duration="2713000" />
-      <workItem from="1600777970351" duration="2975000" />
+      <workItem from="1600777970351" duration="3284000" />
     </task>
     <task id="LOCAL-00001" summary="First">
       <created>1600686572330</created>
@@ -277,7 +272,21 @@
       <option name="project" value="LOCAL" />
       <updated>1600773004533</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="NeuralStyle: finally working">
+      <created>1600781547699</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1600781547699</updated>
+    </task>
+    <task id="LOCAL-00017" summary="NeuralStyle: finally working">
+      <created>1600781746613</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1600781746613</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -298,37 +307,38 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First" />
     <MESSAGE value="Trying to fix inference with PyTorch on loaded model" />
-    <option name="LAST_COMMIT_MESSAGE" value="Trying to fix inference with PyTorch on loaded model" />
+    <MESSAGE value="NeuralStyle: finally working" />
+    <option name="LAST_COMMIT_MESSAGE" value="NeuralStyle: finally working" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1072" y="470" key="FileChooserDialogImpl" timestamp="1600775442207">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1072" y="470" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1600775442207" />
-    <state width="2077" height="279" key="GridCell.Tab.0.bottom" timestamp="1600781310044">
+    <state width="2077" height="279" key="GridCell.Tab.0.bottom" timestamp="1600781651208">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2077" height="279" key="GridCell.Tab.0.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1600781310044" />
-    <state width="2077" height="279" key="GridCell.Tab.0.center" timestamp="1600781310044">
+    <state width="2077" height="279" key="GridCell.Tab.0.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1600781651208" />
+    <state width="2077" height="279" key="GridCell.Tab.0.center" timestamp="1600781651208">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2077" height="279" key="GridCell.Tab.0.center/0.0.2560.1400@0.0.2560.1400" timestamp="1600781310044" />
-    <state width="2077" height="279" key="GridCell.Tab.0.left" timestamp="1600781310044">
+    <state width="2077" height="279" key="GridCell.Tab.0.center/0.0.2560.1400@0.0.2560.1400" timestamp="1600781651208" />
+    <state width="2077" height="279" key="GridCell.Tab.0.left" timestamp="1600781651208">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2077" height="279" key="GridCell.Tab.0.left/0.0.2560.1400@0.0.2560.1400" timestamp="1600781310044" />
-    <state width="2077" height="279" key="GridCell.Tab.0.right" timestamp="1600781310044">
+    <state width="2077" height="279" key="GridCell.Tab.0.left/0.0.2560.1400@0.0.2560.1400" timestamp="1600781651208" />
+    <state width="2077" height="279" key="GridCell.Tab.0.right" timestamp="1600781651208">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2077" height="279" key="GridCell.Tab.0.right/0.0.2560.1400@0.0.2560.1400" timestamp="1600781310044" />
+    <state width="2077" height="279" key="GridCell.Tab.0.right/0.0.2560.1400@0.0.2560.1400" timestamp="1600781651208" />
     <state x="838" y="354" key="SettingsEditor" timestamp="1600772941816">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="838" y="354" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1600772941816" />
-    <state x="927" y="444" key="Vcs.Push.Dialog.v2" timestamp="1600773009144">
+    <state x="927" y="444" key="Vcs.Push.Dialog.v2" timestamp="1600781771032">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="927" y="444" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1600773009144" />
+    <state x="927" y="444" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1600781771032" />
     <state x="814" y="104" width="1277" height="919" key="find.popup" timestamp="1600781007323">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
