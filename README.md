@@ -99,12 +99,13 @@ int main(int argc, char *argv[]) {
 
 ## Examples
 
-* A Simple example, mainly for testing the integration. Allocates a tensor on the GPU.
+### A Simple example, mainly for testing the integration. Allocates a tensor on the GPU.
+https://github.com/QuantScientist/PngTorch/blob/d939467a2dfdd5a0ac2373e950cb63936231858b/src/example001.cpp#L19
 
  
-* Load a trained PyTorch model in C++ (**see pth folder**), load an Image in C++, run a trained pytorch model on it and save the output.
+### Load a trained PyTorch NeuralStyle transfer model in C++ (**see pth folder**), load an Image in C++, run a trained pytorch model on it and save the output.
  ![PngTorch++ Code](https://github.com/QuantScientist/PngTorch/blob/master/asstes/amber.png_mosaic_cpp.pt-out.png?raw=true)
-
+https://github.com/QuantScientist/PngTorch/blob/d939467a2dfdd5a0ac2373e950cb63936231858b/src/example002.cpp#L11
 
 ## Requirements:
 * Windows 10 and Microsoft Visual C++ 2019 16.4, Linux is not supported at the moment.
