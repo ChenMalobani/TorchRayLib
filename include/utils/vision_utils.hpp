@@ -35,16 +35,21 @@ torch::Tensor VisionUtils::pngToTorch(png::image<png::rgb_pixel> &image, c10::De
             pointer[j * width * 3 + i * 3 + 2] = image[j][i].blue;
         }
     }
-    torch::Tensor tensor = torch::from_blob(pointer, {image.get_height(), image.get_width(), 3}, torch::kUInt8).clone().to(device);  // copy
+    torch::Tensor tensor = torch::from_blob(pointer, {image.get_height(), image.get_width(), 3}, torch::kUInt8)
+            .clone().permute({2, 0, 1}).to(device);  // copy
+//    .clone().to(torch::kFloat32).permute({ 2, 0, 1 }).div_(255).to(device);
 //    torch::Tensor tensor = torch::from_blob(pointer, {image.get_height(), image.get_width(), 3}, torch::kUInt8).clone();  // copy
-    tensor = tensor.permute({2, 0, 1});  // {H,W,C} ===> {C,H,W}
+//    tensor = tensor.permute({2, 0, 1});  // {H,W,C} ===> {C,H,W}
     delete[] pointer;
     return tensor;
 }
 
 png::image<png::rgb_pixel> VisionUtils::torchToPng(torch::Tensor &tensor_){
+//    out_tensor = out_tensor.mul(255).clamp(0, 255).to(torch::kU8);
+    torch::Tensor tensor = tensor_.squeeze().detach().cpu().permute({1, 2, 0});  // {C,H,W} ===> {H,W,C}
+    tensor = tensor.mul(255).clamp(0, 255).to(torch::kU8);
+//    tensor = tensor.mul(0.5).add(0.5).mul(255).clamp(0, 255).to(torch::kU8);
 
-    torch::Tensor tensor = tensor_.detach().cpu().permute({1, 2, 0});  // {C,H,W} ===> {H,W,C}
     size_t width = tensor.size(1);
     size_t height = tensor.size(0);
     auto pointer = tensor.data_ptr<unsigned char>();
@@ -58,6 +63,22 @@ png::image<png::rgb_pixel> VisionUtils::torchToPng(torch::Tensor &tensor_){
     }
     return image;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 torch::Tensor VisionUtils::pngToTorchRGBA(png::image<png::rgba_pixel> &image, c10::Device &device){
     size_t width = image.get_width();
@@ -138,7 +159,19 @@ void VisionUtils::tensorDIMS(const torch::Tensor &tensor) {
 
 
 
-
+//at::Tensor matToTensor(cv::Mat frame, int h, int w, int c) {
+//    cv::cvtColor(frame, frame, CV_BGR2RGB);
+//    frame.convertTo(frame, CV_32FC3, 1.0f / 255.0f);
+//    auto input_tensor = torch::from_blob(frame.data, {1, h, w, c});
+//    input_tensor = input_tensor.permute({0, 3, 1, 2});
+//
+//    torch::DeviceType device_type = torch::kCPU;
+////    if (torch::cuda::is_available()) {
+//    device_type = torch::kCUDA;
+////    }
+//    input_tensor = input_tensor.to(device_type);
+//    return input_tensor;
+//}
 
 
 //cv::Mat VisionUtils::tensorToOpenCv(at::Tensor out_tensor, int h, int w, int c) {

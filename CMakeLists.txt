@@ -78,7 +78,7 @@ set(PROJECT_INCLUDE_DIR ${PROJ_INCLUDES} )
 SET(PROJECT_SOURCE_DIR ${PROJ_SOURCES})
 
 add_executable(${PROJECT_NAME} ${PROJ_SOURCES} ${PROJ_HEADERS} ${PROJECT_INCLUDE_DIR})
-target_sources(${PROJECT_NAME} PRIVATE src/example001.cpp) # main entry point is here
+target_sources(${PROJECT_NAME} PRIVATE src/example002.cpp) # main entry point is here
 target_link_libraries(${PROJECT_NAME} ${TORCH_LIBRARIES}  "${CMAKE_CURRENT_LIST_DIR}/lib/libpng/libpng16.lib" "${CMAKE_CURRENT_LIST_DIR}/lib/zlib/zlib.lib")
 target_include_directories(${PROJECT_NAME} PUBLIC ${PROJ_INCLUDES} PUBLIC ${libpng_SOURCE_DIR} )
 
@@ -104,9 +104,10 @@ if(MSVC)
 endif(MSVC)
 
 # # Copy trained PTH files
-file(COPY "resources/style_model_cpp.pt" DESTINATION ${CMAKE_SOURCE_DIR}/bin64)
-file(COPY "resources/model_cpp.pt" DESTINATION ${CMAKE_SOURCE_DIR}/bin64)
+file(COPY "resources/mosaic_cpp.pt" DESTINATION ${CMAKE_SOURCE_DIR}/bin64)
+file(COPY "resources/candy_cpp.pt" DESTINATION ${CMAKE_SOURCE_DIR}/bin64)
 file(COPY "resources/erfnet_fs.pt" DESTINATION ${CMAKE_SOURCE_DIR}/bin64)
+file(COPY "resources/amber.png" DESTINATION ${CMAKE_SOURCE_DIR}/bin64)
 file(COPY "resources/siv3d-kun.png" DESTINATION ${CMAKE_SOURCE_DIR}/bin64)
 file(COPY "resources/windmill.png" DESTINATION ${CMAKE_SOURCE_DIR}/bin64)
 

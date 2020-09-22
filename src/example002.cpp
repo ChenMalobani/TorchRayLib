@@ -8,9 +8,11 @@ int main(int argc, char *argv[]){
 
     auto VU= VisionUtils();
     torch::Device device(torch::kCUDA);
-    const std::string modelName = "style_model_cpp.pt";
-//    const std::string modelName = "erfnet_fs.pt";
-    const std::string content_image_path = "windmill.png";
+
+        //Load a model
+//    const std::string modelName = "mosaic_cpp.pt";
+    const std::string modelName = "candy_cpp.pt";
+    const std::string content_image_path = "amber.png";
     auto module = torch::jit::load(modelName, device);
 
     //RGB
@@ -32,7 +34,8 @@ int main(int argc, char *argv[]){
 ////    out_tensor = out_tensor.permute({0,1,2}); // {C,H,W} ===> {H,W,C}
 //    png::image<png::rgba_pixel> imageO = VU.torchToPngRGBA(out_tensor);
     png::image<png::rgb_pixel> imageO = VU.torchToPng(out_tensor);
-    imageO.write(content_image_path + "-out.png");
+//    // Input PNG-image
+    imageO.write(content_image_path + "_" + modelName + "-out.png");
 
     return 0;
 }
