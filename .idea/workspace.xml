@@ -43,25 +43,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f63543ba-b158-4fa2-bdd2-dfcb1c6b84cf" name="Default Changelist" comment="Trying to fix inference with PyTorch on loaded model">
-      <change afterPath="$PROJECT_DIR$/model_trace.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/amber-rain-princess.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/amber.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/amber.png_candy_cpp.pt-out.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/amber.pngmosaic_cpp.pt-out.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/candy.pth" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/candy_cpp.pt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/clion.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/mosaic.pth" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/mosaic_cpp.pt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/rain_princess.pth" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/udnie.pth" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/transformer_net.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/PngTorch.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/PngTorch.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/include/utils/vision_utils.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/include/utils/vision_utils.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/windmill.png-out.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/style_model_cpp.pt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/example002.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/example002.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -88,16 +72,16 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="cf.first.check.clang-format" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../ppc/siv001" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunManager" selected="CMake Application.PngTorch">
-    <configuration name="PngTorch" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PngTorch" TARGET_NAME="PngTorch" CONFIG_NAME="Release-Visual Studio" RUN_TARGET_PROJECT_NAME="PngTorch" RUN_TARGET_NAME="PngTorch">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
+    <configuration name="PngTorch" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PngTorch" TARGET_NAME="PngTorch" CONFIG_NAME="Release-Visual Studio" RUN_TARGET_PROJECT_NAME="PngTorch" RUN_TARGET_NAME="PngTorch">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -185,7 +169,8 @@
       <workItem from="1600717435015" duration="692000" />
       <workItem from="1600753354788" duration="16000" />
       <workItem from="1600763261491" duration="1587000" />
-      <workItem from="1600772740669" duration="215000" />
+      <workItem from="1600772740669" duration="2713000" />
+      <workItem from="1600777970351" duration="2975000" />
     </task>
     <task id="LOCAL-00001" summary="First">
       <created>1600686572330</created>
@@ -285,7 +270,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600764791012</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Trying to fix inference with PyTorch on loaded model">
+      <created>1600773004533</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1600773004533</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -309,33 +301,37 @@
     <option name="LAST_COMMIT_MESSAGE" value="Trying to fix inference with PyTorch on loaded model" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1072" y="470" key="FileChooserDialogImpl" timestamp="1600753368638">
+    <state x="1072" y="470" key="FileChooserDialogImpl" timestamp="1600775442207">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1072" y="470" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1600753368638" />
-    <state width="2077" height="364" key="GridCell.Tab.0.bottom" timestamp="1600764849098">
+    <state x="1072" y="470" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1600775442207" />
+    <state width="2077" height="279" key="GridCell.Tab.0.bottom" timestamp="1600781310044">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2077" height="364" key="GridCell.Tab.0.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1600764849098" />
-    <state width="2077" height="364" key="GridCell.Tab.0.center" timestamp="1600764849098">
+    <state width="2077" height="279" key="GridCell.Tab.0.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1600781310044" />
+    <state width="2077" height="279" key="GridCell.Tab.0.center" timestamp="1600781310044">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2077" height="364" key="GridCell.Tab.0.center/0.0.2560.1400@0.0.2560.1400" timestamp="1600764849098" />
-    <state width="2077" height="364" key="GridCell.Tab.0.left" timestamp="1600764849097">
+    <state width="2077" height="279" key="GridCell.Tab.0.center/0.0.2560.1400@0.0.2560.1400" timestamp="1600781310044" />
+    <state width="2077" height="279" key="GridCell.Tab.0.left" timestamp="1600781310044">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2077" height="364" key="GridCell.Tab.0.left/0.0.2560.1400@0.0.2560.1400" timestamp="1600764849097" />
-    <state width="2077" height="364" key="GridCell.Tab.0.right" timestamp="1600764849098">
+    <state width="2077" height="279" key="GridCell.Tab.0.left/0.0.2560.1400@0.0.2560.1400" timestamp="1600781310044" />
+    <state width="2077" height="279" key="GridCell.Tab.0.right" timestamp="1600781310044">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2077" height="364" key="GridCell.Tab.0.right/0.0.2560.1400@0.0.2560.1400" timestamp="1600764849098" />
+    <state width="2077" height="279" key="GridCell.Tab.0.right/0.0.2560.1400@0.0.2560.1400" timestamp="1600781310044" />
     <state x="838" y="354" key="SettingsEditor" timestamp="1600772941816">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="838" y="354" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1600772941816" />
-    <state x="927" y="444" key="Vcs.Push.Dialog.v2" timestamp="1600764794416">
+    <state x="927" y="444" key="Vcs.Push.Dialog.v2" timestamp="1600773009144">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="927" y="444" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1600764794416" />
+    <state x="927" y="444" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1600773009144" />
+    <state x="814" y="104" width="1277" height="919" key="find.popup" timestamp="1600781007323">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="814" y="104" width="1277" height="919" key="find.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1600781007323" />
   </component>
 </project>

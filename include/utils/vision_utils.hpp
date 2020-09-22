@@ -35,7 +35,7 @@ torch::Tensor VisionUtils::pngToTorch(png::image<png::rgb_pixel> &image, c10::De
             pointer[j * width * 3 + i * 3 + 2] = image[j][i].blue;
         }
     }
-    torch::Tensor tensor = torch::from_blob(pointer, {image.get_height(), image.get_width(), 3}, torch::kUInt8)
+    torch::Tensor tensor = torch::from_blob(pointer, {image.get_height(), image.get_width(), 3}, torch::kU8)
             .clone().permute({2, 0, 1}).to(device);  // copy
 //    .clone().to(torch::kFloat32).permute({ 2, 0, 1 }).div_(255).to(device);
 //    torch::Tensor tensor = torch::from_blob(pointer, {image.get_height(), image.get_width(), 3}, torch::kUInt8).clone();  // copy
@@ -45,11 +45,9 @@ torch::Tensor VisionUtils::pngToTorch(png::image<png::rgb_pixel> &image, c10::De
 }
 
 png::image<png::rgb_pixel> VisionUtils::torchToPng(torch::Tensor &tensor_){
-//    out_tensor = out_tensor.mul(255).clamp(0, 255).to(torch::kU8);
     torch::Tensor tensor = tensor_.squeeze().detach().cpu().permute({1, 2, 0});  // {C,H,W} ===> {H,W,C}
-    tensor = tensor.mul(255).clamp(0, 255).to(torch::kU8);
-//    tensor = tensor.mul(0.5).add(0.5).mul(255).clamp(0, 255).to(torch::kU8);
-
+    tensor = tensor.clamp(0, 255);
+    tensor = tensor.to(torch::kU8);
     size_t width = tensor.size(1);
     size_t height = tensor.size(0);
     auto pointer = tensor.data_ptr<unsigned char>();
@@ -63,20 +61,6 @@ png::image<png::rgb_pixel> VisionUtils::torchToPng(torch::Tensor &tensor_){
     }
     return image;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

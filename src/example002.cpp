@@ -10,8 +10,8 @@ int main(int argc, char *argv[]){
     torch::Device device(torch::kCUDA);
 
         //Load a model
-//    const std::string modelName = "mosaic_cpp.pt";
-    const std::string modelName = "candy_cpp.pt";
+    const std::string modelName = "mosaic_cpp.pt";
+//    const std::string modelName = "candy_cpp.pt";
     const std::string content_image_path = "amber.png";
     auto module = torch::jit::load(modelName, device);
 
@@ -29,7 +29,7 @@ int main(int argc, char *argv[]){
     torch::Tensor out_tensor = module.forward({ tensor }).toTensor();
 
     VU.tensorDIMS(out_tensor); // D=:[1, 3, 320, 480]
-    out_tensor = out_tensor.to(torch::kU8).detach().cpu().squeeze(); //Remove batch dim, must convert back to torch::kU8
+    out_tensor = out_tensor.to(torch::kFloat32).detach().cpu().squeeze(); //Remove batch dim, must convert back to torch::kU8
     VU.tensorDIMS(out_tensor); // D=:[3, 320, 480]
 ////    out_tensor = out_tensor.permute({0,1,2}); // {C,H,W} ===> {H,W,C}
 //    png::image<png::rgba_pixel> imageO = VU.torchToPngRGBA(out_tensor);
