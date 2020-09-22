@@ -8,7 +8,9 @@ int main(int argc, char *argv[]){
 
     auto VU= VisionUtils();
     torch::Device device(torch::kCUDA);
-    const std::string modelName = "mosaic_cpp.pt";
+//    const std::string modelName = "mosaic_cpp.pt";
+//    const std::string modelName = "erfnet_fs.pt";
+    const std::string modelName = "candy_cpp.pt";
     const std::string content_image_path = "amber.png";
     auto module = torch::jit::load(modelName, device);
 

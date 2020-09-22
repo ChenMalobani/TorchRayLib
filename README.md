@@ -48,7 +48,8 @@ read images and convert them into PyTorch C++ front-end tensors and vice versa.
  
 * PyTorch CPP examples + CMake build: https://github.com/prabhuomkar/pytorch-cpp/
 
-* For the NeuralStyle transfer models which I traced to C++ https://github.com/gnsmrky/pytorch-fast-neural-style-for-web
+* For the NeuralStyle transfer models which I traced to C++ see https://github.com/gnsmrky/pytorch-fast-neural-style-for-web 
+and https://github.com/pytorch/examples/tree/master/fast_neural_style
 
 ## A simple example 
 The folowing example reads a PNG from teh file system, converts it into a `torch::tensor` and then saves 
