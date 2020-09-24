@@ -32,8 +32,8 @@
       <config projectName="PngTorch" targetName="png-fix-itxt" />
       <config projectName="PngTorch" targetName="pngtest" />
       <config projectName="PngTorch" targetName="pngunknown" />
-      <config projectName="PngTorch" targetName="png_static" />
       <config projectName="PngTorch" targetName="pngvalid" />
+      <config projectName="PngTorch" targetName="png_static" />
     </generated>
   </component>
   <component name="CMakeSettings">
@@ -43,8 +43,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f63543ba-b158-4fa2-bdd2-dfcb1c6b84cf" name="Default Changelist" comment="NeuralStyle: finally working">
+      <change afterPath="$PROJECT_DIR$/.gitmodules" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/download-models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ext/pybind11" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_trace.py" beforeDir="false" afterPath="$PROJECT_DIR$/model_trace.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/example002.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/example002.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -56,6 +60,13 @@
     <option name="formatViaClangd" value="false" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Release-Visual Studio" />
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -71,7 +82,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="cf.first.check.clang-format" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../ppc/siv001" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -80,11 +91,6 @@
     </key>
   </component>
   <component name="RunManager" selected="CMake Application.PngTorch">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="PngTorch" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PngTorch" TARGET_NAME="PngTorch" CONFIG_NAME="Release-Visual Studio" RUN_TARGET_PROJECT_NAME="PngTorch" RUN_TARGET_NAME="PngTorch">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -145,6 +151,27 @@
         <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
+    <configuration name="model_trace" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="PngTorch" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/model_trace.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="CMake Application.PngTorch" />
       <item itemvalue="CMake Application.genfiles" />
@@ -157,7 +184,13 @@
       <item itemvalue="CMake Application.pngtest" />
       <item itemvalue="CMake Application.pngunknown" />
       <item itemvalue="CMake Application.pngvalid" />
+      <item itemvalue="Python.model_trace" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.model_trace" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -174,7 +207,14 @@
       <workItem from="1600753354788" duration="16000" />
       <workItem from="1600763261491" duration="1587000" />
       <workItem from="1600772740669" duration="2713000" />
-      <workItem from="1600777970351" duration="5396000" />
+      <workItem from="1600777970351" duration="11509000" />
+      <workItem from="1600883807330" duration="259000" />
+      <workItem from="1600884151982" duration="106000" />
+      <workItem from="1600884665823" duration="607000" />
+      <workItem from="1600885468140" duration="240000" />
+      <workItem from="1600886611405" duration="1332000" />
+      <workItem from="1600927883838" duration="7947000" />
+      <workItem from="1600972219103" duration="1057000" />
     </task>
     <task id="LOCAL-00001" summary="First">
       <created>1600686572330</created>
@@ -323,7 +363,28 @@
       <option name="project" value="LOCAL" />
       <updated>1600782120346</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="NeuralStyle: finally working">
+      <created>1600790269592</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1600790269592</updated>
+    </task>
+    <task id="LOCAL-00023" summary="NeuralStyle: finally working">
+      <created>1600972447199</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1600972447199</updated>
+    </task>
+    <task id="LOCAL-00024" summary="NeuralStyle: finally working">
+      <created>1600972528023</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1600972528023</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -348,34 +409,38 @@
     <option name="LAST_COMMIT_MESSAGE" value="NeuralStyle: finally working" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1072" y="470" key="FileChooserDialogImpl" timestamp="1600775442207">
+    <state x="1072" y="470" key="FileChooserDialogImpl" timestamp="1600949103079">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1072" y="470" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1600775442207" />
-    <state width="2077" height="279" key="GridCell.Tab.0.bottom" timestamp="1600782437718">
+    <state x="1072" y="470" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1600949103079" />
+    <state width="2077" height="279" key="GridCell.Tab.0.bottom" timestamp="1600973276551">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2077" height="279" key="GridCell.Tab.0.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1600782437718" />
-    <state width="2077" height="279" key="GridCell.Tab.0.center" timestamp="1600782437718">
+    <state width="2077" height="279" key="GridCell.Tab.0.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1600973276551" />
+    <state width="2077" height="279" key="GridCell.Tab.0.center" timestamp="1600973276551">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2077" height="279" key="GridCell.Tab.0.center/0.0.2560.1400@0.0.2560.1400" timestamp="1600782437718" />
-    <state width="2077" height="279" key="GridCell.Tab.0.left" timestamp="1600782437718">
+    <state width="2077" height="279" key="GridCell.Tab.0.center/0.0.2560.1400@0.0.2560.1400" timestamp="1600973276551" />
+    <state width="2077" height="279" key="GridCell.Tab.0.left" timestamp="1600973276551">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2077" height="279" key="GridCell.Tab.0.left/0.0.2560.1400@0.0.2560.1400" timestamp="1600782437718" />
-    <state width="2077" height="279" key="GridCell.Tab.0.right" timestamp="1600782437718">
+    <state width="2077" height="279" key="GridCell.Tab.0.left/0.0.2560.1400@0.0.2560.1400" timestamp="1600973276551" />
+    <state width="2077" height="279" key="GridCell.Tab.0.right" timestamp="1600973276551">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2077" height="279" key="GridCell.Tab.0.right/0.0.2560.1400@0.0.2560.1400" timestamp="1600782437718" />
+    <state width="2077" height="279" key="GridCell.Tab.0.right/0.0.2560.1400@0.0.2560.1400" timestamp="1600973276551" />
+    <state x="1229" y="411" key="RollbackChangesDialog" timestamp="1600973226158">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1229" y="411" key="RollbackChangesDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1600973226158" />
     <state x="838" y="354" key="SettingsEditor" timestamp="1600772941816">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="838" y="354" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1600772941816" />
-    <state x="927" y="444" key="Vcs.Push.Dialog.v2" timestamp="1600782125129">
+    <state x="927" y="444" key="Vcs.Push.Dialog.v2" timestamp="1600972959597">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="927" y="444" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1600782125129" />
+    <state x="927" y="444" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1600972959597" />
     <state x="814" y="104" width="1277" height="919" key="find.popup" timestamp="1600781007323">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

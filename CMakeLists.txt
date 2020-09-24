@@ -71,15 +71,17 @@ configure_file("${libpng_SOURCE_DIR}/pnglibconf.h.prebuilt" "${libpng_SOURCE_DIR
 
 
 # TARGET
-SET( PROJ_SOURCES_DIR   src)
-SET( PROJ_INCLUDES  include)
-SET( PROJ_HEADERS  ${PROJ_INCLUDES}/utils/vision_utils.hpp)
+SET(PROJ_SOURCES_DIR   src)
+SET(PROJ_INCLUDES  include)
+SET(PROJ_HEADERS  ${PROJ_INCLUDES}/utils/vision_utils.hpp)
 set(PROJECT_INCLUDE_DIR ${PROJ_INCLUDES} )
 SET(PROJECT_SOURCE_DIR ${PROJ_SOURCES})
 
 add_executable(${PROJECT_NAME} ${PROJ_SOURCES} ${PROJ_HEADERS} ${PROJECT_INCLUDE_DIR})
 target_sources(${PROJECT_NAME} PRIVATE src/example002.cpp) # main entry point is here
-target_link_libraries(${PROJECT_NAME} ${TORCH_LIBRARIES}  "${CMAKE_CURRENT_LIST_DIR}/lib/libpng/libpng16.lib" "${CMAKE_CURRENT_LIST_DIR}/lib/zlib/zlib.lib")
+target_link_libraries(${PROJECT_NAME} ${TORCH_LIBRARIES}
+                                    "${CMAKE_CURRENT_LIST_DIR}/lib/libpng/libpng16.lib"
+                                    "${CMAKE_CURRENT_LIST_DIR}/lib/zlib/zlib.lib")
 target_include_directories(${PROJECT_NAME} PUBLIC ${PROJ_INCLUDES} PUBLIC ${libpng_SOURCE_DIR} )
 
 set_target_properties(${PROJECT_NAME} PROPERTIES

@@ -15,7 +15,7 @@ for k in list(state_dict.keys()):
         del state_dict[k]
 style_model.load_state_dict(state_dict)
 style_model.eval()
-        
+
 # model = torchvision.models.resnet50(pretrained=True)
 # model.eval()
 example = torch.rand(1, 3, 224, 224)

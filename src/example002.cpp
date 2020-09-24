@@ -2,9 +2,26 @@
 #include <torch/torch.h>
 #include <png++/png.hpp>
 #include <utils/vision_utils.hpp>
+// std::system includes
+#include <memory>
+#include <iostream>
 
+// CUDA-C includes
+#include <cuda.h>
+#include <cuda_runtime.h>
 
 int main(int argc, char *argv[]){
+
+    int deviceCount = 0;
+    cudaError_t error_id = cudaGetDeviceCount(&deviceCount);
+    std::cout<< "cudaGetDeviceCount returned:"<< (int)error_id<<std::endl;
+
+    auto options = torch::TensorOptions()
+            .dtype(torch::kUInt8)
+            .layout(torch::kStrided)
+            .device(torch::kCUDA);
+
+//    torch::Tensor tensor = torch::full({height, width}, 128, options);
 
     auto VU= VisionUtils();
     torch::Device device(torch::kCUDA);
