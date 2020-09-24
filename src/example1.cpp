@@ -50,10 +50,10 @@
 #   pragma GCC diagnostic ignored "-Wunused-function"
 #endif
 #include <stb_image.h>
+//#include <utils/vision_utils.hpp>
+#include <png++/png.hpp>
 
 using namespace nanogui;
-
-
 
 class ExampleApplication : public Screen {
 public:
@@ -220,8 +220,42 @@ public:
                                        Alignment::Middle, 0, 6));
         b = new Button(tools, "Open");
         b->set_callback([&] {
-            std::cout << "File dialog result: " << file_dialog(
-                    { {"png", "Portable Network Graphics"}, {"txt", "Text file"} }, false) << std::endl;
+            auto full_path=file_dialog(
+                    { {"png", "Portable Network Graphics"}, {"txt", "Text file"} }, false);
+            std::cout << "File dialog result: " << full_path << std::endl;
+
+//            auto VU= VisionUtils();
+            torch::Device device(torch::kCUDA);
+//            //    torch::Device device(torch::kCPU);
+//            // Input PNG-image
+            png::image<png::rgb_pixel> image(full_path);
+            // Convert png::image into torch::Tensor
+            size_t width = image.get_width();
+            size_t height = image.get_height();
+            auto pointer = new unsigned char[width * height * 3];
+            for (size_t j = 0; j < height; j++){
+                for (size_t i = 0; i < width; i++){
+                    pointer[j * width * 3 + i * 3 + 0] = image[j][i].red;
+                    pointer[j * width * 3 + i * 3 + 1] = image[j][i].green;
+                    pointer[j * width * 3 + i * 3 + 2] = image[j][i].blue;
+                }
+            }
+            torch::Tensor tensor = torch::from_blob(pointer, {image.get_height(), image.get_width(), 3}, torch::kU8)
+                    .clone().permute({2, 0, 1}).to(device);  // copy
+            auto s = tensor.sizes();
+            std::cout << "D=:" << s << "\n";
+
+//    .clone().to(torch::kFloat32).permute({ 2, 0, 1 }).div_(255).to(device);
+//    torch::Tensor tensor = torch::from_blob(pointer, {image.get_height(), image.get_width(), 3}, torch::kUInt8).clone();  // copy
+//    tensor = tensor.permute({2, 0, 1});  // {H,W,C} ===> {C,H,W}
+            delete[] pointer;
+
+//            torch::Tensor tensor = VU.pngToTorch(imageI, device); //Note: we are allocating on the GPU
+//            std::cout << "C:" << tensor.size(0) << " H:" << tensor.size(1) << " W:" << tensor.size(2) << std::endl;
+//            // Convert torch::Tensor into png::image
+//            png::image<png::rgb_pixel> imageO = VU.torchToPng(tensor);
+//            // Input PNG-image
+//            imageO.write("windmill-out0-nano.png");
         });
         b = new Button(tools, "Save");
         b->set_callback([&] {

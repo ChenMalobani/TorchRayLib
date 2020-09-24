@@ -504,7 +504,7 @@ set(CompilerFlags
 
 # TORCH -----------------------------------------------------------------------------------
 # seperate _deps FROM SUBMODULES
-#add_subdirectory(ext)
+add_subdirectory(ext)
 
 FetchContent_Declare(  libpng
         GIT_REPOSITORY      https://github.com/glennrp/libpng.git
@@ -564,7 +564,8 @@ include(copy_torch_dlls)
 set(EXAMPLE_001_EXE Torch_example001)
 #if (NANOGUI_BUILD_EXAMPLES)
 add_executable(${EXAMPLE_001_EXE}      src/example1.cpp)
-target_link_libraries(${EXAMPLE_001_EXE}    nanogui ${TORCH_LIBRARIES} ${NANOGUI_LIBS})
+target_link_libraries(${EXAMPLE_001_EXE}    nanogui ${TORCH_LIBRARIES} ${NANOGUI_LIBS} "${CMAKE_CURRENT_SOURCE_DIR}/ext/win10/libpng/libpng16.lib"
+        "${CMAKE_CURRENT_SOURCE_DIR}/ext/win10/zlib/zlib.lib")
 #target_include_directories(${EXAMPLE_001_EXE} PUBLIC ${PROJ_INCLUDES})
 copy_torch_dlls(${EXAMPLE_001_EXE})
 set_target_properties(${EXAMPLE_001_EXE} PROPERTIES
