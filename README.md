@@ -1,5 +1,5 @@
 
-<h4 align="center">A CMake based integration of the libpng / png++ libraries with the Libtorch C++ Deep Learning Library</h4>
+<h4 align="center">A CMake based integration of the NanoGUI, libpng / png++ libraries with the Libtorch C++ Deep Learning Library</h4>
       
 <p align="center">
   <a href="#about">About</a> •
@@ -22,11 +22,10 @@
 <tr>
 <td>
   
-**PngTorch++** is a CMake based **integration** of the well-known  **_libpng_** (https://github.com/libpng) library 
+**PngTorch++** is a CMake based **integration** of the well-known **_NanoGUI_**,  **_libpng_** (https://github.com/libpng) library 
 and my favourite Deep Learning Library Libtorch: the **_PyTorch_** C++ frontend.
-In many occations, one wants **to avoid using OpenCV**, just because of the large overhead. 
-This was the case when I started working on this project: https://github.com/QuantScientist/Siv3DTorch 
-
+In many occasions, one wants **to avoid using OpenCV**, just because of the large overhead. 
+ 
 For motivation, see: 
 https://github.com/pytorch/vision/issues/2691
 https://github.com/koba-jon/pytorch_cpp/issues/6
@@ -51,8 +50,10 @@ read images and convert them into PyTorch C++ front-end tensors and vice versa.
 * For the NeuralStyle transfer models which I traced to C++ see https://github.com/gnsmrky/pytorch-fast-neural-style-for-web 
 and https://github.com/pytorch/examples/tree/master/fast_neural_style
 
+* NanoGUI https://github.com/wjakob/nanogui 
+
 ## A simple example 
-The folowing example reads a PNG from teh file system, converts it into a `torch::tensor` and then saves 
+The folowing example reads a PNG from the file system, converts it into a `torch::tensor` and then saves 
 the tensor as an PNG image on the file system.  
  
 
@@ -96,6 +97,7 @@ int main(int argc, char *argv[]) {
 | PyTorch CPU tensor to PNG        |         ✔️                 
 | PyTorch GPU tensors to PNG       |         ✔️                 
 | Libtorch C++ 1.6           |         ✔️                 
+| NanoGUI           |         ✔️                 
 
 
 ## Examples
@@ -115,6 +117,7 @@ https://github.com/QuantScientist/PngTorch/blob/d939467a2dfdd5a0ac2373e950cb6393
 * 64 bit only.  
 * CMake 3.18  
 * libpng, png++ 
+* Nanogui
 
 Please setup CLion as follows:
 ![PngTorch++ Code](https://github.com/QuantScientist/PngTorch/blob/master/assets/clion.png?raw=true)
