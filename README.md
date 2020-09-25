@@ -1,5 +1,5 @@
 
-<h4 align="center">A CMake based integration of the NanoGUI, libpng / png++ libraries with the Libtorch C++ Deep Learning Library</h4>
+<h4 align="center">TorchRayLib++: A CMake based integration of the RayLib GUI, the libpng / png++ libraries and the Libtorch C++ Deep Learning Library</h4>
       
 <p align="center">
   <a href="#about">About</a> •
@@ -22,18 +22,13 @@
 <tr>
 <td>
   
-**PngTorch++** is a CMake based **integration** of the well-known **_NanoGUI_**,  **_libpng_** (https://github.com/libpng) library 
+**PngTorch++** is a CMake based **integration** of the well-known **_RayLib GUI_**,  **_libpng_** (https://github.com/libpng) library 
 and my favourite Deep Learning Library Libtorch: the **_PyTorch_** C++ frontend.
-In many occasions, one wants **to avoid using OpenCV**, just because of the large overhead. 
- 
-For motivation, see: 
-https://github.com/pytorch/vision/issues/2691
-https://github.com/koba-jon/pytorch_cpp/issues/6
- 
-By including a single header file, `#include <torch/script.h>`, the integration allows one to easily 
-read images and convert them into PyTorch C++ front-end tensors and vice versa.  
 
-
+RayLib is an amazing library which has been widely adopted by the gaming community. 
+https://www.google.com/search?q=raylib+site:github.com+-site:https://github.com/raysan5/raylib&tbas=0&source=lnt&sa=X&ved=2ahUKEwj5reHS0YTsAhXPjKQKHcryAFYQpwV6BAhmEBg&biw=2059&bih=967   
+ 
+ 
 <p align="right">
 <sub>(Preview)</sub>
 </p>
@@ -41,6 +36,50 @@ read images and convert them into PyTorch C++ front-end tensors and vice versa.
 </td>
 </tr>
 </table>
+
+## A simple example 
+The folowing example create a ray window, allocates a `torch::tensor` on the GPU and draws the value 
+into a ray window. 
+
+ ![TorchRayLib++ Code](https://github.com/QuantScientist/PngTorch/blob/master/asstes/torch_core_random_values.gif?raw=true)
+https://github.com/QuantScientist/PngTorch/blob/d939467a2dfdd5a0ac2373e950cb63936231858b/src/example002.cpp#L11
+ 
+```cpp
+#include "raylib.h"
+#include <torch/script.h>
+
+int main(void)
+{
+    torch::Device device(torch::kCUDA);
+    torch::Tensor tensor = torch::eye(3).to(device);
+    std::cout<<tensor<<std::endl;
+    const int screenWidth = 800;
+    const int screenHeight = 450;
+    InitWindow(screenWidth, screenHeight, "TorchRayLib:PyTorch GPU random random values (c++17)");
+
+    int framesCounter = 0;          // Variable used to count frames
+    auto randValueTorch= (int)(1000 * (torch::rand(1).to(device).data().detach().item().toFloat()));
+    int randValue=randValueTorch;
+
+    SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
+    while (!WindowShouldClose())    // Detect window close button or ESC key
+    {        
+        framesCounter++;    
+        if (((framesCounter/60)%2) == 1)
+        {
+            randValue= (int)(10000 * (torch::rand(1).to(device).data().detach().item().toFloat()));
+            framesCounter = 0;
+        }        
+        BeginDrawing();
+            ClearBackground(RAYWHITE);
+            DrawText("Generate a random value on the GPU using PyTorch", 30, 100, 20, MAROON);
+            DrawText(TextFormat("%i", randValue), 200, 180, 100, ORANGE);
+        EndDrawing();
+    }
+    CloseWindow();        // Close window and OpenGL context
+    return 0;
+}
+```
 
 ## Credits 
 * PyTorch CPP examples by koba-jon https://github.com/koba-jon/pytorch_cpp.
@@ -50,64 +89,28 @@ read images and convert them into PyTorch C++ front-end tensors and vice versa.
 * For the NeuralStyle transfer models which I traced to C++ see https://github.com/gnsmrky/pytorch-fast-neural-style-for-web 
 and https://github.com/pytorch/examples/tree/master/fast_neural_style
 
-* NanoGUI https://github.com/wjakob/nanogui 
-
-## A simple example 
-The folowing example reads a PNG from the file system, converts it into a `torch::tensor` and then saves 
-the tensor as an PNG image on the file system.  
- 
-
-Full source code:
-
-```cpp
-//#include <torch/torch.h>
-#include <torch/script.h> // One-stop header.
-#include <iostream>
-#include <iostream>
-#include <chrono>
-#include <iostream>
-#include <typeinfo>
-#include <thread>
-#include <future>
-#include "../include/utils/vision_utils.hpp"
-using namespace std;
-using namespace std::chrono;
-
-int main(int argc, char *argv[]) { 
-    auto VU= VisionUtils();
-    torch::Device device(torch::kCUDA );
-    // Input PNG-image
-    png::image<png::rgb_pixel> imageI("clion.png");
-    // Convert png::image into torch::Tensor
-    torch::Tensor tensor = VU.pngToTorch(imageI, device); //Note: we are allocating on the GPU
-    std::cout << "C:" << tensor.size(0) << " H:" << tensor.size(1) << " W:" << tensor.size(2) << std::endl;
-    // Convert torch::Tensor into png::image
-    png::image<png::rgb_pixel> imageO = VU.torchToPng(tensor);
-    // Input PNG-image
-    imageO.write("clion-output001.png");
-    return 0;
-}
-```
+* RayLib UI https://github.com/raysan5/raylib which is licensed under 
+an unmodified zlib/libpng license (View raylib.h for details) Copyright (c) 2014 Ramon Santamaria (@raysan5) 
 
 
 ## Features
 
-|                            | 🔰 PngTorch++ CMake  | |
+|                            | 🔰 TorchRayLib++ CMake  | |
 | -------------------------- | :----------------: | :-------------:|
 | PyTorch CPU tensor to PNG        |         ✔️                 
 | PyTorch GPU tensors to PNG       |         ✔️                 
 | Libtorch C++ 1.6           |         ✔️                 
-| NanoGUI           |         ✔️                 
+| RayLib           |         ✔️                 
 
 
 ## Examples
 
-### A Simple example, mainly for testing the integration. Allocates a tensor on the GPU.
+### A Simple example, mainly for testing the integration. Allocates a tensor on the GPU without ray.
 https://github.com/QuantScientist/PngTorch/blob/d939467a2dfdd5a0ac2373e950cb63936231858b/src/example001.cpp#L19
 
  
 ### Load a trained PyTorch NeuralStyle transfer model in C++ (**see pth folder**), load an Image in C++, run a trained pytorch model on it and save the output.
- ![PngTorch++ Code](https://github.com/QuantScientist/PngTorch/blob/master/asstes/amber.png_mosaic_cpp.pt-out.png?raw=true)
+ ![TorchRayLib++ Code](https://github.com/QuantScientist/PngTorch/blob/master/asstes/amber.png_mosaic_cpp.pt-out.png?raw=true)
 https://github.com/QuantScientist/PngTorch/blob/d939467a2dfdd5a0ac2373e950cb63936231858b/src/example002.cpp#L11
 
 ## Requirements:
@@ -117,16 +120,16 @@ https://github.com/QuantScientist/PngTorch/blob/d939467a2dfdd5a0ac2373e950cb6393
 * 64 bit only.  
 * CMake 3.18  
 * libpng, png++ 
-* Nanogui
+* RayLib GUI
 
 Please setup CLion as follows:
-![PngTorch++ Code](https://github.com/QuantScientist/PngTorch/blob/master/assets/clion.png?raw=true)
+![TorchRayLib++ Code](https://github.com/QuantScientist/PngTorch/blob/master/assets/clion.png?raw=true)
 
 ## Installation 
 
 #### Downloading and installing steps LIBTORCH C++:
 * **[Download]()** the latest version of Libtorch for Windows here: https://pytorch.org/.
-![PngTorch++ Code](https://github.com/QuantScientist/PngTorch/blob/master/assets/libtorch16.png?raw=true)
+![TorchRayLib++ Code](https://github.com/QuantScientist/PngTorch/blob/master/assets/libtorch16.png?raw=true)
 
 * **Go** to the following path: `mysiv3dproject/`
 * Place the **LiBtorch ZIP** folder (from .zip) inside the **project** folder as follows `mydproject/_deps/libtorch/`:
@@ -139,15 +142,29 @@ Credits: https://github.com/prabhuomkar/pytorch-cpp/
 * **[Download]()** 
 * Under the lib directory,I included the lib file for PNG and ZLIB for windows, 
 the CMake file will link against them during runtime.
+
+## A CMake example
    
 ```cmake
-target_link_libraries(${PROJECT_NAME} ${TORCH_LIBRARIES}  ${OpenCV_LIBRARIES} "${CMAKE_CURRENT_LIST_DIR}/lib/libpng/libpng16.lib" "${CMAKE_CURRENT_LIST_DIR}/lib/zlib/zlib.lib")
+include(copy_torch_dlls)
+################# EXAMPLE 001 ########################
+# TARGET
+set(EXAMPLE_001_EXE torch_ray_sanity)
+add_executable(${EXAMPLE_001_EXE} src/${EXAMPLE_001_EXE}.cpp)
+set(raylib_VERBOSE 1)
+target_link_libraries(${EXAMPLE_001_EXE} raylib  ${TORCH_LIBRARIES})
+#target_link_libraries(${PROJECT_NAME} m)
+target_include_directories(${EXAMPLE_001_EXE} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/_dpes/libtorch/include/")
+target_include_directories(${EXAMPLE_001_EXE} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/_deps/libtorch/include/torch/csrc/api/")
+set_target_properties(${EXAMPLE_001_EXE} PROPERTIES
+        CXX_STANDARD 17
+        CXX_STANDARD_REQUIRED YES)
+copy_torch_dlls(${EXAMPLE_001_EXE})
 ```
  
-
 ## Inference
 For inference, you have to copy all the **Libtorch DLLs** to the location of the executable file. For instance:
-![PngTorch++ Code](https://github.com/QuantScientist/PngTorch/blob/master/assets/vc-inference.png?raw=true)
+![TorchRayLib++ Code](https://github.com/QuantScientist/PngTorch/blob/master/assets/vc-inference.png?raw=true)
 
 This is **done automatically** for you in the CMake file. 
  
@@ -163,9 +180,9 @@ Shlomo Kashani, Author of the book _Deep Learning Interviews_ www.interviews.ai:
 If you find the code or trained models useful, please consider citing:
 
 ```
-@misc{PngTorch++,
+@misc{TorchRayLib++,
   author={Kashani, Shlomo},
-  title={PngTorch++2020},
+  title={TorchRayLib++2020},
   howpublished={\url{https://github.com/QuantScientist/PngTorch/}},
   year={2020}
 }
@@ -173,11 +190,11 @@ If you find the code or trained models useful, please consider citing:
 
 ## License
 
-[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-orange.svg?style=flat-square)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
-
-- Copyright © [Shlomo](https://github.com/QuantScientist/) and Koba-Jon: https://github.com/koba-jon/
+- Copyright © [Shlomo](https://github.com/QuantScientist/)
 
 # References
+- https://github.com/raysan5/raylib
+- https://github.com/RobLoach/raylib-cpp
 - https://github.com/koba-jon/pytorch_cpp 
 - https://www.jianshu.com/p/6fe9214431c6
 - https://github.com/lsrock1/maskrcnn_benchmark.cpp
