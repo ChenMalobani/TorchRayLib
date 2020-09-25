@@ -23,7 +23,7 @@
 <td>
   
 **TorchRayLib++** is a CMake based **integration** of the well-known **_RayLib GUI_** library 
-with my favourite Deep Learning Library Libtorch: the **_PyTorch_** C++ frontend.
+with my favourite Deep Learning Library Libtorch: the **_PyTorch_** C++ frontend, mainly for working on the **_GPU_**.
 
 ### RayLib 
 RayLib is an amazing library which has been widely adopted by the gaming community. 
@@ -38,6 +38,7 @@ https://pytorch.org/
 
 ![TorchRayLib++ Code](https://github.com/QuantScientist/PngTorch/blob/master/asstes/logo.png?raw=true?raw=true) 
  
+### -------------------WORK IN PROGRESS------------------- 
 <p align="right">
 <sub>(Preview)</sub>
 </p>
