@@ -32,6 +32,9 @@ int main(int argc, char* argv[])
     int screenWidth = 800;
     int screenHeight = 600;
 
+    const char message[128] = "This example allocated a PyTorch tensor on the\nGPU (c++17), and then displayes its content in ray.";
+    int framesCounter = 0;
+
     InitWindow(screenWidth, screenHeight, "TorchRayLib:Allocate a PyTorch tensor on the GPU (c++17)");
 
     SetTargetFPS(60);
@@ -41,15 +44,19 @@ int main(int argc, char* argv[])
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
         BeginDrawing();
+        framesCounter++;
+
         ClearBackground(RAYWHITE);
-        DrawText("Allocated a PyTorch tensor on the GPU (c++17)", 10, 200, 30, ORANGE);
+//        DrawText("Allocated a PyTorch tensor on the GPU (c++17)", 10, 200, 30, ORANGE);
+        DrawText(TextSubtext(message, 0, framesCounter/10), 10, 200, 30, ORANGE);
+
         std::stringstream sstm;
         sstm << tensor.toString() << ": " << randValueTorch;
 //        auto randValueTorch= tensor.data().detach().item().toFloat();
 //        std::to_string(randValueTorch)
 //        const std::string tensorValue=tensor.toString();
 //        std::cout << tensorValue;
-        DrawText(sstm.str().c_str(), 40, 250, 50, DARKPURPLE);
+        DrawText(sstm.str().c_str(), 40, 280, 50, DARKPURPLE);
         EndDrawing();
         //----------------------------------------------------------------------------------
     }

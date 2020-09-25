@@ -118,7 +118,7 @@ an unmodified zlib/libpng license (View raylib.h for details) Copyright (c) 2014
 - https://github.com/QuantScientist/TorchRayLib/blob/master/src/torch_ray_sanity.cpp
 
 #### Allocate a random tensor on the GPU with ray.
-![TorchRayLib++ Code](https://github.com/QuantScientist/TorchRayLib/blob/master/asstes/torch_core_basic_window.png)
+![TorchRayLib++ Code](https://github.com/QuantScientist/TorchRayLib/blob/master/asstes/torch_core_basic_window.gif)
 - https://github.com/QuantScientist/TorchRayLib/blob/master/src/torch_core_random_values.cpp
 
 #### Use a timer, and each second allocate a new random number on the GPU, and then display it using ray. 
