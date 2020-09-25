@@ -111,11 +111,20 @@ an unmodified zlib/libpng license (View raylib.h for details) Copyright (c) 2014
 
 ## Examples
 
-### A Simple example, mainly for testing the integration. Allocates a tensor on the GPU without ray.
+#### A Simple example, mainly for testing the integration. Allocates a tensor on the GPU without ray.
 
+- https://github.com/QuantScientist/TorchRayLib/blob/master/src/torch_ray_sanity.cpp
+
+#### Allocate a random tensor on the GPU with ray.
+![TorchRayLib++ Code](https://github.com/QuantScientist/TorchRayLib/blob/master/asstes/torch_core_basic_window.png)
+- https://github.com/QuantScientist/TorchRayLib/blob/master/src/torch_core_random_values.cpp
+
+#### Use a timer, and each second allocate a new random number on the GPU, and then display it using ray. 
+![TorchRayLib++ Code](https://github.com/QuantScientist/TorchRayLib/blob/master/asstes/torch_core_random_values.gif?raw=true)
+- https://github.com/QuantScientist/TorchRayLib/blob/master/src/torch_core_random_values.cpp
  
-### Load a trained PyTorch NeuralStyle transfer model in C++ (**see pth folder**), load an Image in C++, run a trained pytorch model on it and save the output.
- ![TorchRayLib++ Code](https://github.com/QuantScientist/TorchRayLib/blob/master/asstes/amber.png_mosaic_cpp.pt-out.png?raw=true)
+#### Load a trained PyTorch NeuralStyle transfer model in C++ (**see pth folder**), load an Image in C++, run a trained pytorch model on it and save the output.
+![TorchRayLib++ Code](https://github.com/QuantScientist/TorchRayLib/blob/master/asstes/amber.png_mosaic_cpp.pt-out.png?raw=true)
 
 
 ## Requirements:
