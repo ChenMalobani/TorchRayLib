@@ -10,8 +10,8 @@
   <a href="#license">License</a>
 </p>
 
-<h1 align="center">  
-  <img src="https://github.com/QuantScientist/PngTorch/blob/master/asstes/logo.png?raw=true" width="75%"></a>
+<h1 align="center">    
+  <img src="https://github.com/QuantScientist/TorchRayLib/blob/master/asstes/torch_core_random_values.gif?raw=true" width="75%"></a>  
 </h1>
 
 ---
@@ -35,8 +35,8 @@ https://www.google.com/search?q=raylib+site:github.com
 PyTorch is a Python package that provides two high-level features, Tensor computation (like NumPy) with strong GPU acceleration
 Deep neural networks built on a tape-based autograd system. In this project we use the C++ version entitled Libtorch. 
 https://pytorch.org/ 
- 
-![TorchRayLib++ Code](https://github.com/QuantScientist/TorchRayLib/blob/master/asstes/torch_core_random_values.gif?raw=true)
+
+![TorchRayLib++ Code](https://github.com/QuantScientist/PngTorch/blob/master/asstes/logo.png?raw=true?raw=true) 
  
 <p align="right">
 <sub>(Preview)</sub>
