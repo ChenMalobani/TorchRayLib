@@ -144,10 +144,9 @@ The **CMake file will download this automatically for you**. Note: only a GPU is
 Credits: https://github.com/prabhuomkar/pytorch-cpp/
   
 
-#### Downloading and installing steps lippng:
+#### Downloading and installing steps RayLib:
 * **[Download]()** 
-* Under the lib directory,I included the lib file for PNG and ZLIB for windows, 
-the CMake file will link against them during runtime.
+The **CMake file will download this automatically for you**.
 
 ## A CMake example
    
