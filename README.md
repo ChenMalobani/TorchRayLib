@@ -170,9 +170,19 @@ copy_torch_dlls(${EXAMPLE_001_EXE})
  
 ## Inference
 For inference, you have to copy all the **Libtorch DLLs** to the location of the executable file. For instance:
-![TorchRayLib++ Code](https://github.com/QuantScientist/TorchRayLib/blob/master/assets/vc-inference.png?raw=true)
-
 This is **done automatically** for you in the CMake file. 
+
+````cmake
+function(copy_torch_dlls TARGET_NAME)    
+    list(GET CMAKE_MODULE_PATH 0 CMAKE_SCRIPT_DIR)    
+    add_custom_command(TARGET ${TARGET_NAME}
+                       POST_BUILD
+                       COMMAND ${CMAKE_COMMAND}
+                       -D "TORCH_INSTALL_PREFIX=${TORCH_INSTALL_PREFIX}"
+                       -D "DESTINATION_DIR=$<TARGET_FILE_DIR:${TARGET_NAME}>" 
+                       -P "${CMAKE_SCRIPT_DIR}/create_torch_dll_hardlinks.cmake")
+endfunction()
+````
  
 ## Contributing
 
