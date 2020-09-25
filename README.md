@@ -128,6 +128,7 @@ an unmodified zlib/libpng license (View raylib.h for details) Copyright (c) 2014
 * RayLib GUI
 
 Please setup CLion as follows: 
+
 ![TorchRayLib++ Code](https://github.com/QuantScientist/TorchRayLib/blob/master/asstes/clion.png?raw=true)
 
 ## Installation 
