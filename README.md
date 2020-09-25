@@ -26,6 +26,8 @@
 and my favourite Deep Learning Library Libtorch: the **_PyTorch_** C++ frontend.
 
 RayLib is an amazing library which has been widely adopted by the gaming community. 
+Read more about the raylib game framework here: https://www.raylib.com/
+Or look up projects using it here:
 https://www.google.com/search?q=raylib+site:github.com+-site:https://github.com/raysan5/raylib&tbas=0&source=lnt&sa=X&ved=2ahUKEwj5reHS0YTsAhXPjKQKHcryAFYQpwV6BAhmEBg&biw=2059&bih=967   
  
  
@@ -106,12 +108,12 @@ an unmodified zlib/libpng license (View raylib.h for details) Copyright (c) 2014
 ## Examples
 
 ### A Simple example, mainly for testing the integration. Allocates a tensor on the GPU without ray.
-https://github.com/QuantScientist/PngTorch/blob/d939467a2dfdd5a0ac2373e950cb63936231858b/src/example001.cpp#L19
+https://github.com/QuantScientist/TorchRayLib/blob/d939467a2dfdd5a0ac2373e950cb63936231858b/src/example001.cpp#L19
 
  
 ### Load a trained PyTorch NeuralStyle transfer model in C++ (**see pth folder**), load an Image in C++, run a trained pytorch model on it and save the output.
- ![TorchRayLib++ Code](https://github.com/QuantScientist/PngTorch/blob/master/asstes/amber.png_mosaic_cpp.pt-out.png?raw=true)
-https://github.com/QuantScientist/PngTorch/blob/d939467a2dfdd5a0ac2373e950cb63936231858b/src/example002.cpp#L11
+ ![TorchRayLib++ Code](https://github.com/QuantScientist/TorchRayLib/blob/master/asstes/amber.png_mosaic_cpp.pt-out.png?raw=true)
+https://github.com/QuantScientist/TorchRayLib/blob/d939467a2dfdd5a0ac2373e950cb63936231858b/src/example002.cpp#L11
 
 ## Requirements:
 * Windows 10 and Microsoft Visual C++ 2019 16.4, Linux is not supported at the moment.
@@ -123,13 +125,13 @@ https://github.com/QuantScientist/PngTorch/blob/d939467a2dfdd5a0ac2373e950cb6393
 * RayLib GUI
 
 Please setup CLion as follows:
-![TorchRayLib++ Code](https://github.com/QuantScientist/PngTorch/blob/master/assets/clion.png?raw=true)
+![TorchRayLib++ Code](https://github.com/QuantScientist/TorchRayLib/blob/master/assets/clion.png?raw=true)
 
 ## Installation 
 
 #### Downloading and installing steps LIBTORCH C++:
 * **[Download]()** the latest version of Libtorch for Windows here: https://pytorch.org/.
-![TorchRayLib++ Code](https://github.com/QuantScientist/PngTorch/blob/master/assets/libtorch16.png?raw=true)
+![TorchRayLib++ Code](https://github.com/QuantScientist/TorchRayLib/blob/master/assets/libtorch16.png?raw=true)
 
 * **Go** to the following path: `mysiv3dproject/`
 * Place the **LiBtorch ZIP** folder (from .zip) inside the **project** folder as follows `mydproject/_deps/libtorch/`:
@@ -164,7 +166,7 @@ copy_torch_dlls(${EXAMPLE_001_EXE})
  
 ## Inference
 For inference, you have to copy all the **Libtorch DLLs** to the location of the executable file. For instance:
-![TorchRayLib++ Code](https://github.com/QuantScientist/PngTorch/blob/master/assets/vc-inference.png?raw=true)
+![TorchRayLib++ Code](https://github.com/QuantScientist/TorchRayLib/blob/master/assets/vc-inference.png?raw=true)
 
 This is **done automatically** for you in the CMake file. 
  
@@ -183,7 +185,7 @@ If you find the code or trained models useful, please consider citing:
 @misc{TorchRayLib++,
   author={Kashani, Shlomo},
   title={TorchRayLib++2020},
-  howpublished={\url{https://github.com/QuantScientist/PngTorch/}},
+  howpublished={\url{https://github.com/QuantScientist/TorchRayLib/}},
   year={2020}
 }
 ```
