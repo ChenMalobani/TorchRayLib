@@ -37,8 +37,7 @@ Deep neural networks built on a tape-based autograd system. In this project we u
 https://pytorch.org/ 
 
 ![TorchRayLib++ Code](https://github.com/QuantScientist/PngTorch/blob/master/asstes/logo.png?raw=true?raw=true) 
- 
-### -------------------WORK IN PROGRESS------------------- 
+  
 <p align="right">
 <sub>(Preview)</sub>
 </p>
