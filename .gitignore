@@ -9,7 +9,6 @@ _deps
 *.exe
 *.lib
 *.dll
-ext
 ./bin64
 bin64
 build
