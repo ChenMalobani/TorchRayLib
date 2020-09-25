@@ -11,7 +11,7 @@
 </p>
 
 <h1 align="center">  
-  <img src="https://github.com/QuantScientist/PngTorch/blob/master/asstes/logo.png?raw=true" width="50%"></a>
+  <img src="https://github.com/QuantScientist/PngTorch/blob/master/asstes/logo.png?raw=true" width="75%"></a>
 </h1>
 
 ---
