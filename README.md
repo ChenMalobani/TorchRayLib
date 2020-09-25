@@ -36,6 +36,8 @@ PyTorch is a Python package that provides two high-level features, Tensor comput
 Deep neural networks built on a tape-based autograd system. In this project we use the C++ version entitled Libtorch. 
 https://pytorch.org/ 
  
+![TorchRayLib++ Code](https://github.com/QuantScientist/TorchRayLib/blob/master/asstes/torch_core_random_values.gif?raw=true)
+ 
 <p align="right">
 <sub>(Preview)</sub>
 </p>
@@ -47,9 +49,6 @@ https://pytorch.org/
 ## A simple example 
 The folowing example create a ray window, allocates a `torch::tensor` on the GPU and draws the value 
 into a ray window. 
-
- ![TorchRayLib++ Code](https://github.com/QuantScientist/TorchRayLib/blob/master/asstes/torch_core_random_values.gif?raw=true)
-
  
 ```cpp
 #include "raylib.h"
