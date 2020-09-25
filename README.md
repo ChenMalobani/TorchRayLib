@@ -1,5 +1,5 @@
 
-<h4 align="center">TorchRayLib++: A CMake based integration of the RayLib GUI, the libpng / png++ libraries and the Libtorch C++ Deep Learning Library</h4>
+<h4 align="center">TorchRayLib++: A CMake based integration of the RayLib GUI librarie and the Libtorch C++ Deep Learning Library.</h4>
       
 <p align="center">
   <a href="#about">About</a> •
@@ -22,14 +22,19 @@
 <tr>
 <td>
   
-**PngTorch++** is a CMake based **integration** of the well-known **_RayLib GUI_**,  **_libpng_** (https://github.com/libpng) library 
-and my favourite Deep Learning Library Libtorch: the **_PyTorch_** C++ frontend.
+**TorchRayLib++** is a CMake based **integration** of the well-known **_RayLib GUI_** library 
+with my favourite Deep Learning Library Libtorch: the **_PyTorch_** C++ frontend.
 
+### RayLib 
 RayLib is an amazing library which has been widely adopted by the gaming community. 
 Read more about the raylib game framework here: https://www.raylib.com/
 Or look up projects using it here:
 https://www.google.com/search?q=raylib+site:github.com+-site:https://github.com/raysan5/raylib&tbas=0&source=lnt&sa=X&ved=2ahUKEwj5reHS0YTsAhXPjKQKHcryAFYQpwV6BAhmEBg&biw=2059&bih=967   
- 
+
+### PyTorch / Libtorch C++ 
+PyTorch is a Python package that provides two high-level features, Tensor computation (like NumPy) with strong GPU acceleration
+Deep neural networks built on a tape-based autograd system. In this project we use the C++ version entitled Libtorch. 
+https://pytorch.org/ 
  
 <p align="right">
 <sub>(Preview)</sub>
