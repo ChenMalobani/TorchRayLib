@@ -71,33 +71,31 @@ int main(int argc, char* argv[])
     auto module = torch::jit::load(modelName, device);
 
     const int screenWidth = 800;
-    const int screenHeight = 450;
-    InitWindow(screenWidth, screenHeight, "raylib [textures] example - image processing");
+    const int screenHeight = 600;
+    InitWindow(screenWidth, screenHeight, "TorchRayLib: PyTorch GPU NeuralStyle transfer (c++17)");
 
     //From ray
-    Image image = LoadImage("windmill.png");   // Loaded in CPU memory (RAM)
+    Image image = LoadImage("parrots.png");   // Loaded in CPU memory (RAM)
     // To torch
 
     auto tensor=VU.rayImageToTorch (image, device);
     VU.tensorDIMS(tensor);
+    // For inference
+    tensor = tensor.
+            to(torch::kFloat). // For inference
+            unsqueeze(-1). // Add batch
+            permute({ 3, 0, 1, 2 }). // Fix order, now its {B,C,H,W}
+            to(device);
+    VU.tensorDIMS(tensor);
+    // Apply the model
+    torch::Tensor out_tensor = module.forward({ tensor }).toTensor();
+    VU.tensorDIMS(out_tensor); // D=:[1, 3, 320, 480]
+    out_tensor = out_tensor.to(torch::kFloat32).detach().cpu().squeeze(); //Remove batch dim, must convert back to torch::float
+    VU.tensorDIMS(out_tensor); // D=:[1, 3, 320, 480]
+    image=VU.torchToRayImage(out_tensor);
 
-//    // For inference
-//    tensor = tensor.
-//            to(torch::kFloat). // For inference
-//            unsqueeze(-1). // Add batch
-//            permute({ 3, 0, 1, 2 }). // Fix order, now its {B,C,H,W}
-//            to(device);
-//    VU.tensorDIMS(tensor);
-//    // Apply the model
-//    torch::Tensor out_tensor = module.forward({ tensor }).toTensor();
-//    VU.tensorDIMS(out_tensor); // D=:[1, 3, 320, 480]
-//    out_tensor = out_tensor.to(torch::kFloat32).detach().cpu().squeeze(); //Remove batch dim, must convert back to torch::float
-//    VU.tensorDIMS(out_tensor); // D=:[1, 3, 320, 480]
-//    image=VU.torchToRayImage(out_tensor);
 
-    image=VU.torchToRayImage(tensor);
-
-//    ImageFormat(&image, UNCOMPRESSED_R8G8B8A8);         // Format image to RGBA 32bit (required for texture update) <-- ISSUE
+    ImageFormat(&image, UNCOMPRESSED_R8G8B8A8);         // Format image to RGBA 32bit (required for texture update) <-- ISSUE
     Texture2D texture = LoadTextureFromImage(image);    // Image converted to texture, GPU memory (VRAM)
 
     int currentProcess = NONE;
@@ -131,7 +129,7 @@ int main(int argc, char* argv[])
         if (textureReload)
         {
             UnloadImage(image);                         // Unload current image data
-            image = LoadImage("windmill.png"); // Re-load image data
+            image = LoadImage("parrots.png"); // Re-load image data
 
             // NOTE: Image processing is a costly CPU process to be done every frame,
             // If image processing is required in a frame-basis, it should be done

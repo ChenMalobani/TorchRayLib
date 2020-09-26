@@ -126,7 +126,7 @@ an unmodified zlib/libpng license (View raylib.h for details) Copyright (c) 2014
 - https://github.com/QuantScientist/TorchRayLib/blob/master/src/torch_core_random_values.cpp
  
 #### Load a trained PyTorch NeuralStyle transfer model in C++ (**see pth folder**), load an Image in C++, run a trained pytorch model on it and save the output.
-![TorchRayLib++ Code](https://github.com/QuantScientist/TorchRayLib/blob/master/asstes/amber.png_mosaic_cpp.pt-out.png?raw=true)
+![TorchRayLib++ Code](https://github.com/QuantScientist/TorchRayLib/blob/master/asstes/neural2.png?raw=true)
 
 
 ## Requirements:
