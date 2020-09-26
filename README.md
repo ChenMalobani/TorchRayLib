@@ -214,6 +214,9 @@ If you find the code or trained models useful, please consider citing:
 }
 ```
 
+## Contributers 
+- https://github.com/CarboSauce helped a lot with the conversion of ray images to Torch and vice versa.
+ 
 ## License
 
 - Copyright © [Shlomo](https://github.com/QuantScientist/)
