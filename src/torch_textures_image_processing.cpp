@@ -160,7 +160,7 @@ int main(int argc, char* argv[])
 
         ClearBackground(RAYWHITE);
 
-        DrawText("IMAGE PROCESSING:", 40, 30, 10, DARKGRAY);
+        DrawText("NeuralStyle transfer using PyTorch :", 20, 20, 20, ORANGE);
 
         // Draw rectangles
         for (int i = 0; i < NUM_PROCESSES; i++)
