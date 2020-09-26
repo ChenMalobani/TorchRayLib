@@ -24,8 +24,8 @@
 typedef enum {
     NONE = 0,
     COLOR_GRAYSCALE,
-    COLOR_TINT,
-    COLOR_INVERT,
+    COLOR_MOSAIC,
+    COLOR_CANDY,
     COLOR_CONTRAST,
     COLOR_BRIGHTNESS,
     FLIP_VERTICAL,
@@ -34,8 +34,8 @@ typedef enum {
 
 static const char *processText[] = {
         "NO PROCESSING",
-        "COLOR GRAYSCALE",
-        "COLOR TINT",
+        "COLOR MOSAIC",
+        "COLOR CANDY",
         "COLOR INVERT",
         "COLOR CONTRAST",
         "COLOR BRIGHTNESS",
@@ -43,32 +43,14 @@ static const char *processText[] = {
         "FLIP HORIZONTAL"
 };
 
-
-//Image torchToPng(torch::Tensor &tensor_){
-//    torch::Tensor tensor = tensor_.squeeze().detach().cpu().permute({1, 2, 0});  // {C,H,W} ===> {H,W,C}
-//    tensor = tensor.clamp(0, 255);
-//    tensor = tensor.to(torch::kU8);
-//    size_t width = tensor.size(1);
-//    size_t height = tensor.size(0);
-//    auto pointer = tensor.data_ptr<unsigned char>();
-//
-//    Image image (width, height);
-//    for (size_t j = 0; j < height; j++){
-//        for (size_t i = 0; i < width; i++){
-//            image[j][i].red = pointer[j * width * 3 + i * 3 + 0];
-//            image[j][i].green = pointer[j * width * 3 + i * 3 + 1];
-//            image[j][i].blue = pointer[j * width * 3 + i * 3 + 2];
-//        }
-//    }
-//    return image;
-//}
-
 int main(int argc, char* argv[])
 {
     VisionUtils VU = VisionUtils();
     torch::Device device(torch::kCUDA);
-    const std::string modelName = "mosaic_cpp.pt";
-    auto module = torch::jit::load(modelName, device);
+    const std::string modelNameCandy = "candy_cpp.pt";
+    const std::string modelNameMosaic = "mosaic_cpp.pt";
+    auto moduleCandy = torch::jit::load(modelNameCandy, device);
+    auto moduleMosaic = torch::jit::load(modelNameMosaic, device);
 
     const int screenWidth = 800;
     const int screenHeight = 600;
@@ -77,23 +59,6 @@ int main(int argc, char* argv[])
     //From ray
     Image image = LoadImage("parrots.png");   // Loaded in CPU memory (RAM)
     // To torch
-
-    auto tensor=VU.rayImageToTorch (image, device);
-    VU.tensorDIMS(tensor);
-    // For inference
-    tensor = tensor.
-            to(torch::kFloat). // For inference
-            unsqueeze(-1). // Add batch
-            permute({ 3, 0, 1, 2 }). // Fix order, now its {B,C,H,W}
-            to(device);
-    VU.tensorDIMS(tensor);
-    // Apply the model
-    torch::Tensor out_tensor = module.forward({ tensor }).toTensor();
-    VU.tensorDIMS(out_tensor); // D=:[1, 3, 320, 480]
-    out_tensor = out_tensor.to(torch::kFloat32).detach().cpu().squeeze(); //Remove batch dim, must convert back to torch::float
-    VU.tensorDIMS(out_tensor); // D=:[1, 3, 320, 480]
-    image=VU.torchToRayImage(out_tensor);
-
 
     ImageFormat(&image, UNCOMPRESSED_R8G8B8A8);         // Format image to RGBA 32bit (required for texture update) <-- ISSUE
     Texture2D texture = LoadTextureFromImage(image);    // Image converted to texture, GPU memory (VRAM)
@@ -136,9 +101,10 @@ int main(int argc, char* argv[])
             // with a texture and by shaders
             switch (currentProcess)
             {
-                case COLOR_GRAYSCALE: ImageColorGrayscale(&image); break;
-                case COLOR_TINT: ImageColorTint(&image, GREEN); break;
-                case COLOR_INVERT: ImageColorInvert(&image); break;
+//                case COLOR_GRAYSCALE: ImageColorGrayscale(&image); break;
+                case COLOR_GRAYSCALE: image=VU.applyModelOnImage(device, moduleCandy, image); break;
+                case COLOR_MOSAIC: image = VU.applyModelOnImage(device, moduleMosaic, image); break;
+                case COLOR_CANDY: ImageColorInvert(&image); break;
                 case COLOR_CONTRAST: ImageColorContrast(&image, -40); break;
                 case COLOR_BRIGHTNESS: ImageColorBrightness(&image, -80); break;
                 case FLIP_VERTICAL: ImageFlipVertical(&image); break;

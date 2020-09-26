@@ -17,6 +17,8 @@ public:
     static void tensorDIMS(const torch::Tensor &tensor);
     torch::Tensor rayImageToTorch(const Image &image, c10::Device &device);
     Image torchToRayImage(torch::Tensor &tensor_);
+    Image applyModelOnImage(torch::Device &device, torch::jit::Module &module, Image &image);
+//    Image applyModelOnImage(VU, device, module, image);
 //    torch::Tensor pngToTorch(png::image<png::rgb_pixel> &image, c10::Device &device);
 //    png::image<png::rgb_pixel> torchToPng(torch::Tensor &tensor_);
 //    torch::Tensor pngToTorchRGBA(png::image<png::rgba_pixel> &image, c10::Device &device);
@@ -26,11 +28,31 @@ public:
 
 VisionUtils::VisionUtils() {}
 
+Image VisionUtils::applyModelOnImage(torch::Device &device, torch::jit::Module &module, Image &image) {
+    auto tensor=rayImageToTorch (image, device);
+    tensorDIMS(tensor);
+    tensor = tensor.
+            to(torch::kFloat). // For inference
+            unsqueeze(-1). // Add batch
+            permute({ 3, 0, 1, 2 }). // Fix order, now its {B,C,H,W}
+            to(device);
+    tensorDIMS(tensor);
+    // Apply the model
+    torch::Tensor out_tensor = module.forward({ tensor }).toTensor();
+    tensorDIMS(out_tensor); // D=:[1, 3, 320, 480]
+    out_tensor = out_tensor.to(torch::kFloat32).detach().cpu().squeeze(); //Remove batch dim, must convert back to torch::float
+    tensorDIMS(out_tensor); // D=:[1, 3, 320, 480]
+    image=torchToRayImage(out_tensor);
+    return image;
+}
+
 void VisionUtils::tensorDIMS(const torch::Tensor &tensor) {
     auto t0 = tensor.size(0);
     auto s = tensor.sizes();
     cout << "D=:" << s << "\n";
 }
+
+
 
 Image VisionUtils::torchToRayImage(torch::Tensor &tensor_){
     torch::Tensor tensor = tensor_.squeeze().detach().cpu().permute({1, 2, 0});  // {C,H,W} ===> {H,W,C}
