@@ -86,11 +86,14 @@ if(CUDA_FOUND)
 endif()
 
 
+
 include(copy_torch_dlls)
 ################# EXAMPLE 001 ########################
 # TARGET
 set(EXAMPLE_001_EXE torch_ray_sanity)
+#add_executable(${EXAMPLE_001_EXE} src/${EXAMPLE_001_EXE}.cpp include/utils/vision_utils.hpp)
 add_executable(${EXAMPLE_001_EXE} src/${EXAMPLE_001_EXE}.cpp)
+
 set(raylib_VERBOSE 1)
 target_link_libraries(${EXAMPLE_001_EXE} raylib  ${TORCH_LIBRARIES})
 #target_link_libraries(${PROJECT_NAME} m)
@@ -147,6 +150,23 @@ set_target_properties(${EXAMPLE_004_EXE} PROPERTIES
         CXX_STANDARD 17
         CXX_STANDARD_REQUIRED YES)
 copy_torch_dlls(${EXAMPLE_004_EXE})
+################# EXAMPLE 004 ########################
+
+
+################# EXAMPLE 005 ########################
+# TARGET
+set(EXAMPLE_005_EXE torch_textures_image_processing)
+#add_executable(${EXAMPLE_005_EXE} src/${EXAMPLE_005_EXE}.cpp)
+add_executable(${EXAMPLE_005_EXE} src/${EXAMPLE_005_EXE}.cpp include/utils/vision_utils.hpp)
+set(raylib_VERBOSE 1)
+target_link_libraries(${EXAMPLE_005_EXE} raylib  ${TORCH_LIBRARIES})
+#target_link_libraries(${PROJECT_NAME} m)
+target_include_directories(${EXAMPLE_005_EXE} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/_dpes/libtorch/include/")
+target_include_directories(${EXAMPLE_005_EXE} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/_deps/libtorch/include/torch/csrc/api/")
+set_target_properties(${EXAMPLE_005_EXE} PROPERTIES
+        CXX_STANDARD 17
+        CXX_STANDARD_REQUIRED YES)
+copy_torch_dlls(${EXAMPLE_005_EXE})
 ################# EXAMPLE 004 ########################
 
 
