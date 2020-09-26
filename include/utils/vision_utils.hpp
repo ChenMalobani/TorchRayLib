@@ -32,27 +32,6 @@ void VisionUtils::tensorDIMS(const torch::Tensor &tensor) {
     cout << "D=:" << s << "\n";
 }
 
-torch::Tensor VisionUtils::rayImageToTorch(const Image &image, c10::Device &device){
-    size_t width = image.width;
-    size_t height = image.height;
-    unsigned int size = GetPixelDataSize(width, height, UNCOMPRESSED_R8G8B8);
-//    auto pointer = new unsigned char[width * height * 3];
-    auto pointer = new unsigned char[size];
-    const unsigned char* imagePointer = (unsigned char*)image.data;
-    for (size_t j = 0; j < height; j++){
-        size_t noAlpha = 0;
-        for (size_t i = 0; i < width; i++){
-            pointer[j * width * 3 + i * 3 + 0] = imagePointer[j*width+noAlpha]; ++noAlpha;
-            pointer[j * width * 3 + i * 3 + 1] = imagePointer[j*width+noAlpha]; ++noAlpha;
-            pointer[j * width * 3 + i * 3 + 2] = imagePointer[j*width+noAlpha]; ++noAlpha; //we need to jump over alpha channels
-        }
-    }
-    torch::Tensor tensor = torch::from_blob(pointer, {(int)width, (int)width, 3}, torch::kU8)
-            .clone().permute({2, 0, 1}).to(device);  // copy
-    delete[] pointer;
-    return tensor;
-}
-
 Image VisionUtils::torchToRayImage(torch::Tensor &tensor_){
     torch::Tensor tensor = tensor_.squeeze().detach().cpu().permute({1, 2, 0});  // {C,H,W} ===> {H,W,C}
     tensor = tensor.clamp(0, 255);
@@ -60,29 +39,79 @@ Image VisionUtils::torchToRayImage(torch::Tensor &tensor_){
     size_t width = tensor.size(1);
     size_t height = tensor.size(0);
     auto torchPointer = tensor.data_ptr<unsigned char>();
-//    Image image =Image{};
-//    const unsigned char* imagePointer = (unsigned char*)torchPointer;
-//    auto imagePointer = reinterpret_cast<unsigned char*>((torchPointer));
-    auto imagePointer2 = reinterpret_cast<unsigned char *>(RL_MALLOC(3* height * width *sizeof(unsigned char)));
+    auto imagePointer = reinterpret_cast<unsigned char *>(RL_MALLOC(3* height * width *sizeof(unsigned char)));
     for (size_t j = 0; j < height; j++){
         size_t noAlpha = 0;
         for (size_t i = 0; i < width; i++){
-//            imagePointer[j*width+noAlpha] = torchPointer[j * width * 3 + i * 3 + 0]; ++noAlpha;
-//            imagePointer[j*width+noAlpha] = torchPointer[j * width * 3 + i * 3 + 1]; ++noAlpha;
-//            imagePointer[j*width+noAlpha] = torchPointer[j * width * 3 + i * 3 + 2]; ++noAlpha;
-            imagePointer2[j*width+noAlpha] = torchPointer[j * width * 3 + i * 3 + 0]; ++noAlpha;
-            imagePointer2[j*width+noAlpha] = torchPointer[j * width * 3 + i * 3 + 1]; ++noAlpha;
-            imagePointer2[j*width+noAlpha] = torchPointer[j * width * 3 + i * 3 + 2]; ++noAlpha;
+            imagePointer[j*width+noAlpha] = torchPointer[j * width * 3 + i * 3 + 0]; ++noAlpha;
+            imagePointer[j*width+noAlpha] = torchPointer[j * width * 3 + i * 3 + 1]; ++noAlpha;
+            imagePointer[j*width+noAlpha] = torchPointer[j * width * 3 + i * 3 + 2]; ++noAlpha;
         }
     }
-//    std::memcpy((void *) image.data, tensor.data_ptr(), sizeof(torch::kU8) * tensor.numel());
     return Image{
-            imagePointer2,
+            imagePointer,
             (int)width,
             (int)height,
             1, //that line is mipmaps, keep as 1
             UNCOMPRESSED_R8G8B8}; //its an enum specifying formar, 8 bit R, 8 bit G, 8 bit B, no alpha UNCOMPRESSED_R8G8B8A8 UNCOMPRESSED_R8G8B8
 }
+
+torch::Tensor VisionUtils::rayImageToTorch(const Image &image, c10::Device &device){
+    size_t width = image.width;
+    size_t height = image.height;
+
+    int dataSize = GetPixelDataSize(width, height, image.format);
+    int bytesPerPixel = dataSize/(width*height);
+    auto pointer = new unsigned char[dataSize];
+    const unsigned char* imagePointer = (unsigned char*)image.data;
+
+    for (size_t j = 0; j < height; j++){
+        size_t noAlpha = 0;
+        for (size_t i = 0; i < width; i++){
+            pointer[j * width * 3 + i * 3 + 0] = imagePointer[j*width+noAlpha]; ++noAlpha;
+            pointer[j * width * 3 + i * 3 + 1] = imagePointer[j*width+noAlpha]; ++noAlpha;
+            pointer[j * width * 3 + i * 3 + 2] = imagePointer[j*width+noAlpha]; ++noAlpha;
+        }
+
+    }
+    auto tensor = torch::from_blob(pointer, {(int)height, (int)width, bytesPerPixel},
+                                   torch::kU8).clone().permute({2, 0, 1}).to(device);  // copy
+    delete[] pointer;
+    return tensor;
+}
+
+//torch::Tensor VisionUtils::rayImageToTorch(const Image &image, c10::Device &device){
+//    unsigned int size = GetPixelDataSize(image.width, image.height, image.format);
+//    //    auto input_tensor = torch::from_blob(frame.data, {1, h, w, c});
+//
+//    size_t width = image.width;
+//    size_t height = image.height;
+//    auto tensor = torch::from_blob(image.data, {(int)height, (int)width, 3}, torch::kU8)
+//            .clone().permute({2, 0, 1}).to(device);  // copy
+//    return tensor;
+//}
+
+//torch::Tensor VisionUtils::rayImageToTorch(const Image &image, c10::Device &device){
+//    size_t width = image.width;
+//    size_t height = image.height;
+//
+//    int dataSize = GetPixelDataSize(width, height, image.format);
+//    int bytesPerPixel = dataSize/(width*height);
+//    auto pointer = new unsigned char[dataSize];
+//
+//    for (size_t j = 0; j < height; j++){
+//        for (size_t i = 0; i < width; i++){
+//            // TODO: Assign desired value from image (now assigning just RED byte
+//            pointer[(j*width + i)*bytesPerPixel + 0] = ((unsigned char)image.data)[(j*width + i)*bytesPerPixel + 0];
+//        }
+//    }
+//
+//    torch::Tensor tensor = torch::from_blob(pointer, {(int)width, (int)width, bytesPerPixel}, torch::kU8).clone().permute({2, 0, 1}).to(device);
+//
+//    delete[] pointer;
+//    return tensor;
+//}
+
 
 //return Image{ data //u need to pass there pointer to data
 //width,
