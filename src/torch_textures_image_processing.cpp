@@ -78,13 +78,13 @@ int main(int argc, char* argv[])
         if (IsKeyPressed(KEY_DOWN))
         {
             currentProcess++;
-            if (currentProcess > 7) currentProcess = 0;
+            if (currentProcess > 4) currentProcess = 0;
             textureReload = true;
         }
         else if (IsKeyPressed(KEY_UP))
         {
             currentProcess--;
-            if (currentProcess < 0) currentProcess = 7;
+            if (currentProcess < 0) currentProcess = 4;
             textureReload = true;
         }
 
