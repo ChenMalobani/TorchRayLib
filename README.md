@@ -1,5 +1,5 @@
 
-<h4 align="center">TorchRayLib++: A CMake based integration of the RayLib GUI library and the Libtorch C++ Deep Learning Library.</h4>
+<h2 align="center">TorchRayLib++: A CMake based integration of the RayLib GUI library and the Libtorch C++ Deep Learning Library.</h2>
       
 <p align="center">
   <a href="#about">About</a> •
