@@ -191,6 +191,7 @@ copy_torch_dlls(${EXAMPLE_006_EXE})
 # # Copy trained PTH files
 file(COPY "resources/mosaic_cpp.pt" DESTINATION ${CMAKE_SOURCE_DIR}/bin64)
 file(COPY "resources/candy_cpp.pt" DESTINATION ${CMAKE_SOURCE_DIR}/bin64)
+file(COPY "resources/udnie_cpp.pt" DESTINATION ${CMAKE_SOURCE_DIR}/bin64)
 file(COPY "resources/erfnet_fs.pt" DESTINATION ${CMAKE_SOURCE_DIR}/bin64)
 file(COPY "resources/amber.png" DESTINATION ${CMAKE_SOURCE_DIR}/bin64)
 file(COPY "resources/windmill.png" DESTINATION ${CMAKE_SOURCE_DIR}/bin64)

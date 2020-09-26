@@ -23,10 +23,9 @@
 
 typedef enum {
     NONE = 0,
-    COLOR_GRAYSCALE,
     COLOR_MOSAIC,
     COLOR_CANDY,
-    COLOR_CONTRAST,
+    COLOR_UDNIE,
     COLOR_BRIGHTNESS,
     FLIP_VERTICAL,
     FLIP_HORIZONTAL
@@ -36,7 +35,7 @@ static const char *processText[] = {
         "NO PROCESSING",
         "COLOR MOSAIC",
         "COLOR CANDY",
-        "COLOR INVERT",
+        "COLOR UDNIE",
         "COLOR CONTRAST",
         "COLOR BRIGHTNESS",
         "FLIP VERTICAL",
@@ -49,8 +48,10 @@ int main(int argc, char* argv[])
     torch::Device device(torch::kCUDA);
     const std::string modelNameCandy = "candy_cpp.pt";
     const std::string modelNameMosaic = "mosaic_cpp.pt";
+    const std::string modelNameUdnie = "udnie_cpp.pt";
     auto moduleCandy = torch::jit::load(modelNameCandy, device);
     auto moduleMosaic = torch::jit::load(modelNameMosaic, device);
+    auto moduleUdnie = torch::jit::load(modelNameUdnie, device);
 
     const int screenWidth = 800;
     const int screenHeight = 600;
@@ -101,11 +102,10 @@ int main(int argc, char* argv[])
             // with a texture and by shaders
             switch (currentProcess)
             {
-//                case COLOR_GRAYSCALE: ImageColorGrayscale(&image); break;
-                case COLOR_GRAYSCALE: image=VU.applyModelOnImage(device, moduleCandy, image); break;
+
                 case COLOR_MOSAIC: image = VU.applyModelOnImage(device, moduleMosaic, image); break;
-                case COLOR_CANDY: ImageColorInvert(&image); break;
-                case COLOR_CONTRAST: ImageColorContrast(&image, -40); break;
+                case COLOR_CANDY: image=VU.applyModelOnImage(device, moduleCandy, image); break;
+                case COLOR_UDNIE: image = VU.applyModelOnImage(device, moduleUdnie, image); break;
                 case COLOR_BRIGHTNESS: ImageColorBrightness(&image, -80); break;
                 case FLIP_VERTICAL: ImageFlipVertical(&image); break;
                 case FLIP_HORIZONTAL: ImageFlipHorizontal(&image); break;
