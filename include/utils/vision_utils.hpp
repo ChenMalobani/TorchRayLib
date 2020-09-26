@@ -63,12 +63,12 @@ Image VisionUtils::torchToRayImage(torch::Tensor &tensor_){
 //    const unsigned char* imagePointer = (unsigned char*)torchPointer;
     auto imagePointer = reinterpret_cast<unsigned char*>((torchPointer));
 
-    for (size_t j = 0; j < height; j++){
+    for (size_t j = 0; j < width; j++){
         size_t noAlpha = 0;
-        for (size_t i = 0; i < width; i++){
+        for (size_t i = 0; i < height; i++){
             imagePointer[j*width+noAlpha] = torchPointer[j * width * 3 + i * 3 + 0]; ++noAlpha;
             imagePointer[j*width+noAlpha] = torchPointer[j * width * 3 + i * 3 + 1]; ++noAlpha;
-            imagePointer[j*width+noAlpha] = torchPointer[j * width * 3 + i * 3 + 2]; noAlpha+=1;
+            imagePointer[j*width+noAlpha] = torchPointer[j * width * 3 + i * 3 + 2]; noAlpha+=2;
         }
     }
     return Image{
@@ -76,7 +76,7 @@ Image VisionUtils::torchToRayImage(torch::Tensor &tensor_){
             (int)width,
             (int)height,
             1, //that line is mipmaps, keep as 1
-            UNCOMPRESSED_R8G8B8}; //its an enum specyfing forma, 8 bit R, 8 bit G, 8 bit G, no alpha
+            UNCOMPRESSED_R8G8B8}; //its an enum specifying formar, 8 bit R, 8 bit G, 8 bit B, no alpha UNCOMPRESSED_R8G8B8A8 UNCOMPRESSED_R8G8B8
 }
 
 //return Image{ data //u need to pass there pointer to data

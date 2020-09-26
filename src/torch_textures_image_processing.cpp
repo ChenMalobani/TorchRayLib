@@ -75,25 +75,27 @@ int main(int argc, char* argv[])
     InitWindow(screenWidth, screenHeight, "raylib [textures] example - image processing");
 
     //From ray
-    Image image = LoadImage("windmill.png");   // Loaded in CPU memory (RAM)
+    Image image = LoadImage("parrots.png");   // Loaded in CPU memory (RAM)
     // To torch
 
     auto tensor=VU.rayImageToTorch (image, device);
     VU.tensorDIMS(tensor);
-    // For inference
-    tensor = tensor.
-            to(torch::kFloat). // For inference
-            unsqueeze(-1). // Add batch
-            permute({ 3, 0, 1, 2 }). // Fix order, now its {B,C,H,W}
-            to(device);
-    VU.tensorDIMS(tensor);
-    // Apply the model
-    torch::Tensor out_tensor = module.forward({ tensor }).toTensor();
-    VU.tensorDIMS(out_tensor); // D=:[1, 3, 320, 480]
-    out_tensor = out_tensor.to(torch::kFloat32).detach().cpu().squeeze(); //Remove batch dim, must convert back to torch::float
-    VU.tensorDIMS(out_tensor); // D=:[1, 3, 320, 480]
 
-    image=VU.torchToRayImage(out_tensor);
+//    // For inference
+//    tensor = tensor.
+//            to(torch::kFloat). // For inference
+//            unsqueeze(-1). // Add batch
+//            permute({ 3, 0, 1, 2 }). // Fix order, now its {B,C,H,W}
+//            to(device);
+//    VU.tensorDIMS(tensor);
+//    // Apply the model
+//    torch::Tensor out_tensor = module.forward({ tensor }).toTensor();
+//    VU.tensorDIMS(out_tensor); // D=:[1, 3, 320, 480]
+//    out_tensor = out_tensor.to(torch::kFloat32).detach().cpu().squeeze(); //Remove batch dim, must convert back to torch::float
+//    VU.tensorDIMS(out_tensor); // D=:[1, 3, 320, 480]
+//    image=VU.torchToRayImage(out_tensor);
+
+    image=VU.torchToRayImage(tensor);
 
 //    ImageFormat(&image, UNCOMPRESSED_R8G8B8A8);         // Format image to RGBA 32bit (required for texture update) <-- ISSUE
     Texture2D texture = LoadTextureFromImage(image);    // Image converted to texture, GPU memory (VRAM)
