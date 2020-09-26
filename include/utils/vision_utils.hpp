@@ -68,7 +68,7 @@ Image VisionUtils::torchToRayImage(torch::Tensor &tensor_){
         for (size_t i = 0; i < width; i++){
             imagePointer[j*width+noAlpha] = torchPointer[j * width * 3 + i * 3 + 0]; ++noAlpha;
             imagePointer[j*width+noAlpha] = torchPointer[j * width * 3 + i * 3 + 1]; ++noAlpha;
-            imagePointer[j*width+noAlpha] = torchPointer[j * width * 3 + i * 3 + 2]; noAlpha+=2;
+            imagePointer[j*width+noAlpha] = torchPointer[j * width * 3 + i * 3 + 2]; noAlpha+=1;
         }
     }
     return Image{
