@@ -43,7 +43,7 @@ torch::Tensor VisionUtils::rayImageToTorch(const Image &image, c10::Device &devi
         for (size_t i = 0; i < width; i++){
             pointer[j * width * 3 + i * 3 + 0] = imagePointer[j*width+noAlpha]; ++noAlpha;
             pointer[j * width * 3 + i * 3 + 1] = imagePointer[j*width+noAlpha]; ++noAlpha;
-            pointer[j * width * 3 + i * 3 + 2] = imagePointer[j*width+noAlpha]; noAlpha+=2; //we need to jump over alpha channels
+            pointer[j * width * 3 + i * 3 + 2] = imagePointer[j*width+noAlpha]; ++noAlpha; //we need to jump over alpha channels
         }
     }
     torch::Tensor tensor = torch::from_blob(pointer, {(int)width, (int)width, 3}, torch::kU8)
@@ -59,20 +59,24 @@ Image VisionUtils::torchToRayImage(torch::Tensor &tensor_){
     size_t width = tensor.size(1);
     size_t height = tensor.size(0);
     auto torchPointer = tensor.data_ptr<unsigned char>();
-
+//    Image image =Image{};
 //    const unsigned char* imagePointer = (unsigned char*)torchPointer;
-    auto imagePointer = reinterpret_cast<unsigned char*>((torchPointer));
-
+//    auto imagePointer = reinterpret_cast<unsigned char*>((torchPointer));
+    auto imagePointer2 = reinterpret_cast<unsigned char *>(RL_MALLOC(3* height * width *sizeof(unsigned char)));
     for (size_t j = 0; j < width; j++){
         size_t noAlpha = 0;
         for (size_t i = 0; i < height; i++){
-            imagePointer[j*width+noAlpha] = torchPointer[j * width * 3 + i * 3 + 0]; ++noAlpha;
-            imagePointer[j*width+noAlpha] = torchPointer[j * width * 3 + i * 3 + 1]; ++noAlpha;
-            imagePointer[j*width+noAlpha] = torchPointer[j * width * 3 + i * 3 + 2]; noAlpha+=2;
+//            imagePointer[j*width+noAlpha] = torchPointer[j * width * 3 + i * 3 + 0]; ++noAlpha;
+//            imagePointer[j*width+noAlpha] = torchPointer[j * width * 3 + i * 3 + 1]; ++noAlpha;
+//            imagePointer[j*width+noAlpha] = torchPointer[j * width * 3 + i * 3 + 2]; ++noAlpha;
+            imagePointer2[j*width+noAlpha] = torchPointer[j * width * 3 + i * 3 + 0]; ++noAlpha;
+            imagePointer2[j*width+noAlpha] = torchPointer[j * width * 3 + i * 3 + 1]; ++noAlpha;
+            imagePointer2[j*width+noAlpha] = torchPointer[j * width * 3 + i * 3 + 2]; ++noAlpha;
         }
     }
+//    std::memcpy((void *) image.data, tensor.data_ptr(), sizeof(torch::kU8) * tensor.numel());
     return Image{
-            imagePointer,
+            imagePointer2,
             (int)width,
             (int)height,
             1, //that line is mipmaps, keep as 1

@@ -12,13 +12,10 @@
 #include "raylib.h"
 #include <torch/script.h>
 
-torch::Tensor sigmoid001(const torch::Tensor& x) {
-    torch::Tensor sig = 1.0 / (1.0 + torch::exp((-x)));
-    return sig;
-}
 
 
-int main(void)
+
+int main(int argc, char* argv[])
 {
     torch::Device device(torch::kCUDA);
     torch::Tensor tensor = torch::eye(3).to(device);

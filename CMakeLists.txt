@@ -170,6 +170,24 @@ copy_torch_dlls(${EXAMPLE_005_EXE})
 ################# EXAMPLE 004 ########################
 
 
+################# EXAMPLE 005 ########################
+# TARGET
+set(EXAMPLE_006_EXE torch_sigmoid)
+#add_executable(${EXAMPLE_005_EXE} src/${EXAMPLE_005_EXE}.cpp)
+add_executable(${EXAMPLE_006_EXE} src/${EXAMPLE_006_EXE}.cpp include/utils/vision_utils.hpp)
+set(raylib_VERBOSE 1)
+target_link_libraries(${EXAMPLE_006_EXE} raylib  ${TORCH_LIBRARIES})
+#target_link_libraries(${PROJECT_NAME} m)
+target_include_directories(${EXAMPLE_006_EXE} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/_dpes/libtorch/include/")
+target_include_directories(${EXAMPLE_006_EXE} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/_deps/libtorch/include/torch/csrc/api/")
+set_target_properties(${EXAMPLE_006_EXE} PROPERTIES
+        CXX_STANDARD 17
+        CXX_STANDARD_REQUIRED YES)
+copy_torch_dlls(${EXAMPLE_006_EXE})
+################# EXAMPLE 004 ########################
+
+
+
 # # Copy trained PTH files
 file(COPY "resources/mosaic_cpp.pt" DESTINATION ${CMAKE_SOURCE_DIR}/bin64)
 file(COPY "resources/candy_cpp.pt" DESTINATION ${CMAKE_SOURCE_DIR}/bin64)
