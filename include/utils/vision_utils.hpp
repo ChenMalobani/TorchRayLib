@@ -35,8 +35,9 @@ void VisionUtils::tensorDIMS(const torch::Tensor &tensor) {
 torch::Tensor VisionUtils::rayImageToTorch(const Image &image, c10::Device &device){
     size_t width = image.width;
     size_t height = image.height;
-    auto pointer = new unsigned char[width * height * 3];
-
+    unsigned int size = GetPixelDataSize(width, height, UNCOMPRESSED_R8G8B8);
+//    auto pointer = new unsigned char[width * height * 3];
+    auto pointer = new unsigned char[size];
     const unsigned char* imagePointer = (unsigned char*)image.data;
     for (size_t j = 0; j < height; j++){
         size_t noAlpha = 0;
