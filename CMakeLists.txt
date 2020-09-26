@@ -105,6 +105,23 @@ set_target_properties(${EXAMPLE_001_EXE} PROPERTIES
 copy_torch_dlls(${EXAMPLE_001_EXE})
 
 
+################# EXAMPLE 000 ########################
+# TARGET
+set(EXAMPLE_000_EXE torch_empty_template)
+#add_executable(${EXAMPLE_005_EXE} src/${EXAMPLE_005_EXE}.cpp)
+add_executable(${EXAMPLE_000_EXE} src/${EXAMPLE_000_EXE}.cpp include/utils/vision_utils.hpp)
+set(raylib_VERBOSE 1)
+target_link_libraries(${EXAMPLE_000_EXE} raylib  ${TORCH_LIBRARIES})
+#target_link_libraries(${PROJECT_NAME} m)
+target_include_directories(${EXAMPLE_000_EXE} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/_dpes/libtorch/include/")
+target_include_directories(${EXAMPLE_000_EXE} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/_deps/libtorch/include/torch/csrc/api/")
+set_target_properties(${EXAMPLE_000_EXE} PROPERTIES
+        CXX_STANDARD 17
+        CXX_STANDARD_REQUIRED YES)
+copy_torch_dlls(${EXAMPLE_000_EXE})
+################# EXAMPLE 004 ########################
+
+
 ################# EXAMPLE 001 ########################
 #set(EXAMPLE_002_EXE torch_music_app)
 ## This is the main part:
@@ -167,10 +184,10 @@ set_target_properties(${EXAMPLE_005_EXE} PROPERTIES
         CXX_STANDARD 17
         CXX_STANDARD_REQUIRED YES)
 copy_torch_dlls(${EXAMPLE_005_EXE})
-################# EXAMPLE 004 ########################
-
-
 ################# EXAMPLE 005 ########################
+
+
+################# EXAMPLE 006 ########################
 # TARGET
 set(EXAMPLE_006_EXE torch_sigmoid)
 #add_executable(${EXAMPLE_005_EXE} src/${EXAMPLE_005_EXE}.cpp)
@@ -184,7 +201,7 @@ set_target_properties(${EXAMPLE_006_EXE} PROPERTIES
         CXX_STANDARD 17
         CXX_STANDARD_REQUIRED YES)
 copy_torch_dlls(${EXAMPLE_006_EXE})
-################# EXAMPLE 004 ########################
+################# EXAMPLE 006 ########################
 
 
 

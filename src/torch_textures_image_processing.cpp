@@ -19,7 +19,7 @@
 
 #include <torch/script.h>
 
-#define NUM_PROCESSES    8
+#define NUM_PROCESSES    5
 
 typedef enum {
     NONE = 0,
@@ -27,19 +27,14 @@ typedef enum {
     COLOR_CANDY,
     COLOR_UDNIE,
     COLOR_BRIGHTNESS,
-    FLIP_VERTICAL,
-    FLIP_HORIZONTAL
 } ImageProcess;
 
 static const char *processText[] = {
         "NO PROCESSING",
-        "COLOR MOSAIC",
-        "COLOR CANDY",
-        "COLOR UDNIE",
-        "COLOR CONTRAST",
-        "COLOR BRIGHTNESS",
-        "FLIP VERTICAL",
-        "FLIP HORIZONTAL"
+        "MOSAIC NN",
+        "CANDY NN",
+        "UDNIE NN",
+        "CONTRAST",
 };
 
 int main(int argc, char* argv[])
@@ -54,8 +49,9 @@ int main(int argc, char* argv[])
     auto moduleUdnie = torch::jit::load(modelNameUdnie, device);
 
     const int screenWidth = 800;
-    const int screenHeight = 600;
+    const int screenHeight = 700;
     InitWindow(screenWidth, screenHeight, "TorchRayLib: PyTorch GPU NeuralStyle transfer (c++17)");
+    ClearBackground(BLACK);
 
     //From ray
     Image image = LoadImage("parrots.png");   // Loaded in CPU memory (RAM)
@@ -69,7 +65,7 @@ int main(int argc, char* argv[])
 
     Rectangle selectRecs[NUM_PROCESSES] = { 0 };
 
-    for (int i = 0; i < NUM_PROCESSES; i++) selectRecs[i] = Rectangle{ 40.0f, (float)(50 + 32*i), 150.0f, 30.0f };
+    for (int i = 0; i < NUM_PROCESSES; i++) selectRecs[i] = Rectangle{ 10.0f, (float)(60 + 54*i), 180.0f, 40.0f };
 
     SetTargetFPS(60);
     //---------------------------------------------------------------------------------------
@@ -102,16 +98,14 @@ int main(int argc, char* argv[])
             // with a texture and by shaders
             switch (currentProcess)
             {
-
                 case COLOR_MOSAIC: image = VU.applyModelOnImage(device, moduleMosaic, image); break;
                 case COLOR_CANDY: image=VU.applyModelOnImage(device, moduleCandy, image); break;
                 case COLOR_UDNIE: image = VU.applyModelOnImage(device, moduleUdnie, image); break;
                 case COLOR_BRIGHTNESS: ImageColorBrightness(&image, -80); break;
-                case FLIP_VERTICAL: ImageFlipVertical(&image); break;
-                case FLIP_HORIZONTAL: ImageFlipHorizontal(&image); break;
+//                case FLIP_VERTICAL: ImageFlipVertical(&image); break;
+//                case FLIP_HORIZONTAL: ImageFlipHorizontal(&image); break;
                 default: break;
             }
-
             Color *pixels = GetImageData(image);        // Get pixel data from image (RGBA 32bit)
             UpdateTexture(texture, pixels);             // Update texture with new image data
             free(pixels);                               // Unload pixels data from RAM
@@ -126,16 +120,17 @@ int main(int argc, char* argv[])
 
         ClearBackground(RAYWHITE);
 
-        DrawText("NeuralStyle transfer using PyTorch :", 20, 20, 20, ORANGE);
+        DrawText("NeuralStyle transfer using PyTorch :", 20, 20, 20, DARKGRAY);
 
         // Draw rectangles
         for (int i = 0; i < NUM_PROCESSES; i++)
         {
-            DrawRectangleRec(selectRecs[i], (i == currentProcess) ? SKYBLUE : LIGHTGRAY);
-            DrawRectangleLines((int)selectRecs[i].x, (int) selectRecs[i].y, (int) selectRecs[i].width, (int) selectRecs[i].height, (i == currentProcess) ? BLUE : GRAY);
-            DrawText( processText[i], (int)( selectRecs[i].x + selectRecs[i].width/2 - MeasureText(processText[i], 10)/2), (int) selectRecs[i].y + 11, 10, (i == currentProcess) ? DARKBLUE : DARKGRAY);
-        }
+            DrawRectangleRec(selectRecs[i], (i == currentProcess) ?   DARKGRAY:WHITE);
+            DrawRectangleLines((int)selectRecs[i].x, (int) selectRecs[i].y, (int) selectRecs[i].width, (int) selectRecs[i].height, (i == currentProcess) ? DARKGREEN:WHITE);
 
+            DrawText( processText[i], (int)( selectRecs[i].x + selectRecs[i].width/2 - MeasureText(processText[i], 20)/2),
+                      (int) selectRecs[i].y + 11, 20, (i == currentProcess) ? LIGHTGRAY :DARKBLUE);
+        }
         DrawTexture(texture, screenWidth - texture.width - 60, screenHeight/2 - texture.height/2, WHITE);
         DrawRectangleLines(screenWidth - texture.width - 60, screenHeight/2 - texture.height/2, texture.width, texture.height, BLACK);
 
