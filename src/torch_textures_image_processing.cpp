@@ -75,7 +75,7 @@ int main(int argc, char* argv[])
     InitWindow(screenWidth, screenHeight, "raylib [textures] example - image processing");
 
     //From ray
-    Image image = LoadImage("parrots.png");   // Loaded in CPU memory (RAM)
+    Image image = LoadImage("windmill.png");   // Loaded in CPU memory (RAM)
     // To torch
 
     auto tensor=VU.rayImageToTorch (image, device);
