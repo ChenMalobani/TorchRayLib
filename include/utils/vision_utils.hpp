@@ -64,9 +64,9 @@ Image VisionUtils::torchToRayImage(torch::Tensor &tensor_){
 //    const unsigned char* imagePointer = (unsigned char*)torchPointer;
 //    auto imagePointer = reinterpret_cast<unsigned char*>((torchPointer));
     auto imagePointer2 = reinterpret_cast<unsigned char *>(RL_MALLOC(3* height * width *sizeof(unsigned char)));
-    for (size_t j = 0; j < width; j++){
+    for (size_t j = 0; j < height; j++){
         size_t noAlpha = 0;
-        for (size_t i = 0; i < height; i++){
+        for (size_t i = 0; i < width; i++){
 //            imagePointer[j*width+noAlpha] = torchPointer[j * width * 3 + i * 3 + 0]; ++noAlpha;
 //            imagePointer[j*width+noAlpha] = torchPointer[j * width * 3 + i * 3 + 1]; ++noAlpha;
 //            imagePointer[j*width+noAlpha] = torchPointer[j * width * 3 + i * 3 + 2]; ++noAlpha;
