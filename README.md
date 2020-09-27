@@ -220,6 +220,7 @@ endfunction()
  
 ## Tracing your modeld in PyTorch for inference in C++
 For instance, this how to trace the NeuralStyle transfer models from PyTprch to Libtorch so that inference in C++ can work. 
+https://github.com/QuantScientist/TorchRayLib/blob/master/model_trace.py 
  
 ````python
 import torch
