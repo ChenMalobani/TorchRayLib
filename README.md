@@ -243,7 +243,15 @@ If you find the code or trained models useful, please consider citing:
  
 ## License
 
-- Copyright © [Shlomo Kashani. author "Deep Learning Interviews"](https://github.com/QuantScientist/)
+- Copyright © [Shlomo Kashani, author of the book "Deep Learning Interviews"](www.interviews.ai)
+
+## Third party:
+- raylib is licensed under an unmodified zlib/libpng license, which is an OSI-certified, 
+BSD-like license that allows static linking with closed source software. Check LICENSE for further details.
+
+- NVIDIA CUDA license https://docs.nvidia.com/cuda/eula/index.html 
+
+- PyTorch https://github.com/pytorch/pytorch/blob/master/LICENSE
 
 # References
 - https://github.com/raysan5/raylib
