@@ -241,11 +241,19 @@ If you find the code or trained models useful, please consider citing:
 ## Contributers 
 - https://github.com/CarboSauce helped a lot with the conversion of ray images to Torch and vice versa.
  
-## License
+# License
 
 - Copyright © [Shlomo Kashani, author of the book "Deep Learning Interviews"](www.interviews.ai)
 
-## Third party:
+## Disclaimers
+
+- "PyTorch" is a trademark of Facebook.
+- No liability. Feel free to submit bugs or fixes.
+- No tech support: this is merely a spare-time fun project for me.
+- Contribution is more than welcomed though.
+- Tested only on Windows 10 with Visual Studio 2019. More OS and dev env support are welcomed.
+
+## Third party licences:
 - raylib is licensed under an unmodified zlib/libpng license, which is an OSI-certified, 
 BSD-like license that allows static linking with closed source software. Check LICENSE for further details.
 
