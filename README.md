@@ -39,6 +39,10 @@ PyTorch is a Python package that provides two high-level features, Tensor comput
 Deep neural networks built on a tape-based autograd system. In this project we use the C++ version entitled Libtorch. 
 https://pytorch.org/ 
 
+## Alpha release
+Try it here: https://github.com/QuantScientist/TorchRayLib/releases 
+**Note**: it is huge file because of the included orch / NVIDIA CUDA runtime files.    
+
 ![TorchRayLib++ Code](https://github.com/QuantScientist/PngTorch/blob/master/asstes/logo.png?raw=true?raw=true) 
   
 <p align="right">
