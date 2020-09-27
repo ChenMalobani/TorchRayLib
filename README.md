@@ -105,10 +105,10 @@ an unmodified zlib/libpng license (View raylib.h for details) Copyright (c) 2014
 
 |                            | 🔰 TorchRayLib++ CMake  | |
 | -------------------------- | :----------------: | :-------------:|
-| PyTorch CPU tensor to PNG        |         ✔️                 
-| PyTorch GPU tensors to PNG       |         ✔️                 
+| PyTorch CPU tensor to ray Image        |         ✔️                 
+| PyTorch GPU tensors to ray image       |         ✔️                 
 | Libtorch C++ 1.6           |         ✔️                 
-| RayLib           |         ✔️                 
+| RayLib                     |         ✔️                 
 
 
 ## Examples
@@ -142,18 +142,34 @@ Please setup CLion as follows:
 
 ![TorchRayLib++ Code](https://github.com/QuantScientist/TorchRayLib/blob/master/asstes/clion.png?raw=true)
 
-## Installation 
+## Installation / building using CMake
+
+**CMake** should take care of everything for you! CLion is strongly recomended for the build. 
 
 #### Downloading and installing steps LIBTORCH C++:
+
+The **CMake file will download this automatically for you**.   
+Credits: https://github.com/prabhuomkar/pytorch-cpp/
+
 * **[Download]()** the latest version of Libtorch for Windows here: https://pytorch.org/.
 ![TorchRayLib++ Code](https://github.com/QuantScientist/TorchRayLib/blob/master/assets/libtorch16.png?raw=true)
-
 * **Go** to the following path: `mysiv3dproject/`
-* Place the **LiBtorch ZIP** folder (from .zip) inside the **project** folder as follows `mydproject/_deps/libtorch/`:
+* Place the **LiBtorch ZIP** folder (from .zip) inside the **project** folder as follows `mydproject/_deps/libtorch/`:  
 
-The **CMake file will download this automatically for you**. Note: only a GPU is supported.  
-Credits: https://github.com/prabhuomkar/pytorch-cpp/
-  
+Note: Tested only on **GPU with CUDA 10.2 on a Windows 10 machine**. 
+If you want to test on a CPU you will have to edit .ext/download_libtorch.cmake:
+
+GPU mode:
+```cmake
+set(CUDA_V "10.2")
+set(LIBTORCH_DEVICE "cu102")
+```
+CPU mode: 
+```cmake
+set(CUDA_V "cpu")
+set(LIBTORCH_DEVICE "cpu")
+```
+Also, in the actual code whenever you see `torch::Device device(torch::kCUDA);` change it to `torch::Device device(torch::kCUDA);`. 
 
 #### Downloading and installing steps RayLib:
 * **[Download]()** 
