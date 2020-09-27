@@ -11,7 +11,7 @@
 </p>
 
 <h1 align="center">    
-  <img src="https://github.com/QuantScientist/TorchRayLib/blob/master/asstes/neuralanim.gif?raw=true" width="75%"></a>  
+  <img src="https://github.com/QuantScientist/TorchRayLib/blob/master/asstes/neuralanim.gif?raw=true" width="50%"></a>  
 </h1>
 
 ---
