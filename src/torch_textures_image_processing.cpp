@@ -18,6 +18,8 @@
 #include <stdlib.h>             // Required for: free()
 
 #include <torch/script.h>
+#include <torch/torch.h>
+
 
 #define NUM_PROCESSES    5
 
@@ -40,7 +42,18 @@ static const char *processText[] = {
 int main(int argc, char* argv[])
 {
     VisionUtils VU = VisionUtils();
-    torch::Device device(torch::kCUDA);
+
+    torch::DeviceType device_type = torch::kCPU;
+    if (torch::cuda::is_available()) {
+        device_type = torch::kCUDA;
+        std::cout<<"Running on a GPU" << std::endl;
+    }
+    else{
+        std::cout<<"Running on a CPU" << std::endl;
+    }
+
+    torch::Device device(device_type);
+
     const std::string modelNameCandy = "candy_cpp.pt";
     const std::string modelNameMosaic = "mosaic_cpp.pt";
     const std::string modelNameUdnie = "udnie_cpp.pt";
