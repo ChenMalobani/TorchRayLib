@@ -41,7 +41,7 @@ https://pytorch.org/
 
 ## Alpha release
 Try it here: https://github.com/QuantScientist/TorchRayLib/releases 
-**Note**: it is huge file because of the included orch / NVIDIA CUDA runtime files.    
+**Note**: it is a huge file because of the included orch / NVIDIA CUDA runtime files.    
 
 ![TorchRayLib++ Code](https://github.com/QuantScientist/PngTorch/blob/master/asstes/logo.png?raw=true?raw=true) 
   
