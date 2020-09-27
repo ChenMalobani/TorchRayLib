@@ -243,7 +243,7 @@ If you find the code or trained models useful, please consider citing:
  
 ## License
 
-- Copyright © [Shlomo](https://github.com/QuantScientist/)
+- Copyright © [Shlomo Kashani. author "Deep Learning Interviews"](https://github.com/QuantScientist/)
 
 # References
 - https://github.com/raysan5/raylib
