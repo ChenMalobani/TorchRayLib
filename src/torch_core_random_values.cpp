@@ -10,14 +10,15 @@
 ********************************************************************************************/
 
 #include "raylib.h"
+#include "../include/utils/vision_utils.hpp"
 #include <torch/script.h>
-
-
+#include <torch/torch.h>
 
 
 int main(int argc, char* argv[])
 {
-    torch::Device device(torch::kCUDA);
+    VisionUtils VU = VisionUtils();
+    torch::Device device = VU.getDevice();
     torch::Tensor tensor = torch::eye(3).to(device);
     std::cout<<tensor<<std::endl;
 
@@ -61,9 +62,13 @@ int main(int argc, char* argv[])
 
             ClearBackground(RAYWHITE);
 
-            DrawText("Generate a random value on the GPU using PyTorch", 30, 100, 20, MAROON);
-
+            DrawText("Generate a random value on the GPU/CPU using PyTorch", 30, 100, 20, MAROON);
             DrawText(TextFormat("%i", randValue), 200, 180, 100, ORANGE);
+
+            std::stringstream sstm;
+            auto gpuCount=(int)torch::cuda::device_count();
+            sstm <<"GPU count:"<<gpuCount<<std::endl;
+            DrawText(sstm.str().c_str(), 200, 300, 40, DARKPURPLE);
 
         EndDrawing();
         //----------------------------------------------------------------------------------
@@ -76,3 +81,5 @@ int main(int argc, char* argv[])
 
     return 0;
 }
+
+

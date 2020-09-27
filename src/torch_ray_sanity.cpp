@@ -9,9 +9,14 @@
 #include <future>
 using namespace std;
 using namespace std::chrono;
+#include <torch/torch.h>
+#include "../include/utils/vision_utils.hpp"
+
 
 int main(int argc, char *argv[]) {
-    torch::Device device(torch::kCUDA);
+
+    VisionUtils VU = VisionUtils();
+    torch::Device device = VU.getDevice();
     torch::Tensor tensor = torch::eye(1).to(device);
     std::cout<<tensor<<std::endl;
 

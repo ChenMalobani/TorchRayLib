@@ -1,5 +1,6 @@
 
 #include "raylib.h"
+#include "../include/utils/vision_utils.hpp"
 #include <math.h> // needed for cos and sin.
 #include <torch/script.h> // One-stop header.
 
@@ -10,7 +11,9 @@ torch::Tensor sigmoid001(const torch::Tensor& x) {
 
 int main(int argc, char* argv[])
 {
-    torch::Device device(torch::kCUDA);
+    VisionUtils VU = VisionUtils();
+    torch::Device device = VU.getDevice();
+
     torch::Tensor tensor = torch::rand(1).to(device);
     auto randValueTorch= (tensor.data().detach().item().toFloat());
     std::cout<<tensor<<std::endl;

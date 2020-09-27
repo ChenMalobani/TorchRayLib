@@ -1,7 +1,7 @@
 #include <iostream>
 #include <chrono>
 #include <torch/script.h> // One-stop header.
-//#include <torch/torch.h>
+#include <torch/torch.h>
 #include <iostream>
 #include <typeinfo>
 //#include <png++/png.hpp>
@@ -18,15 +18,24 @@ public:
     torch::Tensor rayImageToTorch(const Image &image, c10::Device &device);
     Image torchToRayImage(torch::Tensor &tensor_);
     Image applyModelOnImage(torch::Device &device, torch::jit::Module &module, Image &image);
-//    Image applyModelOnImage(VU, device, module, image);
-//    torch::Tensor pngToTorch(png::image<png::rgb_pixel> &image, c10::Device &device);
-//    png::image<png::rgb_pixel> torchToPng(torch::Tensor &tensor_);
-//    torch::Tensor pngToTorchRGBA(png::image<png::rgba_pixel> &image, c10::Device &device);
-//    png::image<png::rgba_pixel> torchToPngRGBA(torch::Tensor &tensor_);
-
+    torch::Device getDevice();
 };
 
 VisionUtils::VisionUtils() {}
+
+
+torch::Device VisionUtils::getDevice() {
+    torch::DeviceType device_type = torch::kCPU;
+    if (torch::cuda::is_available()) {
+        device_type = torch::kCUDA;
+        std::cout<<"Running on a GPU" << std::endl;
+    }
+    else{
+        std::cout<<"Running on a CPU" << std::endl;
+    }
+    torch::Device device(device_type);
+    return device;
+}
 
 Image VisionUtils::applyModelOnImage(torch::Device &device, torch::jit::Module &module, Image &image) {
     auto tensor=rayImageToTorch (image, device);
@@ -52,8 +61,6 @@ void VisionUtils::tensorDIMS(const torch::Tensor &tensor) {
     cout << "D=:" << s << "\n";
 }
 
-
-
 Image VisionUtils::torchToRayImage(torch::Tensor &tensor_){
     torch::Tensor tensor = tensor_.squeeze().detach().cpu().permute({1, 2, 0});  // {C,H,W} ===> {H,W,C}
     tensor = tensor.clamp(0, 255);
@@ -77,6 +84,23 @@ Image VisionUtils::torchToRayImage(torch::Tensor &tensor_){
             1, //that line is mipmaps, keep as 1
             UNCOMPRESSED_R8G8B8}; //its an enum specifying formar, 8 bit R, 8 bit G, 8 bit B, no alpha UNCOMPRESSED_R8G8B8A8 UNCOMPRESSED_R8G8B8
 }
+
+
+torch::Tensor VisionUtils::rayImageToTorch(const Image &image, c10::Device &device){
+    size_t width = image.width;
+    size_t height = image.height;
+
+    int dataSize = GetPixelDataSize(width, height, image.format);
+    int bytesPerPixel = dataSize/(width*height);
+    auto pointer = new unsigned char[dataSize];
+    const unsigned char* imagePointer = (unsigned char*)image.data;
+    std::memcpy(pointer, imagePointer, dataSize) ;
+    auto tensor = torch::from_blob(pointer, {(int)height, (int)width, bytesPerPixel},
+                                   torch::kU8).clone().permute({2, 0, 1}).to(device);  // copy
+    delete[] pointer;
+    return tensor;
+}
+
 
 //torch::Tensor VisionUtils::rayImageToTorch(const Image &image, c10::Device &device){
 //    size_t width = image.width;
@@ -111,22 +135,6 @@ Image VisionUtils::torchToRayImage(torch::Tensor &tensor_){
 //            .clone().permute({2, 0, 1}).to(device);  // copy
 //    return tensor;
 //}
-
-torch::Tensor VisionUtils::rayImageToTorch(const Image &image, c10::Device &device){
-    size_t width = image.width;
-    size_t height = image.height;
-
-    int dataSize = GetPixelDataSize(width, height, image.format);
-    int bytesPerPixel = dataSize/(width*height);
-    auto pointer = new unsigned char[dataSize];
-    const unsigned char* imagePointer = (unsigned char*)image.data;
-    std::memcpy(pointer, imagePointer, dataSize) ;
-    auto tensor = torch::from_blob(pointer, {(int)height, (int)width, bytesPerPixel},
-                                   torch::kU8).clone().permute({2, 0, 1}).to(device);  // copy
-    delete[] pointer;
-    return tensor;
-}
-
 //torch::Tensor VisionUtils::rayImageToTorch(const Image &image, c10::Device &device){
 //    size_t width = image.width;
 //    size_t height = image.height;
