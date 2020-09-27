@@ -14,7 +14,8 @@
 
 // width/height/centerx/centery
 static void midptellipse(int rx, int ry, int xc, int yc);
-static int map[200][200]={0};
+
+static int map[200][200] = {0};
 
 //int main(int argc, char* argv[])
 //{

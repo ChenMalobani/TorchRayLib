@@ -39,17 +39,15 @@ static const char *processText[] = {
         "CONTRAST",
 };
 
-int main(int argc, char* argv[])
-{
+int main(int argc, char *argv[]) {
     VisionUtils VU = VisionUtils();
 
     torch::DeviceType device_type = torch::kCPU;
     if (torch::cuda::is_available()) {
         device_type = torch::kCUDA;
-        std::cout<<"Running on a GPU" << std::endl;
-    }
-    else{
-        std::cout<<"Running on a CPU" << std::endl;
+        std::cout << "Running on a GPU" << std::endl;
+    } else {
+        std::cout << "Running on a CPU" << std::endl;
     }
 
     torch::Device device(device_type);
@@ -70,15 +68,16 @@ int main(int argc, char* argv[])
     Image image = LoadImage("parrots.png");   // Loaded in CPU memory (RAM)
     // To torch
 
-    ImageFormat(&image, UNCOMPRESSED_R8G8B8A8);         // Format image to RGBA 32bit (required for texture update) <-- ISSUE
+    ImageFormat(&image,
+                UNCOMPRESSED_R8G8B8A8);         // Format image to RGBA 32bit (required for texture update) <-- ISSUE
     Texture2D texture = LoadTextureFromImage(image);    // Image converted to texture, GPU memory (VRAM)
 
     int currentProcess = NONE;
     bool textureReload = false;
 
-    Rectangle selectRecs[NUM_PROCESSES] = { 0 };
+    Rectangle selectRecs[NUM_PROCESSES] = {0};
 
-    for (int i = 0; i < NUM_PROCESSES; i++) selectRecs[i] = Rectangle{ 10.0f, (float)(60 + 54*i), 180.0f, 40.0f };
+    for (int i = 0; i < NUM_PROCESSES; i++) selectRecs[i] = Rectangle{10.0f, (float) (60 + 54 * i), 180.0f, 40.0f};
 
     SetTargetFPS(60);
     //---------------------------------------------------------------------------------------
@@ -88,36 +87,40 @@ int main(int argc, char* argv[])
     {
         // Update
         //----------------------------------------------------------------------------------
-        if (IsKeyPressed(KEY_DOWN))
-        {
+        if (IsKeyPressed(KEY_DOWN)) {
             currentProcess++;
             if (currentProcess > 4) currentProcess = 0;
             textureReload = true;
-        }
-        else if (IsKeyPressed(KEY_UP))
-        {
+        } else if (IsKeyPressed(KEY_UP)) {
             currentProcess--;
             if (currentProcess < 0) currentProcess = 4;
             textureReload = true;
         }
 
-        if (textureReload)
-        {
+        if (textureReload) {
             UnloadImage(image);                         // Unload current image data
             image = LoadImage("parrots.png"); // Re-load image data
 
             // NOTE: Image processing is a costly CPU process to be done every frame,
             // If image processing is required in a frame-basis, it should be done
             // with a texture and by shaders
-            switch (currentProcess)
-            {
-                case COLOR_MOSAIC: image = VU.applyModelOnImage(device, moduleMosaic, image); break;
-                case COLOR_CANDY: image=VU.applyModelOnImage(device, moduleCandy, image); break;
-                case COLOR_UDNIE: image = VU.applyModelOnImage(device, moduleUdnie, image); break;
-                case COLOR_BRIGHTNESS: ImageColorBrightness(&image, -80); break;
+            switch (currentProcess) {
+                case COLOR_MOSAIC:
+                    image = VU.applyModelOnImage(device, moduleMosaic, image);
+                    break;
+                case COLOR_CANDY:
+                    image = VU.applyModelOnImage(device, moduleCandy, image);
+                    break;
+                case COLOR_UDNIE:
+                    image = VU.applyModelOnImage(device, moduleUdnie, image);
+                    break;
+                case COLOR_BRIGHTNESS:
+                    ImageColorBrightness(&image, -80);
+                    break;
 //                case FLIP_VERTICAL: ImageFlipVertical(&image); break;
 //                case FLIP_HORIZONTAL: ImageFlipHorizontal(&image); break;
-                default: break;
+                default:
+                    break;
             }
             Color *pixels = GetImageData(image);        // Get pixel data from image (RGBA 32bit)
             UpdateTexture(texture, pixels);             // Update texture with new image data
@@ -136,16 +139,18 @@ int main(int argc, char* argv[])
         DrawText("NeuralStyle transfer using PyTorch :", 20, 20, 20, DARKGRAY);
 
         // Draw rectangles
-        for (int i = 0; i < NUM_PROCESSES; i++)
-        {
-            DrawRectangleRec(selectRecs[i], (i == currentProcess) ?   DARKGRAY:WHITE);
-            DrawRectangleLines((int)selectRecs[i].x, (int) selectRecs[i].y, (int) selectRecs[i].width, (int) selectRecs[i].height, (i == currentProcess) ? DARKGREEN:WHITE);
+        for (int i = 0; i < NUM_PROCESSES; i++) {
+            DrawRectangleRec(selectRecs[i], (i == currentProcess) ? DARKGRAY : WHITE);
+            DrawRectangleLines((int) selectRecs[i].x, (int) selectRecs[i].y, (int) selectRecs[i].width,
+                               (int) selectRecs[i].height, (i == currentProcess) ? DARKGREEN : WHITE);
 
-            DrawText( processText[i], (int)( selectRecs[i].x + selectRecs[i].width/2 - MeasureText(processText[i], 20)/2),
-                      (int) selectRecs[i].y + 11, 20, (i == currentProcess) ? LIGHTGRAY :DARKBLUE);
+            DrawText(processText[i],
+                     (int) (selectRecs[i].x + selectRecs[i].width / 2 - MeasureText(processText[i], 20) / 2),
+                     (int) selectRecs[i].y + 11, 20, (i == currentProcess) ? LIGHTGRAY : DARKBLUE);
         }
-        DrawTexture(texture, screenWidth - texture.width - 60, screenHeight/2 - texture.height/2, WHITE);
-        DrawRectangleLines(screenWidth - texture.width - 60, screenHeight/2 - texture.height/2, texture.width, texture.height, BLACK);
+        DrawTexture(texture, screenWidth - texture.width - 60, screenHeight / 2 - texture.height / 2, WHITE);
+        DrawRectangleLines(screenWidth - texture.width - 60, screenHeight / 2 - texture.height / 2, texture.width,
+                           texture.height, BLACK);
 
         EndDrawing();
         //----------------------------------------------------------------------------------

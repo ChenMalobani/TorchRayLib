@@ -15,12 +15,11 @@
 #include <torch/torch.h>
 
 
-int main(int argc, char* argv[])
-{
+int main(int argc, char *argv[]) {
     VisionUtils VU = VisionUtils();
     torch::Device device = VU.getDevice();
     torch::Tensor tensor = torch::eye(3).to(device);
-    std::cout<<tensor<<std::endl;
+    std::cout << tensor << std::endl;
 
     // Initialization
     //--------------------------------------------------------------------------------------
@@ -30,9 +29,9 @@ int main(int argc, char* argv[])
     InitWindow(screenWidth, screenHeight, "TorchRayLib:PyTorch GPU random random values (c++17)");
 
     int framesCounter = 0;          // Variable used to count frames
-    auto randValueTorch= (int)(1000 * (torch::rand(1).to(device).data().detach().item().toFloat()));
+    auto randValueTorch = (int) (1000 * (torch::rand(1).to(device).data().detach().item().toFloat()));
 
-    int randValue=randValueTorch;
+    int randValue = randValueTorch;
 //    torch::Tensor t0 = torch::rand(1).to(device); // Allocate a tensor on the GPU
 //    t0 = sigmoid001(t0);
     //Print (typeid(t0).name());
@@ -49,9 +48,8 @@ int main(int argc, char* argv[])
         framesCounter++;
 
         // Every two seconds (120 frames) a new random value is generated
-        if (((framesCounter/60)%2) == 1)
-        {
-            randValue= (int)(10000 * (torch::rand(1).to(device).data().detach().item().toFloat()));
+        if (((framesCounter / 60) % 2) == 1) {
+            randValue = (int) (10000 * (torch::rand(1).to(device).data().detach().item().toFloat()));
             framesCounter = 0;
         }
         //----------------------------------------------------------------------------------
@@ -60,15 +58,15 @@ int main(int argc, char* argv[])
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+        ClearBackground(RAYWHITE);
 
-            DrawText("Generate a random value on the GPU/CPU using PyTorch", 30, 100, 20, MAROON);
-            DrawText(TextFormat("%i", randValue), 200, 180, 100, ORANGE);
+        DrawText("Generate a random value on the GPU/CPU using PyTorch", 30, 100, 20, MAROON);
+        DrawText(TextFormat("%i", randValue), 200, 180, 100, ORANGE);
 
-            std::stringstream sstm;
-            auto gpuCount=(int)torch::cuda::device_count();
-            sstm <<"GPU count:"<<gpuCount<<std::endl;
-            DrawText(sstm.str().c_str(), 200, 300, 40, DARKPURPLE);
+        std::stringstream sstm;
+        auto gpuCount = (int) torch::cuda::device_count();
+        sstm << "GPU count:" << gpuCount << std::endl;
+        DrawText(sstm.str().c_str(), 200, 300, 40, DARKPURPLE);
 
         EndDrawing();
         //----------------------------------------------------------------------------------
