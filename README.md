@@ -1,5 +1,5 @@
 
-<h2 align="center">TorchRayLib++: A CMake based integration of the RayLib GUI library and the PyTorch / Libtorch C++ Deep Learning Library.</h2>
+<h1 align="center">TorchRayLib++: A CMake based integration of the RayLib GUI library and the PyTorch / Libtorch C++ Deep Learning Library.</h1>
       
 <p align="center">
   <a href="#about">About</a> •
@@ -28,13 +28,13 @@ with my favourite Deep Learning Library Libtorch: the **_PyTorch_** C++ frontend
 **Why??++** Because its fun, for gaming, for deep learning researchers, for AI, for reinforcement learning, 
 because the PyTorch community does not have a dedicated UI. 
 
-### RayLib 
+## RayLib 
 RayLib is an amazing library which has been widely adopted by the gaming community. 
 Read more about the raylib game framework here: https://www.raylib.com/
 Or look up projects using it here:
 https://www.google.com/search?q=raylib+site:github.com   
 
-### PyTorch / Libtorch C++ 
+## PyTorch / Libtorch C++ 
 PyTorch is a Python package that provides two high-level features, Tensor computation (like NumPy) with strong GPU acceleration
 Deep neural networks built on a tape-based autograd system. In this project we use the C++ version entitled Libtorch. 
 https://pytorch.org/ 
@@ -139,13 +139,13 @@ an unmodified zlib/libpng license (View raylib.h for details) Copyright (c) 2014
 * libpng, png++ 
 * RayLib GUI
 
-Please setup CLion as follows: 
-
-![TorchRayLib++ Code](https://github.com/QuantScientist/TorchRayLib/blob/master/asstes/clion.png?raw=true)
 
 ## Installation / building using CMake
 
-**CMake** should take care of everything for you! CLion is strongly recomended for the build. 
+**CMake** should take care of everything for you! CLion is strongly recommended for the build. Please setup CLion as follows: 
+
+![TorchRayLib++ Code](https://github.com/QuantScientist/TorchRayLib/blob/master/asstes/clion.png?raw=true)
+
 
 #### Downloading and installing steps LIBTORCH C++:
 
@@ -173,10 +173,11 @@ set(LIBTORCH_DEVICE "cpu")
 Also, in the actual code whenever you see `torch::Device device(torch::kCUDA);` change it to `torch::Device device(torch::kCUDA);`. 
 
 #### Downloading and installing steps RayLib:
-* **[Download]()** 
 The **CMake file will download this automatically for you**.
 
-## A CMake example
+* **[Download]()** 
+
+## A CMake example for a target 
    
 ```cmake
 include(copy_torch_dlls)
