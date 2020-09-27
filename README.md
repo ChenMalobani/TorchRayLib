@@ -218,6 +218,46 @@ function(copy_torch_dlls TARGET_NAME)
 endfunction()
 ````
  
+## Tracing your modeld in PyTorch for inference in C++
+For instance, this how to trace the NeuralStyle transfer models from PyTprch to Libtorch so that inference in C++ can work. 
+ 
+````python
+import torch
+import torchvision
+import re
+
+# https://github.com/gnsmrky/pytorch-fast-neural-style-for-web
+from transformer_net import *
+style_model = TransformerNet()
+m="candy.pth"
+state_dict = torch.load("./resources/udnie.pth")
+for k in list(state_dict.keys()):
+    if re.search(r'in\d+\.running_(mean|var)$', k):
+        del state_dict[k]
+style_model.load_state_dict(state_dict)
+style_model.eval()
+
+# model = torchvision.models.resnet50(pretrained=True)
+# model.eval()
+example = torch.rand(1, 3, 224, 224)
+traced_script_module = torch.jit.trace(style_model, example)
+traced_script_module.save("./resources/udnie_cpp.pt")
+````  
+
+Then you can load the trained model in C++ like so: 
+````cpp
+torch::DeviceType device_type = torch::kCPU;
+if (torch::cuda::is_available()) {
+    device_type = torch::kCUDA;
+    std::cout << "Running on a GPU" << std::endl;
+} else {
+    std::cout << "Running on a CPU" << std::endl;
+}
+torch::Device device(device_type);
+const std::string modelNameMosaic = "mosaic_cpp.pt";
+auto moduleCandy = torch::jit::load(modelNameCandy, device);
+````
+
 ## Contributing
 
 Feel free to report issues during build or execution. We also welcome suggestions to improve the performance of this application.
