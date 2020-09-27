@@ -43,7 +43,9 @@ https://pytorch.org/
 Try it here: https://github.com/QuantScientist/TorchRayLib/releases 
 **Note**: it is a huge file because of the included orch / NVIDIA CUDA runtime files.    
 
-![TorchRayLib++ Code](https://github.com/QuantScientist/PngTorch/blob/master/asstes/logo.png?raw=true?raw=true) 
+<h1 align="center">    
+  <img src="https://github.com/QuantScientist/PngTorch/blob/master/asstes/logo.png?raw=true?raw=true" width="50%"></a>  
+</h1> 
   
 <p align="right">
 <sub>(Preview)</sub>
