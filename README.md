@@ -25,6 +25,10 @@
 **TorchRayLib++** is a CMake based **integration** of the well-known **_raylib GUI_** library 
 with my favourite Deep Learning Library Libtorch: the **_PyTorch_** C++ frontend, mainly for working on the **_GPU_**.
 
+<h1 align="left">    
+  <img src="https://github.com/QuantScientist/PngTorch/blob/master/asstes/logo.png?raw=true?raw=true" width="35%"></a>  
+</h1>
+
 **Why??++** Because its fun, for gaming, for deep learning researchers, for AI, for reinforcement learning, 
 because the PyTorch community does not have a dedicated UI. 
 
@@ -42,10 +46,7 @@ https://pytorch.org/
 ## Alpha release
 Try it here: https://github.com/QuantScientist/TorchRayLib/releases 
 **Note**: it is a huge file because of the included orch / NVIDIA CUDA runtime files.    
-
-<h1 align="center">    
-  <img src="https://github.com/QuantScientist/PngTorch/blob/master/asstes/logo.png?raw=true?raw=true" width="50%"></a>  
-</h1> 
+ 
   
 <p align="right">
 <sub>(Preview)</sub>
