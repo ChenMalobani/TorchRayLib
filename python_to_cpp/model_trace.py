@@ -8,7 +8,7 @@ import random
 # https://github.com/gnsmrky/pytorch-fast-neural-style-for-web
 from .transformer_net import *
 style_model = TransformerNet()
-m="candy.pth"
+# m="candy.pth"
 state_dict = torch.load("./resources/udnie.pth")
 for k in list(state_dict.keys()):
     if re.search(r'in\d+\.running_(mean|var)$', k):

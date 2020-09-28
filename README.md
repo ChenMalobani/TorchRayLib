@@ -25,6 +25,8 @@
 **TorchRayLib++** is a CMake based **integration** of the well-known **_raylib GUI_** library 
 with my favourite Deep Learning Library Libtorch: the **_PyTorch_** C++ frontend, mainly for working on the **_GPU_**.
 
+**No OpenCV dependencies for reading and writing images!**.  
+ 
 <h1 align="left">    
   <img src="https://github.com/QuantScientist/PngTorch/blob/master/asstes/logo.png?raw=true?raw=true" width="35%"></a>  
 </h1>
@@ -307,7 +309,9 @@ BSD-like license that allows static linking with closed source software. Check L
 - https://github.com/raysan5/raylib
 - https://github.com/RobLoach/raylib-cpp
 - https://github.com/koba-jon/pytorch_cpp 
-- https://www.jianshu.com/p/6fe9214431c6
+- https://github.com/Maverobot/libtorch_examples
+- https://github.com/threeYANG/libtorch-SSD
+
 - https://github.com/lsrock1/maskrcnn_benchmark.cpp
 - https://gist.github.com/Con-Mi/4d92af62adb784a5353ff7cf19d6d099
 - https://lernapparat.de/pytorch-traceable-differentiable/
