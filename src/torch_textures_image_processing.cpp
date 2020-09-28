@@ -137,13 +137,13 @@ int main(int argc, char *argv[]) {
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-        ClearBackground(RAYWHITE);
+        ClearBackground(DARKGRAY);
 
-        DrawText("NeuralStyle transfer using PyTorch :", 20, 20, 20, DARKGRAY);
+        DrawText("NeuralStyle transfer using PyTorch :", 20, 20, 20, WHITE);
 
         // Draw rectangles
         for (int i = 0; i < NUM_PROCESSES; i++) {
-            DrawRectangleRec(selectRecs[i], (i == currentProcess) ? DARKGRAY : WHITE);
+            DrawRectangleRec(selectRecs[i], (i == currentProcess) ? GRAY : WHITE);
             DrawRectangleLines((int) selectRecs[i].x, (int) selectRecs[i].y, (int) selectRecs[i].width,
                                (int) selectRecs[i].height, (i == currentProcess) ? DARKGREEN : WHITE);
 
