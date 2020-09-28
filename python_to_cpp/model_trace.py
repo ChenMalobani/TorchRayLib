@@ -6,7 +6,7 @@ import os
 import random
 
 # https://github.com/gnsmrky/pytorch-fast-neural-style-for-web
-from transformer_net import *
+from .transformer_net import *
 style_model = TransformerNet()
 m="candy.pth"
 state_dict = torch.load("./resources/udnie.pth")

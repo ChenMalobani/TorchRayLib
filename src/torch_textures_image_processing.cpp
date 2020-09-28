@@ -59,6 +59,9 @@ int main(int argc, char *argv[]) {
     auto moduleMosaic = torch::jit::load(modelNameMosaic, device);
     auto moduleUdnie = torch::jit::load(modelNameUdnie, device);
 
+    torch::NoGradGuard no_grad_guard;
+    at::init_num_threads();
+
     const int screenWidth = 800;
     const int screenHeight = 700;
     InitWindow(screenWidth, screenHeight, "TorchRayLib: PyTorch GPU NeuralStyle transfer (c++17)");
