@@ -20,6 +20,7 @@
 #include <torch/script.h>
 #include <torch/torch.h>
 
+
 int main(int argc, char *argv[]) {
     VisionUtils VU = VisionUtils();
     torch::DeviceType device_type = torch::kCPU;
@@ -31,27 +32,16 @@ int main(int argc, char *argv[]) {
     }
     torch::Device device(device_type);
     const std::string modelNameUdnie = "RRDB_ESRGAN_x4_000.pt";
-//    const std::string modelNameUdnie = "mosaic_cpp.pt";
     auto moduleUdnie = torch::jit::load(modelNameUdnie, device);
     torch::NoGradGuard no_grad_guard;
     at::init_num_threads();
 
     const char *fileName="img_003_SRF_2_LR.png";
-    const char *fileNameESR="baboon_esr.png";
-    int count = 0;
+    const char *fileNameESRext="_esr.png";
+    string fileNameESR( string(fileName) + fileNameESRext );
 
     Image image = LoadImage(fileName);   // Loaded in CPU memory (RAM)
-//    ImageFormat(&image,UNCOMPRESSED_R8G8B8A8);
     Image imageGAN = VU.applyModelOnImage(device, moduleUdnie,  image);
-    ExportImage(imageGAN,fileNameESR);
-//    imageGAN=LoadImage(fileNameESR);
-//    Texture2D textureGAN = LoadTextureFromImage(imageGAN);    // Image converted to texture, GPU memory (VRAM)
-//    DrawTexture(textureGAN, screenWidth - textureGAN.width - 60, screenHeight / 2 - textureGAN.height / 2, WHITE);
-
-//    Image image = LoadImage(fileName);   // Loaded in CPU memory (RAM)
-//    ImageFormat(&image,UNCOMPRESSED_R8G8B8A8);
-//    Texture2D texture = LoadTextureFromImage(image);    // Image converted to texture, GPU memory (VRAM)
-//    UnloadImage(image);
-
+    ExportImage(imageGAN,fileNameESR.c_str());
     return 0;
 }

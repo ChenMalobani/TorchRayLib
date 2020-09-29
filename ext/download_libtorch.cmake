@@ -1,12 +1,12 @@
-cmake_minimum_required(VERSION 3.14 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.11 FATAL_ERROR)
 
 include(FetchContent)
 
-# set(CUDA_V "cpu")
-# set(LIBTORCH_DEVICE "cpu")
-
-set(CUDA_V "10.2")
-set(LIBTORCH_DEVICE "cu102")
+## set(CUDA_V "cpu")
+## set(LIBTORCH_DEVICE "cpu")
+#
+#set(CUDA_V "10.2")
+#set(LIBTORCH_DEVICE "cu102")
 
 if(NOT ${LIBTORCH_DEVICE} STREQUAL "cu102")
     set(LIBTORCH_DEVICE_TAG "%2B${LIBTORCH_DEVICE}")

@@ -10,6 +10,14 @@ project(TorchRayLib
 
 include(FetchContent)
 
+# Uncomment to run on a CPU, make sure you remove _deps if you uncomment
+set(CUDA_V "cpu")
+set(LIBTORCH_DEVICE "cpu")
+
+# Uncomment to run on a GPU make sure you remove _deps if you uncomment
+#set(CUDA_V "10.2")
+#set(LIBTORCH_DEVICE "cu102")
+
 # shlomo
 set(CMAKE_BINARY_DIR ${CMAKE_SOURCE_DIR}/bin64)
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR})
@@ -75,17 +83,17 @@ if(NOT Torch_FOUND)
     find_package(Torch REQUIRED PATHS "${CMAKE_SOURCE_DIR}/../../../libtorch")
 endif()
 
-find_package(CUDA REQUIRED)
-if(CUDA_FOUND)
-    # There is some bug in CMake (FindCUDA.cmake) that causes it to mess up the -std=c++11 option
-    # if you let it propagate it to nvcc in some cases.
-    if(NOT MSVC)
-        set(CUDA_PROPAGATE_HOST_FLAGS OFF)
-        list(APPEND CUDA_NVCC_FLAGS -std=c++11)
+if(${LIBTORCH_DEVICE} STREQUAL "cu102")
+    find_package(CUDA REQUIRED)
+    if(CUDA_FOUND)
+        # There is some bug in CMake (FindCUDA.cmake) that causes it to mess up the -std=c++11 option
+        # if you let it propagate it to nvcc in some cases.
+        if(NOT MSVC)
+            set(CUDA_PROPAGATE_HOST_FLAGS OFF)
+            list(APPEND CUDA_NVCC_FLAGS -std=c++11)
+        endif()
     endif()
 endif()
-
-
 
 include(copy_torch_dlls)
 ################# EXAMPLE 001 ########################
@@ -235,3 +243,7 @@ file(COPY "resources/parrots.png" DESTINATION ${CMAKE_SOURCE_DIR}/bin64)
 file(COPY "resources/cat.png" DESTINATION ${CMAKE_SOURCE_DIR}/bin64)
 file(COPY "resources/comic.png" DESTINATION ${CMAKE_SOURCE_DIR}/bin64)
 file(COPY "resources/baboon.png" DESTINATION ${CMAKE_SOURCE_DIR}/bin64)
+file(COPY "resources/img_004_SRF_2_LR.png" DESTINATION ${CMAKE_SOURCE_DIR}/bin64)
+file(COPY "resources/img_003_SRF_2_LR.png" DESTINATION ${CMAKE_SOURCE_DIR}/bin64)
+file(COPY "resources/img_005_SRF_2_LR.png" DESTINATION ${CMAKE_SOURCE_DIR}/bin64)
+file(COPY "resources/img_002_SRF_2_LR.png" DESTINATION ${CMAKE_SOURCE_DIR}/bin64)
