@@ -54,7 +54,7 @@ int main(int argc, char *argv[]) {
 
     const std::string modelNameCandy = "candy_cpp.pt";
     const std::string modelNameMosaic = "mosaic_cpp.pt";
-    const std::string modelNameUdnie = "udnie_cpp.pt";
+    const std::string modelNameUdnie = "RRDB_ESRGAN_x4_000.pt";
     auto moduleCandy = torch::jit::load(modelNameCandy, device);
     auto moduleMosaic = torch::jit::load(modelNameMosaic, device);
     auto moduleUdnie = torch::jit::load(modelNameUdnie, device);
@@ -62,13 +62,14 @@ int main(int argc, char *argv[]) {
     torch::NoGradGuard no_grad_guard;
     at::init_num_threads();
 
-    const int screenWidth = 800;
-    const int screenHeight = 700;
+    const int screenWidth = 1920;
+    const int screenHeight = 1200;
     InitWindow(screenWidth, screenHeight, "TorchRayLib: PyTorch GPU NeuralStyle transfer (c++17)");
     ClearBackground(BLACK);
 
+    const char *fileName="parrots.png";
     //From ray
-    Image image = LoadImage("parrots.png");   // Loaded in CPU memory (RAM)
+    Image image = LoadImage(fileName);   // Loaded in CPU memory (RAM)
     // To torch
 
     ImageFormat(&image,

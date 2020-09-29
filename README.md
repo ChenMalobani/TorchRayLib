@@ -311,9 +311,8 @@ BSD-like license that allows static linking with closed source software. Check L
 - https://github.com/koba-jon/pytorch_cpp 
 - https://github.com/Maverobot/libtorch_examples
 - https://github.com/threeYANG/libtorch-SSD
-
+- https://github.com/BuffetCodes/Linear-Regression-using-PyTorch-CPP
 - https://github.com/lsrock1/maskrcnn_benchmark.cpp
-- https://gist.github.com/Con-Mi/4d92af62adb784a5353ff7cf19d6d099
 - https://lernapparat.de/pytorch-traceable-differentiable/
 - http://lernapparat.de/static/artikel/pytorch-jit-android/thomas_viehmann.pytorch_jit_android_2018-12-11.pdf
 - https://github.com/walktree/libtorch-yolov3
