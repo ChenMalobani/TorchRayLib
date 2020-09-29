@@ -23,9 +23,10 @@
 <td>
   
 **TorchRayLib++** is a CMake based **integration** of the well-known **_raylib GUI_** library 
-with my favourite Deep Learning Library Libtorch: the **_PyTorch_** C++ frontend, mainly for working on the **_GPU_**.
+with my favourite Deep Learning Library Libtorch: the **_PyTorch_** C++ frontend, mainly for working on the **_GPU_** 
+but also works on the CPU.
 
-**No OpenCV dependencies for reading and writing images!**.  
+**No OpenCV dependencies for reading and writing images!**. Everything is self-contained.   
  
 <h1 align="left">    
   <img src="https://github.com/QuantScientist/PngTorch/blob/master/asstes/logo.png?raw=true?raw=true" width="35%"></a>  
@@ -33,6 +34,21 @@ with my favourite Deep Learning Library Libtorch: the **_PyTorch_** C++ frontend
 
 **Why??++** Because its fun, for gaming, for deep learning researchers, for AI, for reinforcement learning, 
 because the PyTorch community does not have a dedicated UI. 
+
+# GPU or CPU?  
+If you want to test on a CPU you will have to edit CMakeLists:
+
+GPU mode:
+```cmake
+set(CUDA_V "10.2")
+set(LIBTORCH_DEVICE "cu102")
+```
+CPU mode: 
+```cmake
+set(CUDA_V "cpu")
+set(LIBTORCH_DEVICE "cpu")
+```
+**Note**: Tested only on **GPU with CUDA 10.2 and a CPU on a Windows 10 machine**. 
 
 ## RayLib 
 RayLib is an amazing library which has been widely adopted by the gaming community. 
@@ -165,21 +181,6 @@ Credits: https://github.com/prabhuomkar/pytorch-cpp/
 ![TorchRayLib++ Code](https://github.com/QuantScientist/TorchRayLib/blob/master/assets/libtorch16.png?raw=true)
 * **Go** to the following path: `mysiv3dproject/`
 * Place the **LiBtorch ZIP** folder (from .zip) inside the **project** folder as follows `mydproject/_deps/libtorch/`:  
-
-Note: Tested only on **GPU with CUDA 10.2 on a Windows 10 machine**. 
-If you want to test on a CPU you will have to edit .ext/download_libtorch.cmake:
-
-GPU mode:
-```cmake
-set(CUDA_V "10.2")
-set(LIBTORCH_DEVICE "cu102")
-```
-CPU mode: 
-```cmake
-set(CUDA_V "cpu")
-set(LIBTORCH_DEVICE "cpu")
-```
-Also, in the actual code whenever you see `torch::Device device(torch::kCUDA);` change it to `torch::Device device(torch::kCUDA);`. 
 
 #### Downloading and installing steps RayLib:
 The **CMake file will download this automatically for you**.
