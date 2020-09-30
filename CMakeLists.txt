@@ -11,12 +11,12 @@ project(TorchRayLib
 include(FetchContent)
 
 # Uncomment to run on a CPU, make sure you remove _deps if you uncomment
-set(CUDA_V "cpu")
-set(LIBTORCH_DEVICE "cpu")
+#set(CUDA_V "cpu")
+#set(LIBTORCH_DEVICE "cpu")
 
 # Uncomment to run on a GPU make sure you remove _deps if you uncomment
-#set(CUDA_V "10.2")
-#set(LIBTORCH_DEVICE "cu102")
+set(CUDA_V "10.2")
+set(LIBTORCH_DEVICE "cu102")
 
 # shlomo
 set(CMAKE_BINARY_DIR ${CMAKE_SOURCE_DIR}/bin64)
@@ -229,6 +229,24 @@ copy_torch_dlls(${EXAMPLE_007_EXE})
 ################# EXAMPLE 006 ########################
 
 
+################# EXAMPLE 006 ########################
+# TARGET
+set(EXAMPLE_008_EXE torch_super_resolution_gui)
+#add_executable(${EXAMPLE_005_EXE} src/${EXAMPLE_005_EXE}.cpp)
+add_executable(${EXAMPLE_008_EXE} src/${EXAMPLE_008_EXE}.cpp include/utils/vision_utils.hpp include/raygui/raygui.h
+        include/raygui/ricons.h)
+set(raylib_VERBOSE 1)
+target_link_libraries(${EXAMPLE_008_EXE} raylib  ${TORCH_LIBRARIES})
+#target_link_libraries(${PROJECT_NAME} m)
+target_include_directories(${EXAMPLE_008_EXE} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/_dpes/libtorch/include/")
+target_include_directories(${EXAMPLE_008_EXE} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/_deps/libtorch/include/torch/csrc/api/")
+set_target_properties(${EXAMPLE_008_EXE} PROPERTIES
+        CXX_STANDARD 17
+        CXX_STANDARD_REQUIRED YES)
+copy_torch_dlls(${EXAMPLE_008_EXE})
+################# EXAMPLE 006 ########################
+
+
 # # Copy trained PTH files
 file(COPY "resources/mosaic_cpp.pt" DESTINATION ${CMAKE_SOURCE_DIR}/bin64)
 file(COPY "resources/candy_cpp.pt" DESTINATION ${CMAKE_SOURCE_DIR}/bin64)
@@ -247,3 +265,8 @@ file(COPY "resources/img_004_SRF_2_LR.png" DESTINATION ${CMAKE_SOURCE_DIR}/bin64
 file(COPY "resources/img_003_SRF_2_LR.png" DESTINATION ${CMAKE_SOURCE_DIR}/bin64)
 file(COPY "resources/img_005_SRF_2_LR.png" DESTINATION ${CMAKE_SOURCE_DIR}/bin64)
 file(COPY "resources/img_002_SRF_2_LR.png" DESTINATION ${CMAKE_SOURCE_DIR}/bin64)
+file(COPY "resources/logo.png" DESTINATION ${CMAKE_SOURCE_DIR}/bin64)
+
+file(COPY "resources/GameCube.ttf" DESTINATION ${CMAKE_SOURCE_DIR}/bin64)
+file(COPY "resources/GoudyThirty-Light.ttf" DESTINATION ${CMAKE_SOURCE_DIR}/bin64)
+file(COPY "resources/GLC.otf" DESTINATION ${CMAKE_SOURCE_DIR}/bin64)

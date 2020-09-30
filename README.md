@@ -154,6 +154,9 @@ an unmodified zlib/libpng license (View raylib.h for details) Copyright (c) 2014
 #### Load a trained PyTorch NeuralStyle transfer model in C++ (**see pth folder**), load an Image in C++, run a trained pytorch model on it and save the output.
 ![TorchRayLib++ Code](https://github.com/QuantScientist/TorchRayLib/blob/master/asstes/neuralanim.gif?raw=true)
 
+#### Super resolution demo using ESRGAN
+![TorchRayLib++ Code](https://github.com/QuantScientist/TorchRayLib/blob/master/asstes/esrgan2.gif?raw=true)
+
 
 ## Requirements:
 * Windows 10 and Microsoft Visual C++ 2019 16.4, Linux is not supported at the moment.

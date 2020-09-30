@@ -36,7 +36,7 @@ int main(int argc, char *argv[]) {
     torch::NoGradGuard no_grad_guard;
     at::init_num_threads();
 
-    const char *fileName="img_003_SRF_2_LR.png";
+    const char *fileName="comic.png";
     const char *fileNameESRext="_esr.png";
     string fileNameESR( string(fileName) + fileNameESRext );
 
