@@ -269,9 +269,7 @@ auto moduleCandy = torch::jit::load(modelNameCandy, device);
 ## Contributing
 
 Feel free to report issues during build or execution. We also welcome suggestions to improve the performance of this application.
-
-## Author
-Shlomo Kashani, Author of the book _Deep Learning Interviews_ www.interviews.ai: entropy@interviews.ai 
+ 
 
 ## Citation
 
@@ -289,17 +287,22 @@ If you find the code or trained models useful, please consider citing:
 ## Contributers 
 - https://github.com/CarboSauce helped a lot with the conversion of ray images to Torch and vice versa.
  
-# License
+## Disclaimers
+ 
+ - "PyTorch" is a trademark of Facebook.
+ - No liability. Feel free to submit bugs or fixes.
+ - No tech support: this is merely a spare-time fun project for me.
+ - Contribution is more than welcomed though.
+ - Tested only on Windows 10 with Visual Studio 2019. More OS and dev env support are welcomed.
+
+## Licensing
+Bash is free software; you can redistribute it and/or modify it under the terms of the GNU General Public 
+License as published by the Free Software Foundation; either version 3 of the License, 
+or (at your option) any later version.
 
 - Copyright © [Shlomo Kashani, author of the book "Deep Learning Interviews"](www.interviews.ai)
+Shlomo Kashani, Author of the book _Deep Learning Interviews_ www.interviews.ai: entropy@interviews.ai
 
-## Disclaimers
-
-- "PyTorch" is a trademark of Facebook.
-- No liability. Feel free to submit bugs or fixes.
-- No tech support: this is merely a spare-time fun project for me.
-- Contribution is more than welcomed though.
-- Tested only on Windows 10 with Visual Studio 2019. More OS and dev env support are welcomed.
 
 ## Third party licences:
 - raylib is licensed under an unmodified zlib/libpng license, which is an OSI-certified, 
