@@ -155,7 +155,7 @@ an unmodified zlib/libpng license (View raylib.h for details) Copyright (c) 2014
 ![TorchRayLib++ Code](https://github.com/QuantScientist/TorchRayLib/blob/master/asstes/neuralanim.gif?raw=true)
 
 #### Super resolution demo using ESRGAN
-![TorchRayLib++ Code](https://github.com/QuantScientist/TorchRayLib/blob/master/asstes/esrgan2.gif?raw=true)
+![TorchRayLib++ Code](https://github.com/QuantScientist/TorchRayLib/blob/master/asstes/esrgan01.gif?raw=true)
 
 
 ## Requirements:
