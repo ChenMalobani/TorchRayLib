@@ -29,7 +29,7 @@ but also works on the CPU.
 **No OpenCV dependencies for reading and writing images!**. Everything is self-contained.   
  
 <h1 align="left">    
-  <img src="https://github.com/QuantScientist/PngTorch/blob/master/asstes/logo.png?raw=true?raw=true" width="35%"></a>  
+  <img src="https://github.com/QuantScientist/PngTorch/blob/master/asstes/logo.png?raw=true?raw=true" width="25%"></a>  
 </h1>
 
 **Why??++** Because its fun, for gaming, for deep learning researchers, for AI, for reinforcement learning, 
