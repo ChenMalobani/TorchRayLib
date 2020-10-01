@@ -42,9 +42,15 @@ because the PyTorch community does not have a dedicated UI.
    <th>Model <br/> <code>JIT traced</code><br/></th>
    <th>Image</th>   
    <tr>          
-     <td>NeuralStyle Mosaic: https://github.com/pytorch/examples/tree/master/fast_neural_style</td>
-     <td><img src='./asstes/amber.png_mosaic_cpp.pt-out.png' width="300px"><br/><center>mosaic.jpg</center></td>     
+     <td>NeuralStyle Mosaic: <br>  https://github.com/gnsmrky/pytorch-fast-neural-style-for-web</br> </td>
+     <td><img src='./asstes/amber.png_mosaic_cpp.pt-out.png' width="300px"></td>     
    </tr>      
+   
+   <tr>          
+    <td>ESRGAN Super resolution: <br>  https://github.com/xinntao/ESRGAN</br> </td>
+    <td><img src='./asstes/babon.png' width="300px"></td>     
+    </tr>
+      
  </table>
  </div>
  
