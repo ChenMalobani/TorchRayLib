@@ -35,9 +35,10 @@ but also works on the CPU.
 **Why??++** Because its fun, for gaming, for deep learning researchers, for AI, for reinforcement learning, 
 because the PyTorch community does not have a dedicated UI. 
 
-## Deep Learning Models (Libtorch C++) 
-- ESRIGAN Super Resolution: https://github.com/xinntao/ESRGAN 
-_ NeuralStyle transfer: https://github.com/pytorch/examples/tree/master/fast_neural_style 
+# Deep Learning Models (Libtorch C++)
+ 
+- **ESRIGAN Super Resolution**: https://github.com/xinntao/ESRGAN 
+- **NeuralStyle transfer**: https://github.com/pytorch/examples/tree/master/fast_neural_style 
 
 # GPU or CPU?  
 If you want to test on a CPU you will have to edit CMakeLists:
