@@ -39,19 +39,19 @@ because the PyTorch community does not have a dedicated UI.
  
  <div align='center'>
  <table>
+    <th>Image</th>
    <th>Model name</th>
-   <th><code>JIT traced PT</code><br/></th>
-   <th>Image</th>   
+   <th><code>Traced C++ PT</code><br/></th>      
    <tr>          
+     <td><img src='./asstes/amber.png_mosaic_cpp.pt-out.png' width="300px"></td>
      <td>NeuralStyle transfer Mosaic / Candy</br> </td>
-     <td>./resources/candy.pt</td>
-     <td><img src='./asstes/amber.png_mosaic_cpp.pt-out.png' width="300px"></td>     
+     <td>./resources/candy.pt</td>         
    </tr>      
    
-   <tr>          
+   <tr> 
+   <td><img src='./asstes/babon.png' width="300px"></td>         
     <td>ESRGAN Super resolution:</td>
-    <td>./resources/RRDB_ESRGAN_x4_000.pt</td>
-    <td><img src='./asstes/babon.png' width="300px"></td>     
+    <td>./resources/RRDB_ESRGAN_x4_000.pt</td>         
     </tr>
       
  </table>
