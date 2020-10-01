@@ -39,15 +39,18 @@ because the PyTorch community does not have a dedicated UI.
  
  <div align='center'>
  <table>
-   <th>Model <br/> <code>JIT traced</code><br/></th>
+   <th>Model name<br/> <code>JIT traced</code><br/></th>
+   <th><code>JIT traced PT</code><br/></th>
    <th>Image</th>   
    <tr>          
      <td>NeuralStyle Mosaic: <br>  https://github.com/gnsmrky/pytorch-fast-neural-style-for-web</br> </td>
+     <td>./resources/candy.pt</td>
      <td><img src='./asstes/amber.png_mosaic_cpp.pt-out.png' width="300px"></td>     
    </tr>      
    
    <tr>          
     <td>ESRGAN Super resolution: <br>  https://github.com/xinntao/ESRGAN</br> </td>
+    <td>./resources/RRDB_ESRGAN_x4_000.pt</td>
     <td><img src='./asstes/babon.png' width="300px"></td>     
     </tr>
       
