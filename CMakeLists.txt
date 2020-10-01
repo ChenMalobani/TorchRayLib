@@ -271,4 +271,5 @@ file(COPY "resources/GameCube.ttf" DESTINATION ${CMAKE_SOURCE_DIR}/bin64)
 
 file(COPY "resources/save.ogg" DESTINATION ${CMAKE_SOURCE_DIR}/bin64)
 file(COPY "resources/click.ogg" DESTINATION ${CMAKE_SOURCE_DIR}/bin64)
+file(COPY "resources/torch.rgs" DESTINATION ${CMAKE_SOURCE_DIR}/bin64)
 

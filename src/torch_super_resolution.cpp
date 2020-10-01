@@ -1,17 +1,3 @@
-/*******************************************************************************************
-*
-*   raylib [core] example - Windows drop files
-*
-*   This example only works on platforms that support drag & drop (Windows, Linux, OSX, Html5?)
-*
-*   This example has been created using raylib 1.3 (www.raylib.com)
-*   raylib is licensed under an unmodified zlib/libpng license (View raylib.h for details)
-*
-*   Copyright (c) 2015 Ramon Santamaria (@raysan5)
-*
-********************************************************************************************/
-
-//#include "raylib.h"
 
 #include "../include/utils/vision_utils.hpp"
 //#include "../include/png++/rgb_pixel.hpp"
@@ -36,12 +22,12 @@ int main(int argc, char *argv[]) {
     torch::NoGradGuard no_grad_guard;
     at::init_num_threads();
 
-    const char *fileName="comic.png";
-    const char *fileNameESRext="_esr.png";
-    string fileNameESR( string(fileName) + fileNameESRext );
+    const char *fileName = "comic.png";
+    const char *fileNameESRext = "_esr.png";
+    string fileNameESR(string(fileName) + fileNameESRext);
 
     Image image = LoadImage(fileName);   // Loaded in CPU memory (RAM)
-    Image imageGAN = VU.applyModelOnImage(device, moduleUdnie,  image);
-    ExportImage(imageGAN,fileNameESR.c_str());
+    Image imageGAN = VU.applyModelOnImage(device, moduleUdnie, image);
+    ExportImage(imageGAN, fileNameESR.c_str());
     return 0;
 }

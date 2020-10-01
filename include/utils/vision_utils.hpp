@@ -64,8 +64,8 @@ Image VisionUtils::applyModelOnImage(torch::Device &device, torch::jit::Module &
 void VisionUtils::tensorDIMS(const torch::Tensor &tensor) {
 //    auto t0 = tensor.size(0);
     auto s = tensor.sizes();
-    TraceLog(LOG_INFO, "TorchRayLib: D=%f",s);
-    std::cout<<"TorchRayLib: D="<<std::endl;
+//    TraceLog(LOG_INFO, "TorchRayLib: D=%f",s);
+    std::cout<<"TorchRayLib: D="<<s<< std::endl;
 }
 
 Image VisionUtils::torchToRayImage(torch::Tensor &tensor_) {

@@ -1,15 +1,4 @@
-/*******************************************************************************************
-*
-*   raylib [textures] example - Image processing
-*
-*   NOTE: Images are loaded in CPU memory (RAM); textures are loaded in GPU memory (VRAM)
-*
-*   This example has been created using raylib 1.4 (www.raylib.com)
-*   raylib is licensed under an unmodified zlib/libpng license (View raylib.h for details)
-*
-*   Copyright (c) 2016 Ramon Santamaria (@raysan5)
-*
-********************************************************************************************/
+
 
 #include "raylib.h"
 #include "../include/utils/vision_utils.hpp"
