@@ -50,7 +50,7 @@ because the PyTorch community does not have a dedicated UI.
    
    <tr> 
    <td><img src='./asstes/babon.png' width="300px"></td>         
-    <td>ESRGAN Super resolution:</td>
+    <td>ESRGAN Super resolution</td>
     <td>./resources/RRDB_ESRGAN_x4_000.pt</td>         
     </tr>
       
