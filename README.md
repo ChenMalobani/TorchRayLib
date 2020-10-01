@@ -37,8 +37,19 @@ because the PyTorch community does not have a dedicated UI.
 
 # Deep Learning Models (Libtorch C++)
  
-- **ESRIGAN Super Resolution**: https://github.com/xinntao/ESRGAN 
-- **NeuralStyle transfer**: https://github.com/pytorch/examples/tree/master/fast_neural_style 
+ <div align='center'>
+ <table>
+   <th>Model <br/> <code>JIT traced</code><br/></th>
+   <th>Image</th>   
+   <tr>          
+     <td>NeuralStyle Mosaic: https://github.com/pytorch/examples/tree/master/fast_neural_style</td>
+     <td><img src='./asstes/amber.png_mosaic_cpp.pt-out.png' width="300px"><br/><center>mosaic.jpg</center></td>     
+   </tr>      
+ </table>
+ </div>
+ 
+
+ 
 
 # GPU or CPU?  
 If you want to test on a CPU you will have to edit CMakeLists:
