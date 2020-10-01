@@ -70,13 +70,13 @@ int main()
     const char * mainTitle="TorchRayLib: Super-Resolution";
     InitWindow(screenWidth, screenHeight, mainTitle);
     gamefont = LoadFont("GameCube.ttf");
-    Sound clickSound = LoadSound("click.ogg");
-    Sound saveImageSound = LoadSound("save.ogg");
+    Sound clickSound = LoadSound("save.ogg");
+    Sound saveImageSound = LoadSound("click.ogg");
 
     GuiSetFont(gamefont);
-    GuiSetStyle(DEFAULT, TEXT_SIZE, 26);
+    GuiSetStyle(DEFAULT, TEXT_SIZE, 36);
     GuiFade(0.9f);
-    GuiSetStyle(DEFAULT, TEXT_SPACING, 3);
+    GuiSetStyle(DEFAULT, TEXT_SPACING, 0);
     Color defTextCLR= GetColor(GuiGetStyle(DEFAULT, LINE_COLOR));
 
     // Background
@@ -205,14 +205,14 @@ int main()
             GuiDisable();
         }
 
-        if (GuiButton(Rectangle{ screenWidth - 170, screenHeight - 250, 150, 30 }, "SAVE")) {
+        if (GuiButton(Rectangle{ screenWidth - 190, screenHeight - 250, 170, 40 }, "SAVE")) {
             PlaySound(saveImageSound);
             TraceLog(LOG_INFO, "TorchRaLib: save image");
             windowBoxActive = true;
         }
 
 
-        if (GuiButton(Rectangle{ screenWidth - 170, screenHeight - 50, 150, 30 }, "SR")) {
+        if (GuiButton(Rectangle{ screenWidth - 190, screenHeight - 50, 170, 40 }, "SR")) {
             PlaySound(clickSound);
             TraceLog(LOG_INFO, "TorchRaLib: ESRGAN");
             VU.applyModelOnImage(device, moduleESRGAN, image);
@@ -223,7 +223,7 @@ int main()
 //            windowBoxActive = true;
         }
 
-        if (GuiButton(Rectangle{ screenWidth - 170, screenHeight - 90, 150, 30 }, "Candy")) {
+        if (GuiButton(Rectangle{ screenWidth - 190, screenHeight - 90, 170, 40 }, "Candy")) {
             PlaySound(clickSound);
             TraceLog(LOG_INFO, "TorchRaLib: Candy");
             VU.applyModelOnImage(device, moduleCandy, image);
@@ -231,7 +231,7 @@ int main()
             texture = LoadTextureFromImage(image);
         }
 
-        if (GuiButton(Rectangle{ screenWidth - 170, screenHeight - 130, 150, 30 }, "Mosaic")) {
+        if (GuiButton(Rectangle{ screenWidth - 190, screenHeight - 130, 170, 40 }, "Mosaic")) {
             PlaySound(clickSound);
             TraceLog(LOG_INFO, "TorchRaLib: Mosaic");
             VU.applyModelOnImage(device, moduleMosaic, image);
@@ -239,12 +239,20 @@ int main()
             texture = LoadTextureFromImage(image);
         }
 
-        if (GuiButton(Rectangle{ screenWidth - 170, screenHeight -170, 150, 30 }, "Darken")) {
+        if (GuiButton(Rectangle{ screenWidth - 190, screenHeight -170, 170, 40 }, "Darker")) {
             PlaySound(clickSound);
-            TraceLog(LOG_INFO, "TorchRaLib: Darken");
+            TraceLog(LOG_INFO, "TorchRaLib: Darker");
             ImageColorBrightness(&image, -40);
             texture = LoadTextureFromImage(image);
         }
+
+        if (GuiButton(Rectangle{ screenWidth - 190, screenHeight -210, 170, 40 }, "Lighter")) {
+            PlaySound(clickSound);
+            TraceLog(LOG_INFO, "TorchRaLib: Ligther");
+            ImageColorBrightness(&image, +40);
+            texture = LoadTextureFromImage(image);
+        }
+
 
         GuiEnable();
 

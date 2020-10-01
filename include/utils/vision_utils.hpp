@@ -34,9 +34,9 @@ torch::Device VisionUtils::getDevice() {
     torch::DeviceType device_type = torch::kCPU;
     if (torch::cuda::is_available()) {
         device_type = torch::kCUDA;
-        std::cout << "Running on a GPU" << std::endl;
+        TraceLog(LOG_INFO, "TorchRayLib: CPU");
     } else {
-        std::cout << "Running on a CPU" << std::endl;
+        TraceLog(LOG_INFO, "TorchRayLib: GPU");
     }
     torch::Device device(device_type);
     return device;
@@ -62,9 +62,10 @@ Image VisionUtils::applyModelOnImage(torch::Device &device, torch::jit::Module &
 }
 
 void VisionUtils::tensorDIMS(const torch::Tensor &tensor) {
-    auto t0 = tensor.size(0);
+//    auto t0 = tensor.size(0);
     auto s = tensor.sizes();
-    cout << "D=:" << s << "\n";
+    TraceLog(LOG_INFO, "TorchRayLib: D=%f",s);
+    std::cout<<"TorchRayLib: D="<<std::endl;
 }
 
 Image VisionUtils::torchToRayImage(torch::Tensor &tensor_) {
