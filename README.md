@@ -24,9 +24,13 @@
   
 **TorchRayLib++** is a CMake based **integration** of the well-known **_raylib GUI_** library 
 with my favourite Deep Learning Library Libtorch: the **_PyTorch_** C++ frontend, mainly for working on the **_GPU_** 
-but it also works on the CPU out-of-the-box. It is mainly targeted at generative art models with a premise that new models acn bea easily integrated. 
+but it also works on the CPU out-of-the-box. It is mainly targeted at generative art models with a premise that 
+new models can be easily integrated.  
 
-**There are no OpenCV dependencies for reading and writing images!**. Everything is self-contained using stb_image (part of raylib).   
+**There are no OpenCV dependencies for reading and writing images!**. Everything is self-contained using stb_image (part of raylib). 
+The library includes conversion utils between ray Image, `torch::tensor` and PNG lib, all of which are interchangeable.
+For more details, refer to: 
+- https://github.com/QuantScientist/TorchRayLib/blob/master/include/utils/vision_utils.hpp     
  
 <h1 align="left">    
   <img src="https://github.com/QuantScientist/PngTorch/blob/master/asstes/logo.png?raw=true?raw=true" width="25%"></a>  
