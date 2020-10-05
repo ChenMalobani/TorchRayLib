@@ -24,8 +24,10 @@
   
 **TorchRayLib++** is a CMake based **integration** of the well-known **_raylib GUI_** library 
 with my favourite Deep Learning Library Libtorch: the **_PyTorch_** C++ frontend, mainly for working on the **_GPU_** 
-but it also works on the CPU out-of-the-box. It is mainly targeted at generative art models with a premise that 
-new models can be easily integrated.  
+but it also works on the CPU out-of-the-box. It is mainly targeted at **AI researchers** and **creative coders** 
+as a tool for generative art with a premise that new CNN models can be easily integrated.
+One feature I am working on is **CNN Model Chaining**  where one can arbitrarily chain models for instance, ESRGAN and then 
+neural style transfer with the Candy variant.   
 
 **There are no OpenCV dependencies for reading and writing images!**. Everything is self-contained using stb_image (part of raylib). 
 The library includes conversion utils between ray Image, `torch::tensor` and PNG lib, all of which are interchangeable.
