@@ -188,11 +188,16 @@ an unmodified zlib/libpng license (View raylib.h for details) Copyright (c) 2014
 ![TorchRayLib++ Code](https://github.com/QuantScientist/TorchRayLib/blob/master/asstes/torch_core_random_values.gif?raw=true)
 - https://github.com/QuantScientist/TorchRayLib/blob/master/src/torch_core_random_values.cpp
  
-#### Load a trained PyTorch NeuralStyle transfer model in C++ (**see pth folder**), load an Image in C++, run a trained pytorch model on it and save the output.
+#### Real-time CNN chaining on images. Load a trained PyTorch NeuralStyle transfer model in C++ (**see pth folder**), load an Image in C++, run a trained pytorch model on it and save the output.
 ![TorchRayLib++ Code](https://github.com/QuantScientist/TorchRayLib/blob/master/asstes/neuralanim.gif?raw=true)
 
 #### Super resolution demo using ESRGAN
 ![TorchRayLib++ Code](https://github.com/QuantScientist/TorchRayLib/blob/master/asstes/esrgan01.gif?raw=true)
+
+#### Real-time CNN chaining on MPG videos 
+![TorchRayLib++ Code](https://github.com/QuantScientist/TorchRayLib/blob/master/asstes/mpeg-vid.gif?raw=true)
+
+
 
 
 ## Requirements:
