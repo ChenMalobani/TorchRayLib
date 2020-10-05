@@ -1,5 +1,6 @@
 
-<h1 align="center">TorchRayLib++: A CMake based generative art concept, integrating rayLib GUI and PyTorch C++ Deep Learning Library.</h1>
+<h1 align="center">TorchRayLib++: A CMake based AI & generative art platform, integrating the rayib GUI and 
+the PyTorch C++ Deep Learning Library.</h1>
       
 <p align="center">
   <a href="#about">About</a> •
@@ -22,14 +23,15 @@
 <tr>
 <td>
   
-**TorchRayLib++** is a CMake based **integration** of the well-known **_raylib GUI_** library 
-with my favourite Deep Learning Library Libtorch: the **_PyTorch_** C++ frontend, mainly for working on the **_GPU_** 
-but it also works on the CPU out-of-the-box. It is mainly targeted at **AI researchers** and **creative coders** 
-as a tool for generative art with a premise that new CNN models can be easily integrated.
-One feature I am working on is **CNN Model Chaining**  where one can arbitrarily chain models for instance, ESRGAN and then 
-neural style transfer with the Candy variant.   
+**TorchRayLib++** is a CMake based **integration** of the well-known **_raylib GUI_**  with my favourite Deep Learning Library 
+Libtorch (C++).
+ 
+It will run fast on a GPU but would also work on the CPU out-of-the-box, albeit much slower. 
+It is mainly targeted at **AI researchers** and **creative coders** as a tool for generative art with a premise that new CNN models 
+can be easily integrated. One feature I am working on is **CNN Model Chaining** where one can arbitrarily chain models for instance, 
+ESRGAN and then neural style transfer with the Candy variant.   
 
-**There are no OpenCV dependencies for reading and writing images!**. Everything is self-contained using stb_image (part of raylib). 
+**There is no OpenCV dependency for reading and writing images / videos or anything else**. Everything is self-contained using stb_image (part of raylib). 
 The library includes conversion utils between ray Image, `torch::tensor` and PNG lib, all of which are interchangeable.
 For more details, refer to: 
 - https://github.com/QuantScientist/TorchRayLib/blob/master/include/utils/vision_utils.hpp     
@@ -64,7 +66,6 @@ because the PyTorch community does not have a dedicated UI that allows the easy 
  </div>
  
 
- 
 
 # GPU or CPU?  
 If you want to test on a CPU you will have to edit CMakeLists:
@@ -88,12 +89,11 @@ Or look up projects using it here:
 https://www.google.com/search?q=raylib+site:github.com   
 
 ## PyTorch / Libtorch C++ 
-PyTorch is a Python package that provides two high-level features, Tensor computation (like NumPy) with strong GPU acceleration
-Deep neural networks built on a tape-based autograd system. In this project we use the C++ version entitled Libtorch. 
+PyTorch is one of the best Deep Learning libraries available today. In this project we use the C++ variant entitled **Libtorch**.
 https://pytorch.org/ 
 
 ## Alpha release
-Try it here: https://github.com/QuantScientist/TorchRayLib/releases 
+Try it here at your own risk: https://github.com/QuantScientist/TorchRayLib/releases 
 **Note**: it is a huge file because of the included orch / NVIDIA CUDA runtime files.    
  
   
@@ -146,16 +146,20 @@ int main(void)
 }
 ```
 
-## Credits 
+## Credits + Third party libraries I used
 * PyTorch CPP examples by koba-jon https://github.com/koba-jon/pytorch_cpp.
  
 * PyTorch CPP examples + CMake build: https://github.com/prabhuomkar/pytorch-cpp/
 
-* For the NeuralStyle transfer models which I traced to C++ see https://github.com/gnsmrky/pytorch-fast-neural-style-for-web 
+* For the NeuralStyle transfer models which I traced to C++ see: https://github.com/gnsmrky/pytorch-fast-neural-style-for-web 
 and https://github.com/pytorch/examples/tree/master/fast_neural_style
 
-* RayLib UI https://github.com/raysan5/raylib which is licensed under 
+* RayLib UI + raylib https://github.com/raysan5/raylib which is licensed under 
 an unmodified zlib/libpng license (View raylib.h for details) Copyright (c) 2014 Ramon Santamaria (@raysan5) 
+
+* PL_MPEG - MPEG1 Video decoder, MP2 Audio decoder, MPEG-PS demuxer : https://github.com/phoboslab/pl_mpeg
+
+* ESRGAN: https://github.com/xinntao/ESRGAN 
 
 
 ## Features
@@ -164,6 +168,8 @@ an unmodified zlib/libpng license (View raylib.h for details) Copyright (c) 2014
 | -------------------------- | :----------------: | :-------------:|
 | PyTorch CPU tensor to ray Image        |         ✔️                 
 | PyTorch GPU tensors to ray image       |         ✔️                 
+| PyTorch GPU tensors to MPG video frames       |         ✔️
+| PyTorch CPU tensors to MPG video frames       |         ✔️
 | Libtorch C++ 1.6           |         ✔️                 
 | RayLib                     |         ✔️                 
 
