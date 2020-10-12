@@ -12,6 +12,9 @@
 using namespace std;
 using namespace std::chrono;
 
+#define kIMAGE_SIZE_W 256 //Pose
+#define kIMAGE_SIZE_H 320 //Pose
+
 class VisionUtils {
 public:
     VisionUtils();
@@ -24,25 +27,43 @@ public:
 
     Image applyModelOnImage(torch::Device &device, torch::jit::Module &module, Image &image);
 
+    Image applyMode17pointslOnImage(torch::Device &device, torch::jit::Module &module, Image &image);
+
     torch::Device getDevice();
+
+    torch::jit::Module loadTrainedModule(const std::string loc, torch::Device &device);
+
 };
 
 VisionUtils::VisionUtils() {}
 
+torch::jit::Module VisionUtils::loadTrainedModule(const std::string loc, torch::Device &device) {
+    torch::jit::Module module;
+    if (!std::ifstream(loc)) {
+        std::cout << "Could not open the Libtorch model from path: "<< loc<< std::endl;
+        TraceLog(LOG_FATAL, "Could not open the Libtorch model from path:%s", loc.c_str());
+    }
+    else {
+        module = torch::jit::load(loc, device);
+        TraceLog(LOG_DEBUG, "Loaded trained Libtorch model from path:%s", loc.c_str());
+    }
+    return module;
+}
 
 torch::Device VisionUtils::getDevice() {
     torch::DeviceType device_type = torch::kCPU;
     if (torch::cuda::is_available()) {
         device_type = torch::kCUDA;
-        TraceLog(LOG_INFO, "TorchRayLib: CPU");
+        TraceLog(LOG_DEBUG, "TorchRayLib: CPU");
     } else {
-        TraceLog(LOG_INFO, "TorchRayLib: GPU");
+        TraceLog(LOG_DEBUG, "TorchRayLib: GPU");
     }
     torch::Device device(device_type);
     return device;
 }
 
 Image VisionUtils::applyModelOnImage(torch::Device &device, torch::jit::Module &module, Image &image) {
+    TraceLog(LOG_DEBUG, "Using loaded modle on GPU?=%i", (int)device.is_cuda());
     auto tensor = rayImageToTorch(image, device);
     tensorDIMS(tensor);
     tensor = tensor.
@@ -61,10 +82,65 @@ Image VisionUtils::applyModelOnImage(torch::Device &device, torch::jit::Module &
     return image;
 }
 
+Image VisionUtils::applyMode17pointslOnImage(torch::Device &device, torch::jit::Module &module, Image &image) {
+    TraceLog(LOG_DEBUG, "Using loaded modle on GPU?=%i", (int) device.is_cuda());
+
+    ImageResize(&image,(int)kIMAGE_SIZE_W, (int)kIMAGE_SIZE_H);
+    auto tensor = rayImageToTorch(image, device);
+    tensorDIMS(tensor);
+
+    tensor = tensor.
+            to(torch::kFloat). // For inference
+            unsqueeze(-1). // Add batch
+            permute({3, 0, 1, 2}). // Fix order, now its {B,C,H,W}
+            to(device);
+    tensorDIMS(tensor);
+    // Apply the model
+    torch::Tensor out_tensor = module.forward({tensor}).toTensor();
+    tensorDIMS(out_tensor); // D=:[1, 3, 320, 480]
+    out_tensor = out_tensor.to(
+            torch::kFloat32).detach().cpu().squeeze();
+    tensorDIMS(out_tensor); // D=:[1, 17, 80, 64] [17, 80, 64]
+
+    auto ft = tensor.flatten(2,3); //flattening
+    auto maxresult = at::max(ft,2); //find the coordinate with the highest confidence
+    auto maxid = std::get<1>(maxresult); //get the tensor
+    tensorDIMS (maxid);//[1, 3]
+
+    int coor[17][2];
+    int count = 0;
+    int max_x = 0;
+    int max_y = 0;
+    int prob = 0;
+
+    int kptsCount=3;
+
+    for(int kpts=0;kpts<kptsCount;kpts++){
+        int i = 0;
+        i = (int)(maxid[0][kpts].item().toFloat()) ;
+        max_x = (i % 64)+1;
+        max_y = (i / 64)+1;
+        coor[kpts][0] = max_x ;
+        coor[kpts][1] = max_y ;
+    }
+//
+    for(int kpts=0;kpts<kptsCount;kpts++){
+        int x = (int)(((float)coor[kpts][0] * image.width) / 64 ) ;
+        int y = (int)(((float)coor[kpts][1] * image.height) / 80 ) ;
+        ImageDrawCircle(&image,x,y,4.0, RED);
+        const char * txt=FormatText("%i",kpts);
+        ImageDrawText(&image, Vector2 {(float)x, (float)y},txt, 10.0, BLUE);
+    }
+
+//    image = torchToRayImage(out_tensor);
+    return image;
+}
+
 void VisionUtils::tensorDIMS(const torch::Tensor &tensor) {
 //    auto t0 = tensor.size(0);
     auto s = tensor.sizes();
-//    TraceLog(LOG_INFO, "TorchRayLib: D=%f",s);
+//    TraceLog(LOG_DEBUG, "TorchRayLib: D=%f",s);
+//    TraceLog(LOG_DEBUG, "TorchRayLib: Tensor Dims=%s)", s);
     std::cout<<"TorchRayLib: D="<<s<< std::endl;
 }
 
@@ -102,6 +178,9 @@ torch::Tensor VisionUtils::rayImageToTorch(const Image &image, c10::Device &devi
 
     int dataSize = GetPixelDataSize(width, height, image.format);
     int bytesPerPixel = dataSize / (width * height);
+    TraceLog(LOG_DEBUG, "TorchRayLib: bytesPerPixel:%i", bytesPerPixel);
+    if (bytesPerPixel==4) bytesPerPixel=3;
+
     auto pointer = new unsigned char[dataSize];
     const unsigned char *imagePointer = (unsigned char *) image.data;
     std::memcpy(pointer, imagePointer, dataSize);
@@ -111,6 +190,56 @@ torch::Tensor VisionUtils::rayImageToTorch(const Image &image, c10::Device &devi
     return tensor;
 }
 
+//Image VisionUtils::applyMode17pointslOnImage(torch::Device &device, torch::jit::Module &module, Image &image) {
+//    TraceLog(LOG_DEBUG, "Using loaded modle on GPU?=%i", (int) device.is_cuda());
+//
+//    ImageResize(&image,(int)kIMAGE_SIZE_W, (int)kIMAGE_SIZE_H);
+//    auto tensor = rayImageToTorch(image, device);
+//    tensorDIMS(tensor);
+//
+//    tensor = tensor.
+//            to(torch::kFloat). // For inference
+//            unsqueeze(-1). // Add batch
+//            permute({3, 0, 1, 2}). // Fix order, now its {B,C,H,W}
+//            to(device);
+//    tensorDIMS(tensor);
+//    // Apply the model
+//    torch::Tensor out_tensor = module.forward({tensor}).toTensor();
+//    tensorDIMS(out_tensor); // D=:[1, 3, 320, 480]
+//    out_tensor = out_tensor.to(
+//            torch::kFloat32).detach().cpu(); // [ Variable[CUDAFloatType]{1,17,56,56} ]
+//    tensorDIMS(out_tensor); // D=:[1, 3, 320, 480]
+//
+//    auto ft = tensor.flatten(2,3); //flattening
+//    auto maxresult = at::max(ft,2); //find the coordinate with the highest confidence
+//    auto maxid = std::get<1>(maxresult); //get the tensor
+//
+//    int coor[17][2];
+//    int count = 0;
+//    int max_x = 0;
+//    int max_y = 0;
+//    int prob = 0;
+//
+//    for(int kpts=0;kpts<17;kpts++){
+//        int i = 0;
+//        i = (int)(maxid[0][kpts].item().toFloat()) ;
+//        max_x = (i % 64)+1;
+//        max_y = (i / 64)+1;
+//        coor[kpts][0] = max_x ;
+//        coor[kpts][1] = max_y ;
+//    }
+////
+////    for(int kpts=0;kpts<17;kpts++){
+////        int x = (int)(((float)coor[kpts][0] * image.width) / 64 ) ;
+////        int y = (int)(((float)coor[kpts][1] * image.height) / 80 ) ;
+////        ImageDrawCircle(&image,x,y,4.0, RED);
+////        const char * txt=FormatText("%i",kpts);
+////        ImageDrawText(&image, Vector2 {(float)x, (float)y},txt, 4.0, RED);
+////    }
+//
+////    image = torchToRayImage(out_tensor);
+//    return image;
+//}
 
 //torch::Tensor VisionUtils::rayImageToTorch(const Image &image, c10::Device &device){
 //    size_t width = image.width;

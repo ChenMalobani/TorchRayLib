@@ -40,7 +40,8 @@ For more details, refer to:
   <img src="https://github.com/QuantScientist/PngTorch/blob/master/asstes/logo.png?raw=true?raw=true" width="25%"></a>  
 </h1>
 
-**Why??++** Because its fun, for gaming, for deep learning researchers, for generating art, for AI, for reinforcement learning, 
+## What can it do for me? 
+Its fun, for gaming, for deep learning researchers, for generating art, for AI, for reinforcement learning, 
 because the PyTorch community does not have a dedicated UI that allows the easy execution of CNN models. 
 
 # Deep Learning Models (Libtorch C++)
@@ -160,6 +161,8 @@ an unmodified zlib/libpng license (View raylib.h for details) Copyright (c) 2014
 * PL_MPEG - MPEG1 Video decoder, MP2 Audio decoder, MPEG-PS demuxer : https://github.com/phoboslab/pl_mpeg
 
 * ESRGAN: https://github.com/xinntao/ESRGAN 
+
+* Video files from: http://hubblesource.stsci.edu/sources/video/clips/
 
 
 ## Features

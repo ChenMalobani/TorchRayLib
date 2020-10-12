@@ -216,7 +216,11 @@ copy_torch_dlls(${EXAMPLE_006_EXE})
 # TARGET
 set(EXAMPLE_007_EXE torch_super_resolution)
 #add_executable(${EXAMPLE_005_EXE} src/${EXAMPLE_005_EXE}.cpp)
-add_executable(${EXAMPLE_007_EXE} src/${EXAMPLE_007_EXE}.cpp include/utils/vision_utils.hpp)
+add_executable(${EXAMPLE_007_EXE} src/${EXAMPLE_007_EXE}.cpp include/utils/vision_utils.hpp
+        include/pl_mpeg/pl_mpeg.h
+        include/stbi/stb_image_write.h
+        )
+
 set(raylib_VERBOSE 1)
 target_link_libraries(${EXAMPLE_007_EXE} raylib  ${TORCH_LIBRARIES})
 #target_link_libraries(${PROJECT_NAME} m)
@@ -231,10 +235,11 @@ copy_torch_dlls(${EXAMPLE_007_EXE})
 
 ################# EXAMPLE 006 ########################
 # TARGET
-set(EXAMPLE_008_EXE torch_super_resolution_gui)
+set(EXAMPLE_008_EXE torch_image_studio_GUI)
 #add_executable(${EXAMPLE_005_EXE} src/${EXAMPLE_005_EXE}.cpp)
 add_executable(${EXAMPLE_008_EXE} src/${EXAMPLE_008_EXE}.cpp include/utils/vision_utils.hpp include/raygui/raygui.h
-        include/raygui/ricons.h)
+        include/raygui/ricons.h
+        include/pl_mpeg/pl_mpeg.h)
 set(raylib_VERBOSE 1)
 target_link_libraries(${EXAMPLE_008_EXE} raylib  ${TORCH_LIBRARIES})
 #target_link_libraries(${PROJECT_NAME} m)
@@ -246,6 +251,25 @@ set_target_properties(${EXAMPLE_008_EXE} PROPERTIES
 copy_torch_dlls(${EXAMPLE_008_EXE})
 ################# EXAMPLE 006 ########################
 
+################# EXAMPLE 006 ########################
+# TARGET
+set(EXAMPLE_009_EXE torch_video_studio_GUI)
+#add_executable(${EXAMPLE_005_EXE} src/${EXAMPLE_005_EXE}.cpp)
+add_executable(${EXAMPLE_009_EXE} src/${EXAMPLE_009_EXE}.cpp include/utils/vision_utils.hpp include/raygui/raygui.h
+        include/raygui/ricons.h
+        include/pl_mpeg/pl_mpeg.h)
+set(raylib_VERBOSE 1)
+target_link_libraries(${EXAMPLE_009_EXE} raylib  ${TORCH_LIBRARIES})
+#target_link_libraries(${PROJECT_NAME} m)
+target_include_directories(${EXAMPLE_009_EXE} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/_dpes/libtorch/include/")
+target_include_directories(${EXAMPLE_009_EXE} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/_deps/libtorch/include/torch/csrc/api/")
+set_target_properties(${EXAMPLE_009_EXE} PROPERTIES
+        CXX_STANDARD 17
+        CXX_STANDARD_REQUIRED YES)
+#target_compile_options(${EXAMPLE_009_EXE} PRIVATE /wd4267 /wd4244 /wd4996)
+copy_torch_dlls(${EXAMPLE_009_EXE})
+################# EXAMPLE 006 ########################
+
 
 # # Copy trained PTH files
 file(COPY "resources/mosaic_cpp.pt" DESTINATION ${CMAKE_SOURCE_DIR}/bin64)
@@ -253,6 +277,7 @@ file(COPY "resources/candy_cpp.pt" DESTINATION ${CMAKE_SOURCE_DIR}/bin64)
 file(COPY "resources/udnie_cpp.pt" DESTINATION ${CMAKE_SOURCE_DIR}/bin64)
 file(COPY "resources/erfnet_fs.pt" DESTINATION ${CMAKE_SOURCE_DIR}/bin64)
 file(COPY "resources/RRDB_ESRGAN_x4_000.pt" DESTINATION ${CMAKE_SOURCE_DIR}/bin64)
+#file(COPY "resources/spee_cpp.pt" DESTINATION ${CMAKE_SOURCE_DIR}/bin64)
 
 
 file(COPY "resources/amber.png" DESTINATION ${CMAKE_SOURCE_DIR}/bin64)
@@ -268,8 +293,13 @@ file(COPY "resources/img_002_SRF_2_LR.png" DESTINATION ${CMAKE_SOURCE_DIR}/bin64
 file(COPY "resources/logo.png" DESTINATION ${CMAKE_SOURCE_DIR}/bin64)
 
 file(COPY "resources/GameCube.ttf" DESTINATION ${CMAKE_SOURCE_DIR}/bin64)
+#file(COPY "resources/EBGaramond08-Regular.otf" DESTINATION ${CMAKE_SOURCE_DIR}/bin64)
 
 file(COPY "resources/save.ogg" DESTINATION ${CMAKE_SOURCE_DIR}/bin64)
 file(COPY "resources/click.ogg" DESTINATION ${CMAKE_SOURCE_DIR}/bin64)
+file(COPY "resources/bjork-all-is-full-of-love.mpg" DESTINATION ${CMAKE_SOURCE_DIR}/bin64)
+
+
 file(COPY "resources/torch.rgs" DESTINATION ${CMAKE_SOURCE_DIR}/bin64)
+file(COPY "resources/torch2.rgs" DESTINATION ${CMAKE_SOURCE_DIR}/bin64)
 
