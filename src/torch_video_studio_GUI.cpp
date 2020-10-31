@@ -15,7 +15,9 @@
 #include <torch/script.h>
 #include <torch/torch.h>
 #include "../include/utils/vision_utils.hpp"
-#include "../bin64/_deps/raylib-src/src/external/glad.h"
+//#include "../bin64/_deps/raylib-src/src/external/glad.h"
+#include "../ext/raylib/src/external/glad.h"
+
 #include "../include/raygui/ricons.h"
 
 #define PL_MPEG_IMPLEMENTATION
