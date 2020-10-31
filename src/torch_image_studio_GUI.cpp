@@ -6,6 +6,7 @@
 #pragma warning( disable : 4576 )
 #define RAYGUI_IMPLEMENTATION
 #define RAYGUI_SUPPORT_RICONS
+
 #include "../include/raygui/raygui.h"
 
 #pragma warning( pop )
@@ -15,10 +16,12 @@
 #include <torch/script.h>
 #include <torch/torch.h>
 #include "../include/utils/vision_utils.hpp"
-#include "../bin64/_deps/raylib-src/src/external/glad.h"
+//#include "../bin64/_deps/raylib-src/src/external/glad.h"
+#include "../ext/raylib/src/external/glad.h"
 #include "../include/raygui/ricons.h"
 
 #define PL_MPEG_IMPLEMENTATION
+
 #include "../include/pl_mpeg/pl_mpeg.h"
 //#define STB_IMAGE_WRITE_IMPLEMENTATION
 //#undef STB_IMAGE_WRITE_IMPLEMENTATION

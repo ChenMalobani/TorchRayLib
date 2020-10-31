@@ -129,7 +129,7 @@ Image VisionUtils::applyMode17pointslOnImage(torch::Device &device, torch::jit::
         int y = (int)(((float)coor[kpts][1] * image.height) / 80 ) ;
         ImageDrawCircle(&image,x,y,4.0, RED);
         const char * txt=FormatText("%i",kpts);
-        ImageDrawText(&image, Vector2 {(float)x, (float)y},txt, 10.0, BLUE);
+//        ImageDrawText(&image, Vector2 {(float)x, (float)y},txt, 10.0, BLUE);
     }
 
 //    image = torchToRayImage(out_tensor);

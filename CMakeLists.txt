@@ -44,41 +44,61 @@ if (MSVC)
     add_definitions(/D "_CRT_SECURE_NO_WARNINGS")
     # Parallel build on MSVC (all targets)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /MP")
-endif()
+endif ()
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_VISIBILITY_PRESET hidden)
 
 # Set this to the minimal version you want to support
-find_package(raylib 3.0 QUIET) # Let CMake search for a raylib-config.cmake
+#find_package(raylib 3.0 QUIET) # Let CMake search for a raylib-config.cmake
 
-# You could change the QUIET above to REQUIRED and remove this if() clause
-# This part downloads raylib and builds it if it's not installed on your system
+find_package(raylib 3.0 QUIET) # Let CMake search for a raylib-config.cmake
 if (NOT raylib_FOUND) # If there's none, fetch and build raylib
-    include(FetchContent)
-    FetchContent_Declare(
-        raylib
-        URL https://github.com/raysan5/raylib/archive/3.0.0.tar.gz
-    )
-    FetchContent_GetProperties(raylib)
-    if (NOT raylib_POPULATED) # Have we downloaded raylib yet?
-        set(FETCHCONTENT_QUIET NO)
-        FetchContent_Populate(raylib)
-        set(BUILD_GAMES OFF CACHE BOOL "" FORCE) # don't build the supplied examples
-        set(BUILD_EXAMPLES OFF CACHE BOOL "" FORCE) # don't build the supplied examples
-        # build raylib
-        add_subdirectory(${raylib_SOURCE_DIR} ${raylib_BINARY_DIR})
-    endif()
-endif()
+    #    include(FetchContent)
+    #    FetchContent_Declare(
+    #            raylib
+    #            URL https://github.com/raysan5/raylib/archive/3.0.0.tar.gz
+    #    )
+    #    FetchContent_GetProperties(raylib)
+    #    if (NOT raylib_POPULATED) # Have we downloaded raylib yet?
+    #        set(FETCHCONTENT_QUIET NO)
+    #        FetchContent_Populate(raylib)
+    set(BUILD_GAMES OFF CACHE BOOL "" FORCE) # don't build the supplied examples
+    set(BUILD_EXAMPLES OFF CACHE BOOL "" FORCE) # don't build the supplied examples
+    add_subdirectory(ext/raylib ray_build)
+    #        # build raylib
+    #        add_subdirectory(${raylib_SOURCE_DIR} ${raylib_BINARY_DIR})
+    #    endif()
+endif ()
+
+
+## You could change the QUIET above to REQUIRED and remove this if() clause
+## This part downloads raylib and builds it if it's not installed on your system
+#if (NOT raylib_FOUND) # If there's none, fetch and build raylib
+#    include(FetchContent)
+#    FetchContent_Declare(
+#        raylib
+#        URL https://github.com/raysan5/raylib/archive/3.0.0.tar.gz
+#    )
+#    FetchContent_GetProperties(raylib)
+#    if (NOT raylib_POPULATED) # Have we downloaded raylib yet?
+#        set(FETCHCONTENT_QUIET NO)
+#        FetchContent_Populate(raylib)
+#        set(BUILD_GAMES OFF CACHE BOOL "" FORCE) # don't build the supplied examples
+#        set(BUILD_EXAMPLES OFF CACHE BOOL "" FORCE) # don't build the supplied examples
+#        # build raylib
+#        add_subdirectory(${raylib_SOURCE_DIR} ${raylib_BINARY_DIR})
+#    endif()
+#endif()
 
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/ext")
 set(PYTORCH_VERSION "1.6.0")
 find_package(Torch ${PYTORCH_VERSION} EXACT PATHS "${CMAKE_SOURCE_DIR}/_deps/libtorch")
-if(NOT Torch_FOUND)
+if (NOT Torch_FOUND)
     unset(Torch_FOUND)
     include(download_libtorch)
-endif()
-if(NOT Torch_FOUND)
+endif ()
+if (NOT Torch_FOUND)
     list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/../../../cmake_find")
     find_package(Torch REQUIRED PATHS "${CMAKE_SOURCE_DIR}/../../../libtorch")
 endif()
@@ -113,21 +133,6 @@ set_target_properties(${EXAMPLE_001_EXE} PROPERTIES
 copy_torch_dlls(${EXAMPLE_001_EXE})
 
 
-################# EXAMPLE 000 ########################
-# TARGET
-set(EXAMPLE_000_EXE torch_empty_template)
-#add_executable(${EXAMPLE_005_EXE} src/${EXAMPLE_005_EXE}.cpp)
-add_executable(${EXAMPLE_000_EXE} src/${EXAMPLE_000_EXE}.cpp include/utils/vision_utils.hpp)
-set(raylib_VERBOSE 1)
-target_link_libraries(${EXAMPLE_000_EXE} raylib  ${TORCH_LIBRARIES})
-#target_link_libraries(${PROJECT_NAME} m)
-target_include_directories(${EXAMPLE_000_EXE} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/_dpes/libtorch/include/")
-target_include_directories(${EXAMPLE_000_EXE} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/_deps/libtorch/include/torch/csrc/api/")
-set_target_properties(${EXAMPLE_000_EXE} PROPERTIES
-        CXX_STANDARD 17
-        CXX_STANDARD_REQUIRED YES)
-copy_torch_dlls(${EXAMPLE_000_EXE})
-################# EXAMPLE 004 ########################
 
 
 ################# EXAMPLE 001 ########################
